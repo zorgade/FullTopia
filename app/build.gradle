@@ -35,4 +35,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.google.firebase:firebase-database:9.0.0'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.54'
+    compile 'com.googlecode.objectify:objectify:5.0.3'
 }
