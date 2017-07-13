@@ -15,5 +15,15 @@
     <string name="City">City</string>
     <string name="Country">Country</string>
     <string name="Save">Save</string>
+    <string name="login">Login</string>
+    <string name="emailpassword_title_text">Email/password</string>
+    <string name="desc_firebase_lockup">Firebase</string>
+    <string name="signed_out">Siegned Out</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="sign_in">Sign-in</string>
+    <string name="create_account">Creat an account</string>
+    <string name="sign_out">Sign-out</string>
+    <string name="verify_email">Verify email</string>
 
 </resources>
