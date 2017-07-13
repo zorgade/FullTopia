@@ -7,6 +7,7 @@ buildscript {
     }
     dependencies {
         classpath 'com.google.appengine:gradle-appengine-plugin:1.9.42'
+
     }
 }
 
@@ -27,6 +28,10 @@ dependencies {
     compile 'com.google.appengine:appengine-api-1.0-sdk:1.9.54'
     compile 'com.google.firebase:firebase-server-sdk:3.0.3'
     compile 'org.apache.httpcomponents:httpclient:4.5.3'
+    compile 'com.google.appengine:appengine-endpoints:1.9.28'
+    compile 'com.google.appengine:appengine-endpoints-deps:1.9.28'
+    compile 'javax.servlet:servlet-api:2.5'
+    compile 'com.googlecode.objectify:objectify:5.0.3'
 }
 
 appengine {
