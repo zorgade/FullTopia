@@ -278,8 +278,4 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void goToCommunities(View view){
-        startActivity(new Intent(this, CommunitiesActivity.class));
-
-    }
 }

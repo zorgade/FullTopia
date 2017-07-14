@@ -41,6 +41,10 @@
         <activity
             android:name=".CommunitiesActivities.CommunitiesActivity"
             android:label="@string/title_activity_communities"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ActivitiesActivities.ActivitiesActivity"
+            android:label="@string/title_activity_activities"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
