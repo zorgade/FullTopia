@@ -11,8 +11,8 @@ import java.util.Date;
 
 public class Activity {
 
-    //Long UserId;
-    //Long CommunityId;
+    //String UserId;
+    //String CommunityId;
     String Title;
     Long Min_User_Required;
     Long Max_User_Required;
@@ -20,12 +20,25 @@ public class Activity {
     Date DateCreation;
     Date DateDealineSubmit;
     Date Date_event;
-    //Long CategoryId;
+    //String CategoryId;
     String image;
     Location location;
     String VideoLink;
 
     public Activity(){}
+
+    public Activity(String Title, Long Min_User_Required, Long Max_User_Required, String Description, Date DateCreation, Date DateDealineSubmit, Date Date_event, String image, Location location, String VideoLink){
+        this.Title=Title;
+        this.Min_User_Required=Min_User_Required;
+        this.Max_User_Required=Max_User_Required;
+        this.Description=Description;
+        this.DateCreation=DateCreation;
+        this.DateDealineSubmit=DateDealineSubmit;
+        this.Date_event=Date_event;
+        this.image=image;
+        this.location=location;
+        this.VideoLink=VideoLink;
+    }
 
     public  String getTitle() {
         return Title;
