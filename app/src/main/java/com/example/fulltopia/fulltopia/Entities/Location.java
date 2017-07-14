@@ -8,7 +8,7 @@ public class Location {
 
     String Adress;
     String City;
-    Integer NPA;
+    Long NPA;
     String State;
     String Country;
     String Latitude;
