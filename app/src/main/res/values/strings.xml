@@ -25,5 +25,8 @@
     <string name="create_account">Creat an account</string>
     <string name="sign_out">Sign-out</string>
     <string name="verify_email">Verify email</string>
+    <string name="title_activity_google_sign_in">GoogleSignInActivity</string>
+    <string name="google_title_text">Google</string>
+    <string name="disconnect">Disconnect</string>
 
 </resources>
