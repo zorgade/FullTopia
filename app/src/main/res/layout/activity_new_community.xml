@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.fulltopia.fulltopia.NewCommunity">
+
+    <Button
+        android:id="@+id/BTN_Community_Return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BTN_return"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="6dp" />
+
+    <EditText
+        android:id="@+id/ET_CommunityName"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/community_name"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="63dp" />
+
+    <EditText
+        android:id="@+id/ET_CommunityDescription"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:ems="10"
+        android:hint="@string/community_description"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityCountry"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_CommunityAddress"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/community_Country"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityName"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_CommunityNPA"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:ems="10"
+        android:hint="@string/community_NPA"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityAddress"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_CommunityCity"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="6dp"
+        android:ems="10"
+        android:hint="@string/community_City"
+        app:layout_constraintLeft_toRightOf="@+id/ET_CommunityNPA"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityAddress" />
+
+    <EditText
+        android:id="@+id/ET_CommunityCountry"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:hint="@string/community_Country"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityNPA"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/ET_Community_Image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/community_image_attachement"
+        tools:layout_editor_absoluteX="31dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityDescription" />
+
+    <Button
+        android:id="@+id/BTN_Community_Gallery"
+        android:layout_width="105dp"
+        android:layout_height="77dp"
+        android:text="@string/community_gallery"
+        tools:layout_editor_absoluteX="31dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_Community_Image" />
+
+    <ImageView
+        android:id="@+id/IMGW_Community_Image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityDescription"
+        app:layout_constraintLeft_toRightOf="@+id/BTN_Community_Gallery"
+        android:layout_marginLeft="84dp" />
+
+    <Button
+        android:id="@+id/BTN_Community_Create"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="23dp"
+        android:text="@string/community_create_BTN"
+        app:layout_constraintTop_toBottomOf="@+id/IMGW_Community_Image"
+        tools:layout_editor_absoluteX="8dp" />
+
+
+</android.support.constraint.ConstraintLayout>
