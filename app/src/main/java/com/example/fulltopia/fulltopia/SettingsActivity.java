@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -20,10 +22,17 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
-            changeEmail, changePassword, sendEmail, remove, signOut;
+    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
+            changeEmail, changePassword, sendEmail, remove, signOut,
+            changeLng, changeNotif, changeAddres;
 
-    private EditText oldEmail, newEmail, password, newPassword;
+    private EditText oldEmail, newEmail, password, newPassword,
+            newStreet, newNpa, newCity, newCountry;
+
+    private TextView language, notification, address;
+
+    private RadioButton lng_fr, lng_eng, notif_yes, notif_no;
+
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -56,10 +65,17 @@ public class SettingsActivity extends AppCompatActivity {
             }
         };
 
+        btnChangeLanguage = (Button) findViewById(R.id.change_language_button);
+        btnChangeNotification = (Button) findViewById(R.id.change_notification_button);
+        btnChangeAddress = (Button) findViewById(R.id.change_address_button);
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
         btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
+
+        changeLng = (Button) findViewById(R.id.changeLanguage);
+        changeNotif = (Button) findViewById(R.id.changeNotification);
+        changeAddres = (Button) findViewById(R.id.changeAddress);
         changeEmail = (Button) findViewById(R.id.changeEmail);
         changePassword = (Button) findViewById(R.id.changePass);
         sendEmail = (Button) findViewById(R.id.send);
@@ -70,7 +86,34 @@ public class SettingsActivity extends AppCompatActivity {
         newEmail = (EditText) findViewById(R.id.new_email);
         password = (EditText) findViewById(R.id.password);
         newPassword = (EditText) findViewById(R.id.newPassword);
+        newStreet = (EditText) findViewById(R.id.ET_Street);
+        newNpa = (EditText) findViewById(R.id.ET_NPA);
+        newCity = (EditText) findViewById(R.id.ET_City);
+        newCountry = (EditText) findViewById(R.id.ET_Country);
 
+        lng_fr = (RadioButton) findViewById(R.id.RB_French);
+        lng_eng = (RadioButton) findViewById(R.id.RB_English);
+        notif_yes = (RadioButton) findViewById(R.id.RB_Yes);
+        notif_no = (RadioButton) findViewById(R.id.RB_No);
+
+        language = (TextView) findViewById(R.id.TV_Language);
+        address = (TextView) findViewById(R.id.TV_Address);
+        notification = (TextView) findViewById(R.id.TV_GetNotif);
+
+        language.setVisibility(View.GONE);
+        lng_fr.setVisibility(View.GONE);
+        lng_eng.setVisibility(View.GONE);
+        changeLng.setVisibility(View.GONE);
+        notification.setVisibility(View.GONE);
+        notif_yes.setVisibility(View.GONE);
+        notif_no.setVisibility(View.GONE);
+        changeNotif.setVisibility(View.GONE);
+        address.setVisibility(View.GONE);
+        newStreet.setVisibility(View.GONE);
+        newNpa.setVisibility(View.GONE);
+        newCity.setVisibility(View.GONE);
+        newCountry.setVisibility(View.GONE);
+        changeAddres.setVisibility(View.GONE);
         oldEmail.setVisibility(View.GONE);
         newEmail.setVisibility(View.GONE);
         password.setVisibility(View.GONE);
@@ -86,10 +129,110 @@ public class SettingsActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
+
+        btnChangeLanguage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                language.setVisibility(View.VISIBLE);
+                lng_fr.setVisibility(View.VISIBLE);
+                lng_eng.setVisibility(View.VISIBLE);
+                changeLng.setVisibility(View.VISIBLE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
+                oldEmail.setVisibility(View.GONE);
+                newEmail.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changeEmail.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
+                sendEmail.setVisibility(View.GONE);
+                remove.setVisibility(View.GONE);
+            }
+        });
+
+        btnChangeNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.VISIBLE);
+                notif_yes.setVisibility(View.VISIBLE);
+                notif_no.setVisibility(View.VISIBLE);
+                changeNotif.setVisibility(View.VISIBLE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
+                oldEmail.setVisibility(View.GONE);
+                newEmail.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changeEmail.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
+                sendEmail.setVisibility(View.GONE);
+                remove.setVisibility(View.GONE);
+            }
+        });
+
+        btnChangeAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.VISIBLE);
+                newStreet.setVisibility(View.VISIBLE);
+                newNpa.setVisibility(View.VISIBLE);
+                newCity.setVisibility(View.VISIBLE);
+                newCountry.setVisibility(View.VISIBLE);
+                changeAddres.setVisibility(View.VISIBLE);
+                oldEmail.setVisibility(View.GONE);
+                newEmail.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changeEmail.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
+                sendEmail.setVisibility(View.GONE);
+                remove.setVisibility(View.GONE);
+            }
+        });
         btnChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                oldEmail.setVisibility(View.GONE);
+
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
+                oldEmail.setVisibility(View.VISIBLE);
                 newEmail.setVisibility(View.VISIBLE);
                 password.setVisibility(View.GONE);
                 newPassword.setVisibility(View.GONE);
@@ -129,6 +272,20 @@ public class SettingsActivity extends AppCompatActivity {
         btnChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.GONE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -174,6 +331,20 @@ public class SettingsActivity extends AppCompatActivity {
         btnSendResetEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.VISIBLE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -251,6 +422,7 @@ public class SettingsActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_activities, menu);
         return true;
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 // Handle item selection

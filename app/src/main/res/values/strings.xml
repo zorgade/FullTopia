@@ -58,5 +58,8 @@
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     <string name="title_activity_activities">ActivitiesActivity</string>
+    <string name="btn_chg_language">Change language</string>
+    <string name="btn_chg_notification">Notifications</string>
+    <string name="btn_chg_address">Change Adress</string>
 
 </resources>
