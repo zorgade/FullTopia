@@ -1,6 +1,8 @@
 <resources>
-    <string name="app_name">Fulltopia</string>
 
+    <!-- GLOBAL STRINGS -->
+    <string name="app_name">Fulltopia</string>
+    <string name="BTN_return">Return</string>
 
     <!-- activity_settings layout -->
     <string name="language">Language</string>
@@ -61,5 +63,18 @@
     <string name="btn_chg_language">Change language</string>
     <string name="btn_chg_notification">Notifications</string>
     <string name="btn_chg_address">Change Adress</string>
+
+
+    <!-- activity_settings layout -->
+
+    <string name="community_name">Name*</string>
+    <string name="community_description">Description*</string>
+    <string name="community_address">Address</string>
+    <string name="community_NPA">NPA</string>
+    <string name="community_City">City</string>
+    <string name="community_Country">Country</string>
+    <string name="community_image_attachement">image attachment</string>
+    <string name="community_gallery">Choose from gallery</string>
+    <string name="community_create_BTN">Create community</string>
 
 </resources>
