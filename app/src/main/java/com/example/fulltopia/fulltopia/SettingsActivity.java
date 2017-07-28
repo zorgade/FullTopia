@@ -214,6 +214,51 @@ public class SettingsActivity extends AppCompatActivity {
                 remove.setVisibility(View.GONE);
             }
         });
+
+        changeAddres.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                if (user != null && !newStreet.getText().toString().trim().equals("")
+                        && !newNpa.getText().toString().trim().equals("")
+                        && !newCity.getText().toString().trim().equals("")
+                        && !newCountry.getText().toString().trim().equals("")) {
+                    user.updateEmail(newEmail.getText().toString().trim())
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()) {
+                                        Toast.makeText(SettingsActivity.this, "Email address is updated. Please sign in with new email id!", Toast.LENGTH_LONG).show();
+                                        signOut();
+                                        progressBar.setVisibility(View.GONE);
+                                    } else {
+                                        Toast.makeText(SettingsActivity.this, "Failed to update email!", Toast.LENGTH_LONG).show();
+                                        progressBar.setVisibility(View.GONE);
+                                    }
+                                }
+                            });
+                } else {
+                    if (newStreet.getText().toString().trim().equals("")) {
+                        newStreet.setError("Enter Street");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                    if (newNpa.getText().toString().trim().equals("")) {
+                        newEmail.setError("Enter NPA");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                    if (newCity.getText().toString().trim().equals("")) {
+                        newEmail.setError("Enter City");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                    if (newCountry.getText().toString().trim().equals("")) {
+                        newEmail.setError("Enter Country");
+                        progressBar.setVisibility(View.GONE);
+                    }
+                }
+            }
+        });
+
+
         btnChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
