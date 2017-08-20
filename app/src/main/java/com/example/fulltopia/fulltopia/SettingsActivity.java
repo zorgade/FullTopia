@@ -37,6 +37,9 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+    public SettingsActivity() {
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,6 +48,8 @@ public class SettingsActivity extends AppCompatActivity {
         //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         //toolbar.setTitle(getString(R.string.app_name));
         //setSupportActionBar(toolbar);
+
+
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
