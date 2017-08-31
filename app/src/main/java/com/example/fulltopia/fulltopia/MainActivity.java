@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity;
+import com.example.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -68,6 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void goSettings(View view) {
         Intent i = new Intent(this, SettingsActivity.class);
+        startActivity(i);
+    }
+    public void goActivities(View view) {
+        Intent i = new Intent(this, ActivitiesActivity.class);
+        startActivity(i);
+    }
+    public void goCommunities(View view) {
+        Intent i = new Intent(this, CommunitiesActivity.class);
         startActivity(i);
     }
 
