@@ -107,6 +107,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="23dp"
         android:text="@string/community_create_BTN"
+        android:onClick="createCommunityListener"
         app:layout_constraintTop_toBottomOf="@+id/IMGW_Community_Image"
         tools:layout_editor_absoluteX="8dp" />
 
