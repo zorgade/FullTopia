@@ -69,7 +69,7 @@
     <string name="btn_chg_address">Change Adress</string>
 
 
-    <!-- activity_settings layout -->
+    <!-- activity new community layout -->
     <string name="community_name">Name*</string>
     <string name="community_description">Description*</string>
     <string name="community_address">Address</string>
@@ -80,4 +80,14 @@
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
 
+    <!-- activity new activity layout -->
+    
+    <string name="activity_title">Title</string>
+    <string name="activity_description">Description</string>
+    <string name="activity_min_user_required">Minimum user required</string>
+    <string name="activity_max_user_required">Maximum user allowed</string>
+    <string name="activity_creation_date">Creation date</string>
+    <string name="activity_deadline_participation">Deadline participation</string>
+    <string name="activity_event_date">Event date</string>
+    
 </resources>
