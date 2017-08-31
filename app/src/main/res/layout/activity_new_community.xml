@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/BTN_return"
         tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="6dp" />
+        tools:layout_editor_absoluteY="4dp" />
 
     <EditText
         android:id="@+id/ET_CommunityName"
