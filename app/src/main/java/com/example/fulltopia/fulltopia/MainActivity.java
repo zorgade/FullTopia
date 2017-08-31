@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,6 +79,11 @@ public class MainActivity extends AppCompatActivity {
     }
     public void goCommunities(View view) {
         Intent i = new Intent(this, CommunitiesActivity.class);
+        startActivity(i);
+    }
+
+    public void goTestAppEngine(View view) {
+        Intent i = new Intent(this, AppEngineActivity.class);
         startActivity(i);
     }
 
