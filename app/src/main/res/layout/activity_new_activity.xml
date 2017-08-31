@@ -6,80 +6,152 @@
     android:layout_height="match_parent"
     tools:context="com.example.fulltopia.fulltopia.New_activity">
 
-    <Button
-        android:id="@+id/BTN_Activity_Return"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/BTN_return"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="6dp" />
-
     <EditText
-        android:id="@+id/activity_title"
+        android:id="@+id/ET_activity_title"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/activity_title"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="63dp" />
+        tools:layout_editor_absoluteX="8dp"/>
 
     <EditText
-        android:id="@+id/activity_event_date"
+        android:id="@+id/ET_activity_event_date"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/activity_event_date"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_title"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="63dp" />
 
     <EditText
-        android:id="@+id/activity_deadline_participation"
+        android:id="@+id/ET_activity_deadline_participation"
         android:layout_width="368dp"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="@string/activity_deadline_participation"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_event_date"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="63dp" />
 
     <EditText
-        android:id="@+id/ET_CommunityAddress"
-        android:layout_width="368dp"
+        android:id="@+id/ET_activity_adress"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="9dp"
         android:ems="10"
         android:hint="@string/community_address"
-        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityName"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_deadline_participation"
         tools:layout_editor_absoluteX="8dp" />
 
     <EditText
-        android:id="@+id/ET_CommunityNPA"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="7dp"
-        android:ems="10"
-        android:hint="@string/community_NPA"
-        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityAddress"
-        tools:layout_editor_absoluteX="8dp" />
-
-    <EditText
-        android:id="@+id/ET_CommunityCity"
+        android:id="@+id/ET_activity_city"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="13dp"
-        android:layout_marginTop="6dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
         android:hint="@string/community_City"
-        app:layout_constraintLeft_toRightOf="@+id/ET_CommunityNPA"
-        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityAddress" />
+        app:layout_constraintLeft_toRightOf="@+id/ET_activity_adress"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_deadline_participation" />
 
     <EditText
-        android:id="@+id/ET_CommunityCountry"
-        android:layout_width="368dp"
+        android:id="@+id/ET_activity_NPA"
+        android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="@string/community_NPA"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_adress"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_Activity_country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="9dp"
         android:ems="10"
         android:hint="@string/community_Country"
-        app:layout_constraintTop_toBottomOf="@+id/ET_CommunityNPA"
+        app:layout_constraintLeft_toRightOf="@+id/ET_activity_NPA"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_city"
         tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_activity_min_req_part"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="@string/activity_min_user_required"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_NPA"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_Activity_max_amount_part"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="13dp"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="@string/activity_max_user_allowed"
+        app:layout_constraintLeft_toRightOf="@+id/ET_activity_min_req_part"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_NPA"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <EditText
+        android:id="@+id/ET_activity_description"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="9dp"
+        android:ems="10"
+        android:hint="@string/community_description"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_min_req_part"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/ET_activity_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/community_image_attachement"
+        tools:layout_editor_absoluteX="31dp"
+        android:layout_marginTop="15dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_description" />
+
+    <Button
+        android:id="@+id/BTN_activity_Gallery"
+        android:layout_width="105dp"
+        android:layout_height="77dp"
+        android:text="@string/community_gallery"
+        tools:layout_editor_absoluteX="31dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_image" />
+
+    <ImageView
+        android:id="@+id/IMGW_activity_image"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_description"
+        app:layout_constraintLeft_toRightOf="@+id/BTN_activity_Gallery"
+        android:layout_marginLeft="84dp" />
+
+    <Button
+        android:id="@+id/BTN_activity_create"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="0dp"
+        android:text="@string/community_create_BTN"
+        app:layout_constraintTop_toBottomOf="@+id/IMGW_activity_image"
+        tools:layout_editor_absoluteX="16dp" />
+
+    <Button
+        android:id="@+id/BTN_Activity_Return"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/BTN_return"
+        app:layout_constraintLeft_toRightOf="@+id/BTN_activity_create"
+        tools:layout_editor_absoluteY="458dp"
+        android:layout_marginLeft="36dp" />
 
 </android.support.constraint.ConstraintLayout>
