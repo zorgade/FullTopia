@@ -8,117 +8,61 @@
     tools:layout_editor_absoluteY="81dp"
     tools:layout_editor_absoluteX="0dp">
 
-    <TextView
-        android:id="@+id/TV_Address"
-        android:layout_width="351dp"
-        android:layout_height="33dp"
-        android:text="@string/Address"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="220dp"
-        tools:text="@string/Address" />
-
-    <TextView
-        android:id="@+id/TV_Language"
-        android:layout_width="351dp"
-        android:layout_height="34dp"
-        android:text="@string/language"
-        android:textAlignment="viewStart"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="29dp"
-        tools:text="@string/language" />
-
-    <RadioButton
-        android:id="@+id/RB_French"
-        android:layout_width="126dp"
-        android:layout_height="36dp"
-        android:checked="true"
-        android:text="@string/french"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="74dp"
-        tools:text="@string/french" />
-
-    <RadioButton
-        android:id="@+id/RB_English"
-        android:layout_width="126dp"
-        android:layout_height="36dp"
-        android:text="@string/english"
-        tools:layout_editor_absoluteX="208dp"
-        tools:layout_editor_absoluteY="74dp"
-        tools:text="@string/english" />
-
-    <TextView
-        android:id="@+id/TV_GetNotif"
-        android:layout_width="351dp"
-        android:layout_height="33dp"
-        android:text="@string/GetNotif"
-        android:textSize="24sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="122dp"
-        tools:text="@string/GetNotif" />
-
-    <RadioButton
-        android:id="@+id/RB_Yes"
-        android:layout_width="126dp"
-        android:layout_height="36dp"
-        android:checked="true"
-        android:text="@string/Yes"
-        tools:layout_editor_absoluteX="39dp"
-        tools:layout_editor_absoluteY="171dp"
-        tools:text="@string/Yes" />
-
-    <RadioButton
-        android:id="@+id/RB_No"
-        android:layout_width="126dp"
-        android:layout_height="36dp"
-        android:text="@string/No"
-        tools:layout_editor_absoluteX="208dp"
-        tools:layout_editor_absoluteY="171dp"
-        tools:text="@string/No" />
-
-    <EditText
-        android:id="@+id/ET_Street"
-        android:layout_width="351dp"
+    <Button
+        android:id="@+id/BTN_GoToSettings"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/Street"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="272dp" />
+        android:layout_marginTop="13dp"
+        android:text="@string/settings"
+        app:layout_constraintTop_toBottomOf="@+id/appBarLayout"
+        tools:layout_editor_absoluteX="299dp" />
 
-    <EditText
-        android:id="@+id/ET_NPA"
-        android:layout_width="114dp"
+    <TextView
+        android:id="@+id/TV_Welcome"
+        android:layout_width="359dp"
         android:layout_height="46dp"
-        android:ems="10"
-        android:hint="@string/NPA"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="330dp" />
-
-    <EditText
-        android:id="@+id/ET_City"
-        android:layout_width="223dp"
-        android:layout_height="45dp"
-        android:ems="10"
-        android:hint="@string/City"
-        tools:layout_editor_absoluteX="144dp"
-        tools:layout_editor_absoluteY="330dp" />
-
-    <EditText
-        android:id="@+id/ET_Country"
-        android:layout_width="351dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/Country"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="388dp" />
+        android:layout_marginTop="17dp"
+        android:text="@string/Welcome"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_GoToSettings"
+        tools:layout_editor_absoluteX="23dp" />
 
     <Button
-        android:id="@+id/Btn_SaveSettings"
-        android:layout_width="250dp"
+        android:id="@+id/BTN_GoToActivties"
+        android:layout_width="297dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="58dp"
+        android:text="@string/Activities"
+        app:layout_constraintTop_toBottomOf="@+id/TV_Welcome"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <Button
+        android:id="@+id/BTN_GoToCommunities"
+        android:layout_width="297dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="46dp"
+        android:text="@string/Communities"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_GoToActivties"
+        tools:layout_editor_absoluteX="54dp" />
+
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="389dp"
         android:layout_height="wrap_content"
-        android:text="@string/Save"
-        android:onClick="goSettings"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="447dp" />
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="1dp">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?attr/colorPrimaryDark"
+            app:layout_scrollFlags="scroll|enterAlways"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
+
 </android.support.constraint.ConstraintLayout>
