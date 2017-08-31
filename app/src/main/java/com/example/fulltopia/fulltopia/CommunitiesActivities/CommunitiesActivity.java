@@ -1,5 +1,6 @@
 package com.example.fulltopia.fulltopia.CommunitiesActivities;
 
+import android.content.Intent;
 import android.support.design.widget.TabLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -19,6 +20,8 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.fulltopia.fulltopia.MainActivity;
+import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.R;
 
 public class CommunitiesActivity extends AppCompatActivity {
@@ -57,7 +60,19 @@ public class CommunitiesActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(mViewPager);
 
 
+        FloatingActionButton FLABTN_AddCommunity = (FloatingActionButton) findViewById(R.id.FLABTN_AddComunity);
+
+        FLABTN_AddCommunity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(CommunitiesActivity.this, NewCommunity.class);
+                startActivity(i);
+            }
+        });
+
+
     }
+
 
 
     @Override

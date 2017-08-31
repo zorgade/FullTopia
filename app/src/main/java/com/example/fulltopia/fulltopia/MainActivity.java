@@ -2,6 +2,7 @@ package com.example.fulltopia.fulltopia;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -49,7 +50,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -81,12 +81,6 @@ public class MainActivity extends AppCompatActivity {
         Intent i = new Intent(this, CommunitiesActivity.class);
         startActivity(i);
     }
-
-    public void goNewCommunities(View view) {
-        Intent i = new Intent(this, NewCommunity.class);
-        startActivity(i);
-    }
-
 
     public void goTestAppEngine(View view) {
         Intent i = new Intent(this, AppEngineActivity.class);

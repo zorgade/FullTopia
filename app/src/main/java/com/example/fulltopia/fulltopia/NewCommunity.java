@@ -2,6 +2,7 @@ package com.example.fulltopia.fulltopia;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -46,8 +47,8 @@ public class NewCommunity extends AppCompatActivity {
         editText_CommunityDescription = (EditText) findViewById(R.id.ET_CommunityDescription);
 
         Button button = (Button) findViewById(R.id.BTN_Community_Create);
-        button.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = database.getReference();
                 Community community;
@@ -77,6 +78,5 @@ public class NewCommunity extends AppCompatActivity {
                 }
             }
         };
-
     }
 }
