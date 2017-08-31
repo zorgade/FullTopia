@@ -152,6 +152,6 @@
         android:text="@string/BTN_return"
         app:layout_constraintLeft_toRightOf="@+id/BTN_activity_create"
         tools:layout_editor_absoluteY="458dp"
-        android:layout_marginLeft="76dp" />
+        android:layout_marginLeft="36dp" />
 
 </android.support.constraint.ConstraintLayout>
