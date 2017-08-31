@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.fulltopia.fulltopia.Entities.Community;
 import com.google.firebase.auth.FirebaseAuth;
@@ -57,7 +58,13 @@ public class NewCommunity extends AppCompatActivity {
                 String description = editText_CommunityDescription.getText().toString();
                 Date date = new Date();
                 community = new Community(name, date, description);
-                databaseReference.child("foo").push().setValue(community);
+
+                try {
+                    databaseReference.child("foo").push().setValue(community);
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
             }
         });
 
