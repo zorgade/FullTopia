@@ -64,7 +64,8 @@
             android:label="@string/title_activity_activities"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".NewCommunity" />
-        <activity android:name=".New_activity"></activity>
+        <activity android:name=".New_activity" />
+        <activity android:name=".AppEngineActivity"></activity>
     </application>
 
 </manifest>

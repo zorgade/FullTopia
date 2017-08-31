@@ -81,7 +81,7 @@
     <string name="community_create_BTN">Create community</string>
 
     <!-- activity new activity layout -->
-    
+
     <string name="activity_title">Title</string>
     <string name="activity_description">Description</string>
     <string name="activity_min_user_required">Min part.</string>
@@ -89,5 +89,6 @@
     <string name="activity_creation_date">Creation date</string>
     <string name="activity_deadline_participation">Deadline participation</string>
     <string name="activity_event_date">Event date</string>
-    
+    <string name="AppEngineTest">AppEngineTest</string>
+
 </resources>
