@@ -14,8 +14,8 @@
         android:layout_height="wrap_content"
         android:text="@string/settings"
         android:onClick="goSettings"
-        tools:layout_editor_absoluteX="299dp"
-        tools:layout_editor_absoluteY="70dp" />
+        tools:layout_editor_absoluteX="277dp"
+        tools:layout_editor_absoluteY="3dp" />
 
     <TextView
         android:id="@+id/TV_Welcome"
@@ -34,6 +34,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="58dp"
         android:text="@string/Activities"
+        android:onClick="goActivities"
         app:layout_constraintTop_toBottomOf="@+id/TV_Welcome"
         tools:layout_editor_absoluteX="54dp" />
 
@@ -43,6 +44,7 @@
         android:layout_height="49dp"
         android:layout_marginTop="46dp"
         android:text="@string/Communities"
+        android:onClick="goCommunities"
         app:layout_constraintTop_toBottomOf="@+id/BTN_GoToActivties"
         tools:layout_editor_absoluteX="54dp" />
 
