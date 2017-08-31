@@ -84,8 +84,8 @@
     
     <string name="activity_title">Title</string>
     <string name="activity_description">Description</string>
-    <string name="activity_min_user_required">Minimum user required</string>
-    <string name="activity_max_user_required">Maximum user allowed</string>
+    <string name="activity_min_user_required">Min part.</string>
+    <string name="activity_max_user_allowed">Maxi part.</string>
     <string name="activity_creation_date">Creation date</string>
     <string name="activity_deadline_participation">Deadline participation</string>
     <string name="activity_event_date">Event date</string>
