@@ -82,6 +82,12 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void goNewCommunities(View view) {
+        Intent i = new Intent(this, NewCommunity.class);
+        startActivity(i);
+    }
+
+
     public void goTestAppEngine(View view) {
         Intent i = new Intent(this, AppEngineActivity.class);
         startActivity(i);

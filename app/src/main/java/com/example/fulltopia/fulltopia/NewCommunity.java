@@ -40,8 +40,7 @@ public class NewCommunity extends AppCompatActivity {
         setContentView(R.layout.activity_new_community);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle(getString(R.string.app_name));
-        setSupportActionBar(toolbar);
+
 
         editText_CommunityName = (EditText) findViewById(R.id.ET_CommunityName);
         editText_CommunityDescription = (EditText) findViewById(R.id.ET_CommunityDescription);
