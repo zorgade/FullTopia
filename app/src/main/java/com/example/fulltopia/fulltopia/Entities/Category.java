@@ -6,9 +6,9 @@ package com.example.fulltopia.fulltopia.Entities;
 
 public class Category {
 
-    String Description;
+    private String Description;
 
-    public Category(){}
+    private Category(){}
 
     public Category(String Description){
         this.Description = Description;

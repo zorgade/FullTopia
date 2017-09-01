@@ -6,13 +6,13 @@ package com.example.fulltopia.fulltopia.Entities;
 
 public class Location {
 
-    String Adress;
-    String City;
-    Long NPA;
-    String State;
-    String Country;
-    String Latitude;
-    String Longitude;
+    private String Adress;
+    private String City;
+    private Long NPA;
+    private String State;
+    private String Country;
+    private String Latitude;
+    private String Longitude;
 
     public Location(){}
 

@@ -38,7 +38,6 @@ public class CommunitiesActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
-    List<Community> allCommunities;
 
     /**
      * The {@link ViewPager} that will host the section contents.

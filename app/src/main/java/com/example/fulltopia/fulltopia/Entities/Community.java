@@ -16,7 +16,7 @@ public class Community {
     Date dateCreationCommunity;
     String description;
     List<Activity> activitiesList;
-    List<FirebaseUser> memberList=new ArrayList<>();
+    List<FirebaseUser> memberList = new ArrayList<>();
     List<FirebaseUser> adminList = new ArrayList<>();
 
 

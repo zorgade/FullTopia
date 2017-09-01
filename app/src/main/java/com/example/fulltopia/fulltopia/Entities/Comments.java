@@ -6,7 +6,7 @@ package com.example.fulltopia.fulltopia.Entities;
 
 public class Comments {
 
-    String title;
-    String content;
-    String date_post;
+    private String title;
+    private String content;
+    private String date_post;
 }
