@@ -53,14 +53,15 @@ public class NewCommunity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = database.getReference();
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 Community community;
                 String name = editText_CommunityName.getText().toString();
                 String description = editText_CommunityDescription.getText().toString();
                 Date date = new Date();
-                community = new Community(name, date, description);
+                community = new Community(name, date, description, user);
 
                 try {
-                    databaseReference.child("foo").push().setValue(community);
+                    databaseReference.child("community").push().setValue(community);
                 }
                 catch(Exception e){
                     e.printStackTrace();
@@ -72,7 +73,7 @@ public class NewCommunity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance();
 
         //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        //final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override

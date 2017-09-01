@@ -20,9 +20,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.MainActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.R;
+
+import java.util.List;
 
 public class CommunitiesActivity extends AppCompatActivity {
 
@@ -35,6 +38,7 @@ public class CommunitiesActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    List<Community> allCommunities;
 
     /**
      * The {@link ViewPager} that will host the section contents.
