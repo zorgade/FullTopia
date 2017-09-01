@@ -3,6 +3,7 @@ package com.example.fulltopia.fulltopia;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,6 +27,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.squareup.picasso.Picasso;
 
 import java.util.Date;
 
@@ -37,8 +40,12 @@ public class New_activity extends AppCompatActivity {
 
     //Firebase image select on device
     private Button mSelectImage;
+    private Button mTakePicture;
+    private ImageView mImageView;
+
     private StorageReference mStorage;
     private static final int GALLERY_INTENT=2;
+    private static final int CAMERA_REQUEST_CODE = 1;
     private ProgressDialog mProgressDialog;
 
     //Elements du screen
@@ -112,13 +119,25 @@ public class New_activity extends AppCompatActivity {
         //upload imag for new activity: https://www.youtube.com/watch?v=mSi7bNk4ySM
         mStorage = FirebaseStorage.getInstance().getReference();
         mSelectImage = (Button) findViewById(R.id.BTN_activity_Gallery);
+        mTakePicture = (Button) findViewById(R.id.BTN_activity_Camera);
+        mImageView = (ImageView) findViewById(R.id.IMGW_activity_image);
         mProgressDialog = new ProgressDialog(this);
+
         mSelectImage.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v){
                 Intent i = new Intent(Intent.ACTION_PICK);
                 i.setType("image/*");
                 startActivityForResult(i, GALLERY_INTENT);
+            }
+        });
+
+        mTakePicture.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v){
+                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                //i.setType("image/*");
+                startActivityForResult(i, CAMERA_REQUEST_CODE);
             }
         });
     }
@@ -135,13 +154,37 @@ public class New_activity extends AppCompatActivity {
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                    mProgressDialog.dismiss();
 
                     Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
+                }
+            });
+        }
+
+        if(requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK){
+
+            mProgressDialog.setMessage(getString(R.string.UPLOADING));
+            mProgressDialog.show();
+
+            Uri uri = data.getData();
+            StorageReference filePath = mStorage.child("ActivitiesCameraPhotos").child(uri.getLastPathSegment());
+            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                @Override
+                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressDialog.dismiss();
+
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+
+                    Picasso.with(New_activity.this).load(downloadUri).fit().centerCrop().into(mImageView);
+
+
+                    Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
                 }
             });
         }
     }
+
+
 
 
 }

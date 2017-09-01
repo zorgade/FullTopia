@@ -120,27 +120,36 @@
 
     <Button
         android:id="@+id/BTN_activity_Gallery"
-        android:layout_width="105dp"
-        android:layout_height="77dp"
+        android:layout_width="146dp"
+        android:layout_height="54dp"
         android:text="@string/community_gallery"
-        tools:layout_editor_absoluteX="31dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/ET_activity_image" />
+        tools:layout_editor_absoluteX="16dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@+id/BTN_activity_Camera" />
+
+    <Button
+        android:id="@+id/BTN_activity_Camera"
+        android:layout_width="146dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/camera"
+        app:layout_constraintTop_toBottomOf="@+id/ET_activity_image"
+        tools:layout_editor_absoluteX="16dp" />
 
     <ImageView
         android:id="@+id/IMGW_activity_image"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="24dp"
+        android:layout_width="128dp"
+        android:layout_height="125dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintTop_toBottomOf="@+id/ET_activity_description"
         app:layout_constraintLeft_toRightOf="@+id/BTN_activity_Gallery"
-        android:layout_marginLeft="84dp" />
+        android:layout_marginLeft="59dp" />
 
     <Button
         android:id="@+id/BTN_activity_create"
         android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="13dp"
         android:text="@string/activity_create_BTN"
         app:layout_constraintTop_toBottomOf="@+id/IMGW_activity_image"
         tools:layout_editor_absoluteX="16dp" />
@@ -151,7 +160,7 @@
         android:layout_height="wrap_content"
         android:text="@string/BTN_return"
         app:layout_constraintLeft_toRightOf="@+id/BTN_activity_create"
-        tools:layout_editor_absoluteY="458dp"
-        android:layout_marginLeft="36dp" />
+        tools:layout_editor_absoluteY="503dp"
+        android:layout_marginLeft="65dp" />
 
 </android.support.constraint.ConstraintLayout>
