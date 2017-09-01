@@ -93,5 +93,6 @@
     <string name="activity_deadline_participation">Deadline participation</string>
     <string name="activity_event_date">Event date</string>
     <string name="AppEngineTest">AppEngineTest</string>
+    <string name="action_signOut">Sign Out</string>
 
 </resources>
