@@ -94,7 +94,7 @@ public class New_activity extends AppCompatActivity {
                 String image = editText_activity_image.getText().toString();
                 String adress = editText_activity_address.getText().toString();
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_dealine, date_event, image, adress, city, NPA, country);
+                activity = new Activity(/*title, min_part_required, max_part_required, description, date_creation, date_dealine, date_event, image, adress, city, NPA, country*/);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);
@@ -163,6 +163,10 @@ public class New_activity extends AppCompatActivity {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressDialog.dismiss();
+
+                    Uri downloadUri = taskSnapshot.getDownloadUrl();
+
+                    Picasso.with(New_activity.this).load(downloadUri).fit().centerCrop().into(mImageView);
 
                     Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
                 }
