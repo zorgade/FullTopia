@@ -15,21 +15,26 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
+    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,btnSendFeedBack,
             changeEmail, changePassword, sendEmail, remove, signOut,
-            changeLng, changeNotif, changeAddres;
+            changeLng, changeNotif, changeAddres, sendfeedback;
 
     private EditText oldEmail, newEmail, password, newPassword,
-            newStreet, newNpa, newCity, newCountry;
+            newStreet, newNpa, newCity, newCountry, feedback;
 
-    private TextView language, notification, address;
+    private TextView language, notification, address, sendUsFeedback;
 
     private RadioButton lng_fr, lng_eng, notif_yes, notif_no;
 
@@ -77,6 +82,7 @@ public class SettingsActivity extends AppCompatActivity {
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
         btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
+        btnSendFeedBack = (Button) findViewById(R.id.send_feedback_button);
 
         changeLng = (Button) findViewById(R.id.changeLanguage);
         changeNotif = (Button) findViewById(R.id.changeNotification);
@@ -86,6 +92,8 @@ public class SettingsActivity extends AppCompatActivity {
         sendEmail = (Button) findViewById(R.id.send);
         remove = (Button) findViewById(R.id.remove);
         signOut = (Button) findViewById(R.id.sign_out);
+        sendfeedback = (Button) findViewById(R.id.send_feedback);
+
 
         oldEmail = (EditText) findViewById(R.id.old_email);
         newEmail = (EditText) findViewById(R.id.new_email);
@@ -95,6 +103,7 @@ public class SettingsActivity extends AppCompatActivity {
         newNpa = (EditText) findViewById(R.id.ET_NPA);
         newCity = (EditText) findViewById(R.id.ET_City);
         newCountry = (EditText) findViewById(R.id.ET_Country);
+        feedback = (EditText) findViewById(R.id.multiline_text_feedback);
 
         lng_fr = (RadioButton) findViewById(R.id.RB_French);
         lng_eng = (RadioButton) findViewById(R.id.RB_English);
@@ -104,6 +113,8 @@ public class SettingsActivity extends AppCompatActivity {
         language = (TextView) findViewById(R.id.TV_Language);
         address = (TextView) findViewById(R.id.TV_Address);
         notification = (TextView) findViewById(R.id.TV_GetNotif);
+        sendUsFeedback = (TextView) findViewById(R.id.send_us_feedback);
+
 
         language.setVisibility(View.GONE);
         lng_fr.setVisibility(View.GONE);
@@ -127,6 +138,9 @@ public class SettingsActivity extends AppCompatActivity {
         changePassword.setVisibility(View.GONE);
         sendEmail.setVisibility(View.GONE);
         remove.setVisibility(View.GONE);
+        sendfeedback.setVisibility(View.GONE);
+        feedback.setVisibility(View.GONE);
+        sendUsFeedback.setVisibility(View.GONE);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -161,6 +175,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.GONE);
                 sendEmail.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -189,6 +206,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.GONE);
                 sendEmail.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -217,6 +237,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.GONE);
                 sendEmail.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -290,6 +313,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.GONE);
                 sendEmail.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -344,6 +370,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.VISIBLE);
                 sendEmail.setVisibility(View.GONE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -403,6 +432,9 @@ public class SettingsActivity extends AppCompatActivity {
                 changePassword.setVisibility(View.GONE);
                 sendEmail.setVisibility(View.VISIBLE);
                 remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.GONE);
+                feedback.setVisibility(View.GONE);
+                sendUsFeedback.setVisibility(View.GONE);
             }
         });
 
@@ -430,6 +462,61 @@ public class SettingsActivity extends AppCompatActivity {
                 }
             }
         });
+
+        btnSendFeedBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                language.setVisibility(View.GONE);
+                lng_fr.setVisibility(View.GONE);
+                lng_eng.setVisibility(View.GONE);
+                changeLng.setVisibility(View.GONE);
+                notification.setVisibility(View.GONE);
+                notif_yes.setVisibility(View.GONE);
+                notif_no.setVisibility(View.GONE);
+                changeNotif.setVisibility(View.GONE);
+                address.setVisibility(View.GONE);
+                newStreet.setVisibility(View.GONE);
+                newNpa.setVisibility(View.GONE);
+                newCity.setVisibility(View.GONE);
+                newCountry.setVisibility(View.GONE);
+                changeAddres.setVisibility(View.GONE);
+                oldEmail.setVisibility(View.GONE);
+                newEmail.setVisibility(View.GONE);
+                password.setVisibility(View.GONE);
+                newPassword.setVisibility(View.GONE);
+                changeEmail.setVisibility(View.GONE);
+                changePassword.setVisibility(View.GONE);
+                sendEmail.setVisibility(View.GONE);
+                remove.setVisibility(View.GONE);
+                sendfeedback.setVisibility(View.VISIBLE);
+                feedback.setVisibility(View.VISIBLE);
+                sendUsFeedback.setVisibility(View.VISIBLE);
+            }
+        });
+
+        sendfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(feedback.getText().toString().trim().length() > 20) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    DatabaseReference databaseReference = database.getReference();
+                    String feedbackString = feedback.getText().toString();
+
+                    try {
+                        databaseReference.child("feedback").push().setValue(feedbackString);
+                        Toast.makeText(SettingsActivity.this, "Thanks for your feedback", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    Toast.makeText(SettingsActivity.this, "Please write at least 20 characters to send your feedback", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+
 
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     tools:context=".SettingsActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
 
@@ -167,6 +167,23 @@
                 android:maxLines="1"
                 android:singleLine="true" />
 
+            <TextView
+                android:id="@+id/send_us_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="33dp"
+                android:text="@string/send_feedback"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="17dp"
+                tools:layout_editor_absoluteY="220dp"
+                tools:text="@string/send_feedback" />
+
+            <EditText
+                android:id="@+id/multiline_text_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ems="10"
+                android:inputType="textMultiLine" />
+
             <Button
                 android:id="@+id/changeLanguage"
                 style="?android:textAppearanceSmall"
@@ -230,6 +247,17 @@
                 android:layout_marginTop="16dp"
                 android:background="@color/colorPrimaryDark"
                 android:text="@string/btn_send"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/send_feedback"
+                style="?android:textAppearanceSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:background="@color/colorPrimaryDark"
+                android:text="@string/send_feedback_btn"
                 android:textColor="@android:color/white"
                 android:textStyle="bold" />
 
@@ -297,11 +325,20 @@
 
             <Button
                 android:id="@+id/sending_pass_reset_button"
-                style="?android:textAppearanceSmall"
+                style="?android:attr/textAppearanceSmall"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/send_password_reset_email"
+                android:textStyle="bold" />
+
+            <Button
+                android:id="@+id/send_feedback_button"
+                style="?android:attr/textAppearanceSmall"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/btn_send_feedback"
                 android:textStyle="bold" />
 
             <Button
