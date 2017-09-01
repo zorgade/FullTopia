@@ -6,8 +6,8 @@ package com.example.fulltopia.fulltopia.Entities;
 
 public class Users {
 
-    String lastname;
-    String firstname;
-    String username;
+    private String lastname;
+    private String firstname;
+    private String username;
 
 }

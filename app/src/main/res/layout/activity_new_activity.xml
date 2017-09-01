@@ -141,7 +141,7 @@
         android:layout_width="180dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:text="@string/community_create_BTN"
+        android:text="@string/activity_create_BTN"
         app:layout_constraintTop_toBottomOf="@+id/IMGW_activity_image"
         tools:layout_editor_absoluteX="16dp" />
 

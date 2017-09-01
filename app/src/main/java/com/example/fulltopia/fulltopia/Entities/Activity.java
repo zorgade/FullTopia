@@ -13,32 +13,38 @@ public class Activity {
 
     //String UserId;
     //String CommunityId;
-    String Title;
-    Long Min_User_Required;
-    Long Max_User_Required;
-    String Description;
-    Date DateCreation;
-    Date DateDealineSubmit;
-    Date Date_event;
+    private String Title;
+    private Long Min_User_Required;
+    private Long Max_User_Required;
+    private String Description;
+    private Date DateCreationActivity;
+    private Date DateDealineSubmit;
+    private Date Date_event;
     //String CategoryId;
-    String image;
-    Location location;
-    String VideoLink;
+    private String image;
+    private Location location;
+    private String VideoLink;
 
     public Activity(){}
 
-    public Activity(String Title, Long Min_User_Required, Long Max_User_Required, String Description, Date DateCreation, Date DateDealineSubmit, Date Date_event, String image, Location location, String VideoLink){
+    public Activity(String Title, String Description){
         this.Title=Title;
-        this.Min_User_Required=Min_User_Required;
-        this.Max_User_Required=Max_User_Required;
         this.Description=Description;
-        this.DateCreation=DateCreation;
-        this.DateDealineSubmit=DateDealineSubmit;
-        this.Date_event=Date_event;
-        this.image=image;
-        this.location=location;
-        this.VideoLink=VideoLink;
     }
+
+
+//    public Activity(String Title, Long Min_User_Required, Long Max_User_Required, String Description, Date DateCreationActivity, Date DateDealineSubmit, Date Date_event, String image, Location location, String VideoLink){
+//        this.Title=Title;
+//        this.Min_User_Required=Min_User_Required;
+//        this.Max_User_Required=Max_User_Required;
+//        this.Description=Description;
+//        this.DateCreationActivity=DateCreationActivity;
+//        this.DateDealineSubmit=DateDealineSubmit;
+//        this.Date_event=Date_event;
+//        this.image=image;
+//        this.location=location;
+//        this.VideoLink=VideoLink;
+//    }
 
     public  String getTitle() {
         return Title;
@@ -71,14 +77,13 @@ public class Activity {
     }
 
 
-    public Date   getDateCreation() {
-        return DateCreation;
+    public Date getDateCreationActivity() {
+        return DateCreationActivity;
     }
 
-    public void   setDateCreation(Date dateCreation) {
-        DateCreation = dateCreation;
+    public void setDateCreationActivity(Date dateCreationActivity) {
+        DateCreationActivity = dateCreationActivity;
     }
-
 
     public Date   getDateDealineSubmit() {
         return DateDealineSubmit;
