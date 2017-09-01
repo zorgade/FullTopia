@@ -8,7 +8,7 @@ import java.util.List;
  */
 
 public class Community {
-
+//test
     String name;
     Date dateCreationCommunity;
     String description;
