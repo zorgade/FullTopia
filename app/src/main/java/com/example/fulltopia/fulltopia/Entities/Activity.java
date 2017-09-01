@@ -11,120 +11,130 @@ import java.util.Date;
 
 public class Activity {
 
-    //String UserId;
-    //String CommunityId;
     private String Title;
-    private Long Min_User_Required;
-    private Long Max_User_Required;
+    private String Min_part_required;
+    private String Max_part_required;
     private String Description;
-    private Date DateCreationActivity;
-    private Date DateDealineSubmit;
-    private Date Date_event;
-    //String CategoryId;
+    private String Date_creation_activity;
+    private String Date_dealine;
+    private String Date_event;
     private String image;
-    private Location location;
-    private String VideoLink;
+    private String Address;
+    private String City;
+    private String NPA;
+    private String Country;
 
-    public Activity(){}
-
-    public Activity(String Title, String Description){
-        this.Title=Title;
-        this.Description=Description;
+    public Activity() {
     }
 
+    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country) {
+        this.Title = title;
+        this.Min_part_required = min_part_required;
+        this.Max_part_required = max_part_required;
+        this.Description = description;
+        this. Date_creation_activity = date_creation_activity;
+        this.Date_dealine = date_dealine;
+        this.Date_event = date_event;
+        this.image = image;
+        this.Address = address;
+        this.City = city;
+        this.NPA = NPA;
+        this.Country = country;
+    }
 
-//    public Activity(String Title, Long Min_User_Required, Long Max_User_Required, String Description, Date DateCreationActivity, Date DateDealineSubmit, Date Date_event, String image, Location location, String VideoLink){
-//        this.Title=Title;
-//        this.Min_User_Required=Min_User_Required;
-//        this.Max_User_Required=Max_User_Required;
-//        this.Description=Description;
-//        this.DateCreationActivity=DateCreationActivity;
-//        this.DateDealineSubmit=DateDealineSubmit;
-//        this.Date_event=Date_event;
-//        this.image=image;
-//        this.location=location;
-//        this.VideoLink=VideoLink;
-//    }
-
-    public  String getTitle() {
+    public String getTitle() {
         return Title;
     }
-    public void   setTitle(String title) {
+
+    public void setTitle(String title) {
         Title = title;
     }
 
-    public Long   getMin_User_Required() {
-        return Min_User_Required;
-    }
-    public void   setMin_User_Required(Long min_User_Required) {
-        Min_User_Required = min_User_Required;
+    public String getMin_part_required() {
+        return Min_part_required;
     }
 
-
-    public Long   getMax_User_Required() {
-        return Max_User_Required;
-    }
-    public void   setMax_User_Required(Long max_User_Required) {
-        Max_User_Required = max_User_Required;
+    public void setMin_part_required(String min_part_required) {
+        Min_part_required = min_part_required;
     }
 
+    public String getMax_part_required() {
+        return Max_part_required;
+    }
+
+    public void setMax_part_required(String max_part_required) {
+        Max_part_required = max_part_required;
+    }
 
     public String getDescription() {
         return Description;
     }
-    public void   setDescription(String description) {
+
+    public void setDescription(String description) {
         Description = description;
     }
 
-
-    public Date getDateCreationActivity() {
-        return DateCreationActivity;
+    public String getDate_creation_activity() {
+        return Date_creation_activity;
     }
 
-    public void setDateCreationActivity(Date dateCreationActivity) {
-        DateCreationActivity = dateCreationActivity;
+    public void setDate_creation_activity(String date_creation_activity) {
+        Date_creation_activity = date_creation_activity;
     }
 
-    public Date   getDateDealineSubmit() {
-        return DateDealineSubmit;
+    public String getDate_dealine() {
+        return Date_dealine;
     }
 
-    public void   setDateDealineSubmit(Date dateDealineSubmit) {
-        DateDealineSubmit = dateDealineSubmit;
+    public void setDate_dealine(String date_dealine) {
+        Date_dealine = date_dealine;
     }
 
-
-    public Date   getDate_event() {
+    public String getDate_event() {
         return Date_event;
     }
 
-    public void   setDate_event(Date date_event) {
+    public void setDate_event(String date_event) {
         Date_event = date_event;
     }
-
 
     public String getImage() {
         return image;
     }
 
-    public void   setImage(String image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
-
-    public Location getLocation() {
-        return location;
+    public String getAddress() {
+        return Address;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setAddress(String adress) {
+        Address = adress;
     }
 
-    public String getVideoLink() {
-        return VideoLink;
+    public String getCity() {
+        return City;
     }
 
-    public void   setVideoLink(String videoLink) {
-        VideoLink = videoLink;
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public String getNPA() {
+        return NPA;
+    }
+
+    public void setNPA(String NPA) {
+        this.NPA = NPA;
+    }
+
+    public String getCountry() {
+        return Country;
+    }
+
+    public void setCountry(String country) {
+        Country = country;
     }
 }
