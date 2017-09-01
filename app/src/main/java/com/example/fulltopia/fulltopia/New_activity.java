@@ -26,6 +26,9 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class New_activity extends AppCompatActivity {
@@ -43,22 +46,25 @@ public class New_activity extends AppCompatActivity {
 
     //Elements du screen
     EditText editText_activity_title;
+    EditText editText_activity_min;
+    EditText editText_activity_max;
     EditText editText_activity_description;
-//    EditText editText_activity_min;
-//    EditText editText_activity_max;
-//    EditText editText_activity_date_creation;
-//    EditText editText_activity_date_deadline;
-//    EditText editText_activity_date_event;
-//    TextView editText_activity_image;
+    EditText editText_activity_date_deadline;
+    EditText editText_activity_date_event;
+    TextView editText_activity_image;
+    EditText editText_activity_address;
+    EditText editText_activity_city;
+    EditText editText_activity_NPA;
+    EditText editText_activity_country;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_activity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        //toolbar.setTitle(getString(R.string.app_name));
-        //setSupportActionBar(toolbar);
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitle(getString(R.string.app_name));
+//        setSupportActionBar(toolbar);
 
         editText_activity_title = (EditText) findViewById(R.id.ET_activity_title);
         editText_activity_description = (EditText) findViewById(R.id.ET_activity_description);
@@ -68,18 +74,20 @@ public class New_activity extends AppCompatActivity {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = database.getReference();
+
+                //retrieve informations from editTexts
                 Activity activity;
                 String title = editText_activity_title.getText().toString();
+                String min_part_required = editText_activity_min.getText().toString();
+                String max_part_required = editText_activity_max.getText().toString();
                 String description = editText_activity_description.getText().toString();
-//                String min = editText_activity_min.getText().toString();
-//                Long min_part = Long.parseLong(min);
-//                String max = editText_activity_max.getText().toString();
-//                Long max_part = Long.parseLong(min);
-//
-//                Date date = new Date();
+                Date date_creation = new Date();
+                String date_dealine = editText_activity_date_deadline.getText().toString();
+                String date_event = editText_activity_date_event.getText().toString();
+                String image = editText_activity_image.getText().toString();
+                String adress = editText_activity_address.getText().toString();
 
-                activity = new Activity(title, description);
-                //activity = new Activity(title, min_part, max_part, description, date_creation, date_deadline, date_event);
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_dealine, date_event, image, adress, city, NPA, country);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);
