@@ -9,10 +9,10 @@ import java.util.List;
 
 public class Community {
 
-    private String name;
-    private Date dateCreationCommunity;
-    private String description;
-    private List<Activity> activitiesList;
+    String name;
+    Date dateCreationCommunity;
+    String description;
+    List<Activity> activitiesList;
 
     public Community(){}
 

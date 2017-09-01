@@ -20,9 +20,12 @@ import android.view.ViewGroup;
 
 import android.widget.TextView;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.MainActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.R;
+
+import java.util.List;
 
 public class CommunitiesActivity extends AppCompatActivity {
 
@@ -35,6 +38,7 @@ public class CommunitiesActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    List<Community> allCommunities;
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -48,6 +52,9 @@ public class CommunitiesActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -78,7 +85,7 @@ public class CommunitiesActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_communities, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
