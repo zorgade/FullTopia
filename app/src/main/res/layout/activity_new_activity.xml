@@ -42,7 +42,7 @@
         android:ems="10"
         android:hint="@string/community_address"
         app:layout_constraintTop_toBottomOf="@+id/ET_activity_deadline_participation"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/ET_activity_city"
@@ -59,11 +59,11 @@
         android:id="@+id/ET_activity_NPA"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="@string/community_NPA"
         app:layout_constraintTop_toBottomOf="@+id/ET_activity_adress"
-        tools:layout_editor_absoluteX="8dp" />
+        tools:layout_editor_absoluteX="16dp" />
 
     <EditText
         android:id="@+id/ET_Activity_country"
