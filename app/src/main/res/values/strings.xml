@@ -83,7 +83,7 @@
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
 
-    <!-- activity new activity layout -->
+    <!-- activity activity layout -->
 
     <string name="activity_title">Title</string>
     <string name="activity_description">Description</string>
@@ -94,6 +94,9 @@
     <string name="activity_event_date">Event date</string>
     <string name="activity_create_BTN">Create activity</string>
 
+    <string name="nbOfContributor">Number of contributors :</string>
+    <string name="AdminName">Admin :</string>
+    <string name="Subscribe">Join this activity</string>
 
 
     <string name="AppEngineTest">AppEngineTest</string>
