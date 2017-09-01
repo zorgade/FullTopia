@@ -8,7 +8,7 @@
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
-        android:layout_width="368dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/appbar_padding_top"
         android:theme="@style/AppTheme.AppBarOverlay"
@@ -24,12 +24,13 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             tools:layout_editor_absoluteX="8dp"
-            tools:layout_editor_absoluteY="113dp"/>
+            tools:layout_editor_absoluteY="113dp" />
     </android.support.design.widget.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
         app:layout_anchor="@+id/appbar"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 

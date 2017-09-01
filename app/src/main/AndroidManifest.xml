@@ -46,7 +46,7 @@
 
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_profile"
+            android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar">
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -64,7 +64,11 @@
         <activity
             android:name=".CommunitiesActivities.CommunitiesActivity"
             android:label="@string/title_activity_communities"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity"/>
+        </activity>
         <activity
             android:name=".ActivitiesActivities.ActivitiesActivity"
             android:label="@string/title_activity_activities"
@@ -75,7 +79,11 @@
         </activity>
         <activity android:name=".NewCommunity" />
         <activity android:name=".New_activity" />
-        <activity android:name=".AppEngineActivity"></activity>
+        <activity android:name=".AppEngineActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CommunitiesActivities.CommunitiesActivity"/>
+        </activity>
     </application>
 
 </manifest>
