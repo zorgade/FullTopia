@@ -85,5 +85,4 @@
                 android:value=".CommunitiesActivities.CommunitiesActivity"/>
         </activity>
     </application>
-
 </manifest>
