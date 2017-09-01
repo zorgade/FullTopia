@@ -18,12 +18,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.New_activity;
 import com.example.fulltopia.fulltopia.R;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class ActivitiesActivity extends AppCompatActivity {
 
@@ -73,6 +76,8 @@ public class ActivitiesActivity extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+
 
     }
 
