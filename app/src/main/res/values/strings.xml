@@ -67,6 +67,9 @@
     <string name="btn_chg_language">Change language</string>
     <string name="btn_chg_notification">Notifications</string>
     <string name="btn_chg_address">Change Adress</string>
+    <string name="btn_send_feedback">Feedback about the app</string>
+    <string name="send_feedback">Send us a feedback</string>
+    <string name="send_feedback_btn">Send</string>
 
 
     <!-- activity new community layout -->
