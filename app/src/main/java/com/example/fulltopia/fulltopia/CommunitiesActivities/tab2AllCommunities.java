@@ -44,11 +44,10 @@ public class tab2AllCommunities extends Fragment{
 
         listViewAllCommunities = (ListView) rootView.findViewById(R.id.listViewAllCommunity);
 
-        allCommunities = new ArrayList<Community>();
+        allCommunities = new ArrayList<>();
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("community");
-
 
 
         return rootView;
@@ -71,13 +70,14 @@ public class tab2AllCommunities extends Fragment{
                     Community community = new Community(name, date, description);
                     allCommunities.add(community);
                 }
-                CommunityListAdapter adapter = new CommunityListAdapter(tab2AllCommunities.this, allCommunities);
+                CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
                 listViewAllCommunities.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-
+                String message = databaseError.getMessage();
+                String ok = "ok";
             }
         }
         );

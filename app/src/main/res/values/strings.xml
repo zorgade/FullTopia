@@ -6,6 +6,7 @@
     <string name="Welcome">Welcome to Fulltopia</string>
     <string name="Activities">Activities</string>
     <string name="Communities">Communities</string>
+    <string name="Description">Description :</string>
 
     <!-- activity_settings layout -->
     <string name="settings">Settings</string>
@@ -72,7 +73,7 @@
     <string name="send_feedback_btn">Send</string>
 
 
-    <!-- activity new community layout -->
+    <!-- activity community layout -->
     <string name="community_name">Name*</string>
     <string name="community_description">Description*</string>
     <string name="community_address">Address</string>
@@ -82,6 +83,8 @@
     <string name="community_image_attachement">image attachment</string>
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
+
+    <string name="community_title_selected">Community: </string>
 
     <!-- activity activity layout -->
 
@@ -108,7 +111,7 @@
     <string name="newMail">Email address is updated. Please sign in with new email!</string>
     <string name="failUpEmail">Failed to update email!</string>
     <string name="community_title">Title community</string>
-    <string name="Description">Description</string>
+
     <string name="community_subscribe">Subscribe to community</string>
 
 
