@@ -84,9 +84,7 @@
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
 
-    <string name="community_title">Community: </string>
-    <string name="community_subscribe">Join this community</string>
-
+    <string name="community_title_selected">Community: </string>
 
     <!-- activity activity layout -->
 
@@ -113,7 +111,7 @@
     <string name="newMail">Email address is updated. Please sign in with new email!</string>
     <string name="failUpEmail">Failed to update email!</string>
     <string name="community_title">Title community</string>
-    <string name="Description">Description</string>
+
     <string name="community_subscribe">Subscribe to community</string>
 
 
