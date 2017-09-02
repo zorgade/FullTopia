@@ -12,17 +12,32 @@ import java.util.List;
 
 public class Community {
 
+    String communityId;
     String name;
-    Date dateCreationCommunity;
+    String dateCreationCommunity;
     String description;
     List<Activity> activitiesList;
     List<FirebaseUser> memberList = new ArrayList<>();
     List<FirebaseUser> adminList = new ArrayList<>();
 
 
+    public String getCommunityId() {
+        return communityId;
+    }
+
+    public void setCommunityId(String communityId) {
+        this.communityId = communityId;
+    }
+
     public Community(){}
 
-    public Community(String name, Date dateCreationCommunity, String description, FirebaseUser creator){
+    public Community(String name, String dateCreationCommunity, String description){
+        this.name=name;
+        this.dateCreationCommunity=dateCreationCommunity;
+        this.description=description;
+    }
+
+    public Community(String name, String dateCreationCommunity, String description, FirebaseUser creator){
         this.name=name;
         this.dateCreationCommunity=dateCreationCommunity;
         this.description=description;
@@ -59,11 +74,11 @@ public class Community {
         this.adminList = adminList;
     }
 
-    public Date getDateCreationCommunity() {
+    public String getDateCreationCommunity() {
         return dateCreationCommunity;
     }
 
-    public void setDateCreationCommunity(Date dateCreationCommunity) {
+    public void setDateCreationCommunity(String dateCreationCommunity) {
         this.dateCreationCommunity = dateCreationCommunity;
     }
 

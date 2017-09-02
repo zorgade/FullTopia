@@ -104,7 +104,8 @@ public class NewCommunity extends AppCompatActivity {
                 String name = editText_CommunityName.getText().toString();
                 String description = editText_CommunityDescription.getText().toString();
                 Date date = new Date();
-                community = new Community(name, date, description, user);
+                String datecreation = date.toString();
+                community = new Community(name, datecreation, description, user);
 
                 try {
                     databaseReference.child("community").push().setValue(community);
