@@ -1,6 +1,7 @@
 package com.example.fulltopia.fulltopia.CommunitiesActivities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -20,10 +21,10 @@ import java.util.List;
 
 public class CommunityListAdapter extends ArrayAdapter<Community> {
 
-    private Activity context;
+    private Context context;
     private List<Community> communityList;
 
-    public CommunityListAdapter(Activity context, List<Community> communityList){
+    public CommunityListAdapter(Context context, List<Community> communityList){
         super(context, R.layout.tab2allcommunities, communityList);
         this.context=context;
         this.communityList=communityList;
@@ -33,9 +34,9 @@ public class CommunityListAdapter extends ArrayAdapter<Community> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        LayoutInflater inflater = context.getLayoutInflater();
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View listViewItem = inflater.inflate(R.layout.tab2allcommunities, null, true);
+        View listViewItem = inflater.inflate(R.layout.community_list_layout, null, true);
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.section_label);
 
