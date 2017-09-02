@@ -15,8 +15,8 @@ public class Activity {
     private String Min_part_required;
     private String Max_part_required;
     private String Description;
-    private String Date_creation_activity;
-    private String Date_dealine;
+    private Date Date_creation_activity;
+    private String Date_deadline;
     private String Date_event;
     private String image;
     private String Address;
@@ -27,13 +27,13 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, Date date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
         this.Description = description;
         this. Date_creation_activity = date_creation_activity;
-        this.Date_dealine = date_dealine;
+        this.Date_deadline = date_dealine;
         this.Date_event = date_event;
         this.image = image;
         this.Address = address;
@@ -74,20 +74,20 @@ public class Activity {
         Description = description;
     }
 
-    public String getDate_creation_activity() {
+    public Date getDate_creation_activity() {
         return Date_creation_activity;
     }
 
-    public void setDate_creation_activity(String date_creation_activity) {
+    public void setDate_creation_activity(Date date_creation_activity) {
         Date_creation_activity = date_creation_activity;
     }
 
     public String getDate_dealine() {
-        return Date_dealine;
+        return Date_deadline;
     }
 
     public void setDate_dealine(String date_dealine) {
-        Date_dealine = date_dealine;
+        Date_deadline = date_dealine;
     }
 
     public String getDate_event() {

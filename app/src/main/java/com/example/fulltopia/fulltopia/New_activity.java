@@ -2,8 +2,8 @@ package com.example.fulltopia.fulltopia;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.media.Image;
 import android.net.Uri;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -43,12 +41,8 @@ public class New_activity extends AppCompatActivity {
 
     //Firebase image select on device
     private Button mSelectImage;
-    private Button mTakePicture;
-    private ImageView mImageView;
-
     private StorageReference mStorage;
     private static final int GALLERY_INTENT=2;
-    private static final int CAMERA_REQUEST_CODE = 1;
     private ProgressDialog mProgressDialog;
 
     //Elements du screen
@@ -58,7 +52,7 @@ public class New_activity extends AppCompatActivity {
     EditText editText_activity_description;
     EditText editText_activity_date_deadline;
     EditText editText_activity_date_event;
-    TextView editText_activity_image;
+    TextView TextView_activity_image;
     EditText editText_activity_address;
     EditText editText_activity_city;
     EditText editText_activity_NPA;
@@ -75,6 +69,16 @@ public class New_activity extends AppCompatActivity {
 
         editText_activity_title = (EditText) findViewById(R.id.ET_activity_title);
         editText_activity_description = (EditText) findViewById(R.id.ET_activity_description);
+        editText_activity_min = (EditText) findViewById(R.id.ET_activity_min_req_part);
+        editText_activity_max = (EditText) findViewById(R.id.ET_Activity_max_amount_part);
+        editText_activity_description = (EditText) findViewById(R.id.ET_activity_description);
+        editText_activity_date_deadline = (EditText) findViewById(R.id.ET_activity_deadline_participation);
+        editText_activity_date_event = (EditText) findViewById(R.id.ET_activity_event_date);
+        TextView_activity_image = (TextView) findViewById(R.id.ET_activity_image);
+        editText_activity_address = (EditText) findViewById(R.id.ET_activity_adress);
+        editText_activity_city = (EditText) findViewById(R.id.ET_activity_city);
+        editText_activity_NPA = (EditText) findViewById(R.id.ET_activity_NPA);
+        editText_activity_country = (EditText) findViewById(R.id.ET_Activity_country);
 
         Button button = (Button) findViewById(R.id.BTN_activity_create);
         button.setOnClickListener(new View.OnClickListener() {
@@ -89,12 +93,15 @@ public class New_activity extends AppCompatActivity {
                 String max_part_required = editText_activity_max.getText().toString();
                 String description = editText_activity_description.getText().toString();
                 Date date_creation = new Date();
-                String date_dealine = editText_activity_date_deadline.getText().toString();
+                String date_deadline = editText_activity_date_deadline.getText().toString();
                 String date_event = editText_activity_date_event.getText().toString();
-                String image = editText_activity_image.getText().toString();
-                String adress = editText_activity_address.getText().toString();
+                String image = TextView_activity_image.getText().toString();
+                String address = editText_activity_address.getText().toString();
+                String city = editText_activity_city.getText().toString();
+                String NPA = editText_activity_NPA.getText().toString();
+                String country = editText_activity_country.getText().toString();
 
-                activity = new Activity(/*title, min_part_required, max_part_required, description, date_creation, date_dealine, date_event, image, adress, city, NPA, country*/);
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);
@@ -127,25 +134,13 @@ public class New_activity extends AppCompatActivity {
         //upload imag for new activity: https://www.youtube.com/watch?v=mSi7bNk4ySM
         mStorage = FirebaseStorage.getInstance().getReference();
         mSelectImage = (Button) findViewById(R.id.BTN_activity_Gallery);
-        mTakePicture = (Button) findViewById(R.id.BTN_activity_Camera);
-        mImageView = (ImageView) findViewById(R.id.IMGW_activity_image);
         mProgressDialog = new ProgressDialog(this);
-
         mSelectImage.setOnClickListener(new View.OnClickListener()
         {
             public void onClick(View v){
                 Intent i = new Intent(Intent.ACTION_PICK);
                 i.setType("image/*");
                 startActivityForResult(i, GALLERY_INTENT);
-            }
-        });
-
-        mTakePicture.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v){
-                Intent i = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                //i.setType("image/*");
-                startActivityForResult(i, CAMERA_REQUEST_CODE);
             }
         });
     }
@@ -162,41 +157,13 @@ public class New_activity extends AppCompatActivity {
             filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                 @Override
                 public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    mProgressDialog.dismiss();
-
-                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-
-                    Picasso.with(New_activity.this).load(downloadUri).fit().centerCrop().into(mImageView);
 
                     Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
-                }
-            });
-        }
-
-        if(requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK){
-
-            mProgressDialog.setMessage(getString(R.string.UPLOADING));
-            mProgressDialog.show();
-
-            Uri uri = data.getData();
-            StorageReference filePath = mStorage.child("ActivitiesCameraPhotos").child(uri.getLastPathSegment());
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                     mProgressDialog.dismiss();
-
-                    Uri downloadUri = taskSnapshot.getDownloadUrl();
-
-                    Picasso.with(New_activity.this).load(downloadUri).fit().centerCrop().into(mImageView);
-
-
-                    Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
                 }
             });
         }
     }
-
-
 
 
 }

@@ -101,7 +101,6 @@
                 android:layout_marginTop="9dp"
                 android:ems="10"
                 android:hint="@string/activity_min_user_required"
-                android:inputType="number"
                 app:layout_constraintTop_toBottomOf="@+id/ET_activity_NPA"
                 tools:layout_editor_absoluteX="8dp" />
 
@@ -114,7 +113,6 @@
                 android:layout_marginTop="9dp"
                 android:ems="10"
                 android:hint="@string/activity_max_user_allowed"
-                android:inputType="number"
                 app:layout_constraintLeft_toRightOf="@+id/ET_activity_min_req_part"
                 app:layout_constraintTop_toBottomOf="@+id/ET_activity_NPA" />
 
