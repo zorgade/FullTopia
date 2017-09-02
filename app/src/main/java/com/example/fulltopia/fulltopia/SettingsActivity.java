@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -15,7 +14,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fulltopia.fulltopia.Entities.Community;
+import com.example.fulltopia.fulltopia.Entities.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
@@ -23,8 +22,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Date;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -44,6 +41,8 @@ public class SettingsActivity extends AppCompatActivity {
     private FirebaseAuth auth;
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference databaseReference = database.getReference();
 
     public SettingsActivity() {
     }
@@ -60,8 +59,9 @@ public class SettingsActivity extends AppCompatActivity {
 
 
 
-        //get firebase auth instance
+        //get firebase auth & DB instance
         auth = FirebaseAuth.getInstance();
+
 
         //get current user
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -244,6 +244,9 @@ public class SettingsActivity extends AppCompatActivity {
                 sendfeedback.setVisibility(View.GONE);
                 feedback.setVisibility(View.GONE);
                 sendUsFeedback.setVisibility(View.GONE);
+                database = FirebaseDatabase.getInstance();
+                databaseReference = database.getReference();
+
             }
         });
 
@@ -256,12 +259,28 @@ public class SettingsActivity extends AppCompatActivity {
                         && !newCity.getText().toString().trim().equals("")
                         && !newCountry.getText().toString().trim().equals("")) {
 
-                    mFirebaseAnalytics.setUserProperty("Adress", newStreet.getText().toString());
-                    mFirebaseAnalytics.setUserProperty("City", newCity.getText().toString());
-                    mFirebaseAnalytics.setUserProperty("Country", newCountry.getText().toString());
-                    mFirebaseAnalytics.setUserProperty("NPA", newNpa.getText().toString());
+
+                    database = FirebaseDatabase.getInstance();
+                    databaseReference = database.getReference();
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    Users userA;
+                    String address = newStreet.getText().toString();
+                    String npa = newNpa.getText().toString();
+                    String city = newCity.getText().toString();
+                    String country = newCountry.getText().toString();
+
+                    userA = new Users(address, npa, city, country);
 
 
+                    try {
+
+                        databaseReference.child("userAddress").child(user.getUid()).removeValue();
+                        databaseReference.child("userAddress").child(user.getUid()).push().setValue(userA);
+                        progressBar.setVisibility(View.GONE);
+                    }
+                    catch(Exception e){
+                        e.printStackTrace();
+                    }
 
                 } else {
                     if (newStreet.getText().toString().trim().equals("")) {
