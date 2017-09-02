@@ -115,7 +115,7 @@
 
             <EditText
                 android:id="@+id/ET_Street"
-                android:layout_width="351dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/Street"
@@ -124,8 +124,8 @@
 
             <EditText
                 android:id="@+id/ET_NPA"
-                android:layout_width="114dp"
-                android:layout_height="46dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/NPA"
                 tools:layout_editor_absoluteX="16dp"
@@ -133,8 +133,8 @@
 
             <EditText
                 android:id="@+id/ET_City"
-                android:layout_width="223dp"
-                android:layout_height="45dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/City"
                 tools:layout_editor_absoluteX="144dp"
@@ -142,7 +142,7 @@
 
             <EditText
                 android:id="@+id/ET_Country"
-                android:layout_width="351dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/Country"

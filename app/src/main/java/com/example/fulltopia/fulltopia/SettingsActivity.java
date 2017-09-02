@@ -271,12 +271,13 @@ public class SettingsActivity extends AppCompatActivity {
 
                     userA = new Users(address, npa, city, country);
 
-
                     try {
 
                         databaseReference.child("userAddress").child(user.getUid()).removeValue();
                         databaseReference.child("userAddress").child(user.getUid()).push().setValue(userA);
                         progressBar.setVisibility(View.GONE);
+                        Toast.makeText(SettingsActivity.this, getString(R.string.AddressChange), Toast.LENGTH_LONG).show();
+
                     }
                     catch(Exception e){
                         e.printStackTrace();

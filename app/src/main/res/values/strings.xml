@@ -113,6 +113,7 @@
     <string name="community_title">Title community</string>
 
     <string name="community_subscribe">Subscribe to community</string>
+    <string name="AddressChange">New address saved!</string>
 
 
 </resources>
