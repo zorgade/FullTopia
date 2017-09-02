@@ -104,6 +104,9 @@
     <string name="UP_IMG">Upload done</string>
     <string name="UPLOADING">Uploading.... please wait.</string>
     <string name="camera">Take picture</string>
+    <string name="FalseMail">False actual mail!</string>
+    <string name="newMail">Email address is updated. Please sign in with new email!</string>
+    <string name="failUpEmail">Failed to update email!</string>
 
 
 </resources>
