@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.example.fulltopia.fulltopia.Entities.Community;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -41,6 +42,8 @@ public class SettingsActivity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     public SettingsActivity() {
     }
@@ -252,20 +255,14 @@ public class SettingsActivity extends AppCompatActivity {
                         && !newNpa.getText().toString().trim().equals("")
                         && !newCity.getText().toString().trim().equals("")
                         && !newCountry.getText().toString().trim().equals("")) {
-                    user.updateEmail(newEmail.getText().toString().trim())
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if (task.isSuccessful()) {
-                                        Toast.makeText(SettingsActivity.this, "Email address is updated. Please sign in with new email id!", Toast.LENGTH_LONG).show();
-                                        signOut();
-                                        progressBar.setVisibility(View.GONE);
-                                    } else {
-                                        Toast.makeText(SettingsActivity.this, "Failed to update email!", Toast.LENGTH_LONG).show();
-                                        progressBar.setVisibility(View.GONE);
-                                    }
-                                }
-                            });
+
+                    mFirebaseAnalytics.setUserProperty("Adress", newStreet.getText().toString());
+                    mFirebaseAnalytics.setUserProperty("City", newCity.getText().toString());
+                    mFirebaseAnalytics.setUserProperty("Country", newCountry.getText().toString());
+                    mFirebaseAnalytics.setUserProperty("NPA", newNpa.getText().toString());
+
+
+
                 } else {
                     if (newStreet.getText().toString().trim().equals("")) {
                         newStreet.setError("Enter Street");

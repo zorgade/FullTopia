@@ -107,6 +107,9 @@
     <string name="FalseMail">False actual mail!</string>
     <string name="newMail">Email address is updated. Please sign in with new email!</string>
     <string name="failUpEmail">Failed to update email!</string>
+    <string name="community_title">Title community</string>
+    <string name="Description">Description</string>
+    <string name="community_subscribe">Subscribe to community</string>
 
 
 </resources>
