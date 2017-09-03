@@ -54,9 +54,9 @@ public class tab2AllActivities extends Fragment {
 
                 allActivities.clear();
 
-                for(DataSnapshot activitySnapchot: dataSnapshot.getChildren()){
-                    String title = (String) activitySnapchot.child("title").getValue();
-                    String description = (String) activitySnapchot.child("description").getValue();
+                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
+                    String title = (String) activitySnapshot.child("title").getValue();
+                    String description = (String) activitySnapshot.child("description").getValue();
 
                     Activity activity = new Activity(title,description);
                     allActivities.add(activity);
