@@ -42,6 +42,11 @@ public class Activity {
         this.Country = country;
     }
 
+    public Activity(String title,String description){
+        this.Title=title;
+        this.Description=description;
+    }
+
     public String getTitle() {
         return Title;
     }
