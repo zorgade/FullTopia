@@ -100,4 +100,8 @@ public class MainActivity extends AppCompatActivity {
         startActivity(i);
     }
 
+    public void goToActivitiesMap(View view) {
+        Intent i = new Intent(this, MapsActivity.class);
+        startActivity(i);
+    }
 }
