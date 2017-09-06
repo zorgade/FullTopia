@@ -5,7 +5,6 @@ import android.location.Geocoder;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
-import com.example.fulltopia.fulltopia.Entities.Activity;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -18,15 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    DatabaseReference databaseReference;
-    List<Address> addressList;
     int position = 0;
 
     @Override
@@ -39,25 +34,34 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mapFragment.getMapAsync(this);
 
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        databaseReference = database.getReference("activity");
-        final Geocoder geocoder = new Geocoder(MapsActivity.this);
+        DatabaseReference databaseReference = database.getReference("activity");
 
         databaseReference.addValueEventListener(new ValueEventListener() {
+            Geocoder geocoder = new Geocoder(MapsActivity.this);
+            List<Address> geoResults = null;
+            LatLng latLng = null;
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
-                    String title = (String) activitySnapshot.child("title").getValue();
-                    String street = (String) activitySnapshot.child("address").getValue();
-                    String city = (String) activitySnapshot.child("city").getValue();
-                    String country = (String) activitySnapshot.child("country").getValue();
+                    String title = activitySnapshot.child("title").getValue().toString();
+                    String street = activitySnapshot.child("address").getValue().toString();
+                    String city = activitySnapshot.child("city").getValue().toString();
+                    String country = activitySnapshot.child("country").getValue().toString();
                     String activityAddress = street + " " + city + " " + country;
+
                     try {
-                        addressList = geocoder.getFromLocationName(activityAddress,1);
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                        geoResults = geocoder.getFromLocationName(activityAddress, 2);
+                        while (geoResults.size()==0) {
+                            geoResults = geocoder.getFromLocationName(activityAddress, 2);
+                        }
+                        if (geoResults.size()>0) {
+                            Address address = geoResults.get(0);
+                            latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                        }
+                    } catch (Exception e) {
+                        System.out.print(e.getMessage());
                     }
-                    Address address = addressList.get(position);
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+
                     mMap.addMarker(new MarkerOptions().position(latLng).title(title));
                     position++;
                 }
@@ -69,37 +73,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String ok = "ok";
             }
         });
-
-//        addressList = new ArrayList<>();
-//        addressList.clear();
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
-//                    String title = (String) activitySnapshot.child("title").getValue();
-//                    String street = (String) activitySnapshot.child("address").getValue();
-//                    String city = (String) activitySnapshot.child("city").getValue();
-//                    String country = (String) activitySnapshot.child("country").getValue();
-//                    String activityAddress = street + " " + city + " " + country;
-//                    try {
-//                        addressList = geocoder.getFromLocationName(activityAddress,1);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-//                    Address address = addressList.get(0);
-//                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                    mMap.addMarker(new MarkerOptions().position(latLng).title(title));
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                String message = databaseError.getMessage();
-//                String ok = "ok";
-//            }
-//        });
     }
-
 
     /**
      * Manipulates the map once available.
@@ -115,10 +89,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
-
-
+        LatLng Hevs = new LatLng(46.293003, 7.536426);
+        mMap.addMarker(new MarkerOptions().position(Hevs).title("Première activité à la HES"));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(Hevs));
     }
 }
