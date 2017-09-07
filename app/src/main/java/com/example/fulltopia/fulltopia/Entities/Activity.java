@@ -11,6 +11,7 @@ import java.util.Date;
 
 public class Activity {
 
+    private String activityID;
     private String Title;
     private String Min_part_required;
     private String Max_part_required;
@@ -33,7 +34,7 @@ public class Activity {
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
         this.Description = description;
-        this. Date_creation_activity = date_creation_activity;
+        this.Date_creation_activity = date_creation_activity;
         this.Date_deadline = date_dealine;
         this.Date_event = date_event;
         this.image = image;
@@ -44,9 +45,18 @@ public class Activity {
         this.adminID = adminID;
     }
 
-    public Activity(String title,String description){
-        this.Title=title;
-        this.Description=description;
+    public Activity(String id, String title, String date_event, String date_deadline, String address, String city, String NPA, String Country, String description, String adminID) {
+        this.activityID = id;
+        this.Title = title;
+        this.Date_event = date_event;
+        this.Date_deadline = date_deadline;
+        this.Address = address;
+        this.City = city;
+        this.NPA = NPA;
+        this.Country = Country;
+        this.Description = description;
+        this.adminID = adminID;
+        this.adminID = adminID;
     }
 
     public String getTitle() {
@@ -87,14 +97,6 @@ public class Activity {
 
     public void setDate_creation_activity(Date date_creation_activity) {
         Date_creation_activity = date_creation_activity;
-    }
-
-    public String getDate_dealine() {
-        return Date_deadline;
-    }
-
-    public void setDate_dealine(String date_dealine) {
-        Date_deadline = date_dealine;
     }
 
     public String getDate_event() {
@@ -160,4 +162,13 @@ public class Activity {
     public void setAdminID(String adminID) {
         this.adminID = adminID;
     }
+
+    public String getActivityID() {
+        return activityID;
+    }
+
+    public void setActivityID(String activityID) {
+        this.activityID = activityID;
+    }
 }
+

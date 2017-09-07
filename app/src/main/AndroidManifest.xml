@@ -97,6 +97,7 @@
                 android:value=".MainActivity" />
         </activity>
         <activity android:name=".CommunitiesActivities.SelectedCommunity"/>
+        <activity android:name=".ActivitiesActivities.Selected_activity"/>
         <activity android:name=".NewCommunity" />
         <activity android:name=".New_activity" />
         <activity android:name=".AppEngineActivity">
