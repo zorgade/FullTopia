@@ -47,6 +47,7 @@ public class SelectedCommunity extends AppCompatActivity {
         setContentView(R.layout.activity_selected_community);
 
         final Button buttonSubscribe = (Button) findViewById(R.id.BTN_SubscribeToCommunity);
+        final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToCommunity);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -78,7 +79,7 @@ public class SelectedCommunity extends AppCompatActivity {
                         currentCommunity = community.getValue(Community.class);
                         communityName = currentCommunity.getName().toString();
                         communityDescription = currentCommunity.getDescription().toString();
-                        communityAdmin = currentCommunity.getAdminID().toString();
+                        communityAdmin = user.getEmail().toString();
                         communityName_TV.setText(communityName);
                         communityDescription_TV.setText(communityDescription);
                         communityAdmin_TV.setText(communityAdmin);
@@ -87,6 +88,12 @@ public class SelectedCommunity extends AppCompatActivity {
                         for(String member: memberList){
                             if(member.equals(userID)){
                                 buttonSubscribe.setVisibility(View.GONE);
+                                buttonUnsubscribe.setVisibility(View.VISIBLE);
+
+                            }
+                            else{
+                                buttonSubscribe.setVisibility(View.VISIBLE);
+                                buttonUnsubscribe.setVisibility(View.GONE);
                             }
                         }
                     }
@@ -129,5 +136,30 @@ public class SelectedCommunity extends AppCompatActivity {
         });
 
 
+
+        //Button to unsubscribe to a community
+
+        buttonUnsubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID = user.getUid().toString();
+                currentCommunity.unsuscribeToCommunity(userID);
+
+                try {
+
+                    databaseReference.child(communityID).removeValue();
+                    databaseReference.child(communityID).setValue(currentCommunity);
+
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                buttonSubscribe.setVisibility(View.GONE);
+
+            }
+        });
     }
 }

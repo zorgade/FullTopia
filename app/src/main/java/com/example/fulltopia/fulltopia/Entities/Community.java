@@ -101,4 +101,9 @@ public class Community {
         this.memberList.add(userID);
     }
 
+    //Method to unsubscribe to a community
+    public void unsuscribeToCommunity(String userID){
+        this.memberList.remove(userID);
+    }
+
 }
