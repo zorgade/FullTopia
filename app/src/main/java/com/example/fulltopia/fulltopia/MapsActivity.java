@@ -33,46 +33,46 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("activity");
-
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            Geocoder geocoder = new Geocoder(MapsActivity.this);
-            List<Address> geoResults = null;
-            LatLng latLng = null;
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
-                    String title = activitySnapshot.child("title").getValue().toString();
-                    String street = activitySnapshot.child("address").getValue().toString();
-                    String city = activitySnapshot.child("city").getValue().toString();
-                    String country = activitySnapshot.child("country").getValue().toString();
-                    String activityAddress = street + " " + city + " " + country;
-
-                    try {
-                        geoResults = geocoder.getFromLocationName(activityAddress, 2);
-                        while (geoResults.size()==0) {
-                            geoResults = geocoder.getFromLocationName(activityAddress, 2);
-                        }
-                        if (geoResults.size()>0) {
-                            Address address = geoResults.get(0);
-                            latLng = new LatLng(address.getLatitude(), address.getLongitude());
-                        }
-                    } catch (Exception e) {
-                        System.out.print(e.getMessage());
-                    }
-
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(title));
-                    position++;
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                String message = databaseError.getMessage();
-                String ok = "ok";
-            }
-        });
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference databaseReference = database.getReference("activity");
+//
+//        databaseReference.addValueEventListener(new ValueEventListener() {
+//            Geocoder geocoder = new Geocoder(MapsActivity.this);
+//            List<Address> geoResults = null;
+//            LatLng latLng = null;
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
+//                    String title = activitySnapshot.child("title").getValue().toString();
+//                    String street = activitySnapshot.child("address").getValue().toString();
+//                    String city = activitySnapshot.child("city").getValue().toString();
+//                    String country = activitySnapshot.child("country").getValue().toString();
+//                    String activityAddress = street + " " + city + " " + country;
+//
+//                    try {
+//                        geoResults = geocoder.getFromLocationName(activityAddress, 2);
+//                        while (geoResults.size()==0) {
+//                            geoResults = geocoder.getFromLocationName(activityAddress, 2);
+//                        }
+//                        if (geoResults.size()>0) {
+//                            Address address = geoResults.get(0);
+//                            latLng = new LatLng(address.getLatitude(), address.getLongitude());
+//                        }
+//                    } catch (Exception e) {
+//                        System.out.print(e.getMessage());
+//                    }
+//
+//                    mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+//                    position++;
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                String message = databaseError.getMessage();
+//                String ok = "ok";
+//            }
+//        });
     }
 
     /**
