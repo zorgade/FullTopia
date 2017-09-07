@@ -44,6 +44,7 @@ public class New_activity extends AppCompatActivity {
     private StorageReference mStorage;
     private static final int GALLERY_INTENT=2;
     private ProgressDialog mProgressDialog;
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
     //Elements du screen
     EditText editText_activity_title;
@@ -100,8 +101,10 @@ public class New_activity extends AppCompatActivity {
                 String city = editText_activity_city.getText().toString();
                 String NPA = editText_activity_NPA.getText().toString();
                 String country = editText_activity_country.getText().toString();
+                String adminID = user.getUid();
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country);
+
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country,adminID);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);

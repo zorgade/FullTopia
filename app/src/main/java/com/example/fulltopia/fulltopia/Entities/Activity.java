@@ -23,11 +23,12 @@ public class Activity {
     private String City;
     private String NPA;
     private String Country;
+    private String adminID;
 
     public Activity() {
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, Date date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, Date date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
@@ -40,6 +41,7 @@ public class Activity {
         this.City = city;
         this.NPA = NPA;
         this.Country = country;
+        this.adminID = adminID;
     }
 
     public Activity(String title,String description){
@@ -141,5 +143,21 @@ public class Activity {
 
     public void setCountry(String country) {
         Country = country;
+    }
+
+    public String getDate_deadline() {
+        return Date_deadline;
+    }
+
+    public void setDate_deadline(String date_deadline) {
+        Date_deadline = date_deadline;
+    }
+
+    public String getAdminID() {
+        return adminID;
+    }
+
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
     }
 }

@@ -31,7 +31,8 @@ public class Community {
 
     public Community(){}
 
-    public Community(String name, String dateCreationCommunity, String description){
+    public Community(String communityId, String name, String dateCreationCommunity, String description){
+        this.communityId=communityId;
         this.name=name;
         this.dateCreationCommunity=dateCreationCommunity;
         this.description=description;

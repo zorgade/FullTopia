@@ -4,6 +4,7 @@ package com.example.fulltopia.fulltopia.CommunitiesActivities;
  * Author: Jonathan Joaquim.
  */
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
@@ -11,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -49,7 +51,6 @@ public class tab2AllCommunities extends Fragment{
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("community");
 
-
         return rootView;
     }
 
@@ -64,10 +65,11 @@ public class tab2AllCommunities extends Fragment{
                 allCommunities.clear();
 
                 for(DataSnapshot communitySnapshot: dataSnapshot.getChildren()){
+                    String id = communitySnapshot.getKey();
                     String name = (String) communitySnapshot.child("name").getValue();
                     String description = (String) communitySnapshot.child("description").getValue();
                     String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
-                    Community community = new Community(name, date, description);
+                    Community community = new Community(id,name, date, description);
                     allCommunities.add(community);
                 }
                 CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
@@ -81,7 +83,28 @@ public class tab2AllCommunities extends Fragment{
             }
         }
         );
+
+        listViewAllCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Community community = (Community) parent.getItemAtPosition(position);
+                String communityId = community.getCommunityId();
+                String name = community.getName();
+                String description = community.getDescription();
+                String date = community.getDateCreationCommunity();
+                Intent intent = new Intent(listViewAllCommunities.getContext(),SelectedCommunity.class);
+                intent.putExtra("idCommunity",communityId);
+                intent.putExtra("name",name);
+                intent.putExtra("description", description);
+                intent.putExtra("date", date);
+
+                startActivity(intent);
+
+            }
+        });
+
     }
+
 
 }
 
