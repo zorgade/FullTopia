@@ -17,7 +17,7 @@ public class Community {
     String dateCreationCommunity;
     String description;
     List<Activity> activitiesList;
-    List<String> memberList = null;
+    List<String> memberList = new ArrayList<>();
     String adminID;
 
 
