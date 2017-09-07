@@ -100,12 +100,13 @@ public class NewCommunity extends AppCompatActivity {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
                 DatabaseReference databaseReference = database.getReference();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID = user.getUid().toString();
                 Community community;
                 String name = editText_CommunityName.getText().toString();
                 String description = editText_CommunityDescription.getText().toString();
                 Date date = new Date();
                 String datecreation = date.toString();
-                community = new Community(name, datecreation, description, user);
+                community = new Community(name, datecreation, description, userID);
 
                 try {
                     databaseReference.child("community").push().setValue(community);

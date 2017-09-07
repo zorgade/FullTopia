@@ -17,8 +17,8 @@ public class Community {
     String dateCreationCommunity;
     String description;
     List<Activity> activitiesList;
-    List<FirebaseUser> memberList = new ArrayList<>();
-    List<FirebaseUser> adminList = new ArrayList<>();
+    List<String> memberList = null;
+    String adminID;
 
 
     public String getCommunityId() {
@@ -31,48 +31,36 @@ public class Community {
 
     public Community(){}
 
-    public Community(String communityId, String name, String dateCreationCommunity, String description){
+
+    public Community(String name, String dateCreationCommunity, String description, String adminID){
+        this.name=name;
+        this.dateCreationCommunity=dateCreationCommunity;
+        this.description=description;
+        this.adminID=adminID;
+    }
+
+    public Community(String communityId, String name, String dateCreationCommunity, String description, String adminID){
         this.communityId=communityId;
         this.name=name;
         this.dateCreationCommunity=dateCreationCommunity;
         this.description=description;
+        this.adminID = adminID;
     }
 
-    public Community(String name, String dateCreationCommunity, String description, FirebaseUser creator){
-        this.name=name;
-        this.dateCreationCommunity=dateCreationCommunity;
-        this.description=description;
-        this.adminList.add(creator);
-    }
-
-    public void addUserToCommunity(FirebaseUser user){
-        this.memberList.add(user);
-    }
-
-    public void addMemberToAdmin(FirebaseUser user){
-        this.adminList.add(user);
-        this.memberList.remove(user);
-    }
-
-    public void addAdminToMember(FirebaseUser user){
-        this.memberList.add(user);
-        this.adminList.remove(user);
-    }
-
-    public List<FirebaseUser> getMemberList() {
+    public List<String> getMemberList() {
         return this.memberList;
     }
 
-    public void setMemberList(List<FirebaseUser> memberList) {
+    public void setMemberList(List<String> memberList) {
         this.memberList = memberList;
     }
 
-    public List<FirebaseUser> getAdminList() {
-        return this.adminList;
+    public String getAdminID() {
+        return this.adminID;
     }
 
-    public void setAdminList(List<FirebaseUser> adminList) {
-        this.adminList = adminList;
+    public void setAdminID(String adminID) {
+        this.adminID = adminID;
     }
 
     public String getDateCreationCommunity() {
@@ -107,4 +95,10 @@ public class Community {
     public void setName(String name) {
         this.name = name;
     }
+
+    //Method to subscribe to a community
+    public void subscribeToCommunity (String userID){
+        this.memberList.add(userID);
+    }
+
 }

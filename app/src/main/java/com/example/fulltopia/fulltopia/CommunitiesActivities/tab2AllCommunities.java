@@ -69,7 +69,8 @@ public class tab2AllCommunities extends Fragment{
                     String name = (String) communitySnapshot.child("name").getValue();
                     String description = (String) communitySnapshot.child("description").getValue();
                     String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
-                    Community community = new Community(id,name, date, description);
+                    String userID = (String) communitySnapshot.child("adminID").getValue();
+                    Community community = new Community(id,name, date, description, userID);
                     allCommunities.add(community);
                 }
                 CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
@@ -94,10 +95,6 @@ public class tab2AllCommunities extends Fragment{
                 String date = community.getDateCreationCommunity();
                 Intent intent = new Intent(listViewAllCommunities.getContext(),SelectedCommunity.class);
                 intent.putExtra("idCommunity",communityId);
-                intent.putExtra("name",name);
-                intent.putExtra("description", description);
-                intent.putExtra("date", date);
-
                 startActivity(intent);
 
             }
