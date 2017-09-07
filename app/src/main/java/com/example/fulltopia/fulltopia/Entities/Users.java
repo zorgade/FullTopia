@@ -6,6 +6,7 @@ package com.example.fulltopia.fulltopia.Entities;
 
 public class Users {
 
+    private String userId;
     private String lastname;
     private String firstname;
     private String username;
@@ -16,7 +17,7 @@ public class Users {
     private String npa;
     private String country;
 
-    public Users(String lastname, String firstname, String username, String password, String email, String address, String city, String npa, String country) {
+    public Users(String userId, String lastname, String firstname, String username, String password, String email, String address, String city, String npa, String country) {
         this.lastname = lastname;
         this.firstname = firstname;
         this.username = username;
@@ -28,6 +29,13 @@ public class Users {
         this.country = country;
     }
 
+    public Users(String userId, String address, String npa, String city, String country) {
+        this.userId = userId;
+        this.address = address;
+        this.city = city;
+        this.npa = npa;
+        this.country = country;
+    }
     public Users(String address, String npa, String city, String country) {
         this.address = address;
         this.city = city;
@@ -35,8 +43,17 @@ public class Users {
         this.country = country;
     }
 
+
+    public String getUserId() {
+        return this.userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
     public String getLastname() {
-        return lastname;
+        return this.lastname;
     }
 
     public void setLastname(String lastname) {
@@ -44,7 +61,7 @@ public class Users {
     }
 
     public String getFirstname() {
-        return firstname;
+        return this.firstname;
     }
 
     public void setFirstname(String firstname) {
@@ -52,7 +69,7 @@ public class Users {
     }
 
     public String getUsername() {
-        return username;
+        return this.username;
     }
 
     public void setUsername(String username) {
@@ -60,7 +77,7 @@ public class Users {
     }
 
     public String getPassword() {
-        return password;
+        return this.password;
     }
 
     public void setPassword(String password) {
@@ -68,7 +85,7 @@ public class Users {
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
 
     public void setEmail(String email) {
@@ -76,7 +93,7 @@ public class Users {
     }
 
     public String getAddress() {
-        return address;
+        return this.address;
     }
 
     public void setAddress(String address) {
@@ -84,7 +101,7 @@ public class Users {
     }
 
     public String getCity() {
-        return city;
+        return this.city;
     }
 
     public void setCity(String city) {
@@ -92,7 +109,7 @@ public class Users {
     }
 
     public String getNpa() {
-        return npa;
+        return this.npa;
     }
 
     public void setNpa(String npa) {
@@ -100,7 +117,7 @@ public class Users {
     }
 
     public String getCountry() {
-        return country;
+        return this.country;
     }
 
     public void setCountry(String country) {

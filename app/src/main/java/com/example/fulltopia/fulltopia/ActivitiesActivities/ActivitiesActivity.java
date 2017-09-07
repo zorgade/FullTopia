@@ -22,9 +22,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity;
+import com.example.fulltopia.fulltopia.LoginActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.New_activity;
 import com.example.fulltopia.fulltopia.R;
+import com.example.fulltopia.fulltopia.SettingsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -39,6 +42,8 @@ public class ActivitiesActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FirebaseAuth auth;
+
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -54,6 +59,8 @@ public class ActivitiesActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         // Create the adapter that will return a fragment for each of the three
@@ -87,6 +94,28 @@ public class ActivitiesActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_signOut:
+                signOut();
+                Intent j = new Intent(this, LoginActivity.class);
+                startActivity(j);
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void signOut() {
+        auth.signOut();
     }
 
 

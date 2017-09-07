@@ -14,35 +14,44 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.Entities.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,btnSendFeedBack,
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    final DatabaseReference databaseReference = database.getReference();
+    String userId;
+    String uAddress;
+    String npa;
+    String city;
+    String country;
+    Users currentUserAddress;
+    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnSendFeedBack,
             changeEmail, changePassword, sendEmail, remove, signOut,
             changeLng, changeNotif, changeAddres, sendfeedback;
-
     private EditText oldEmail, newEmail, password, newPassword,
             newStreet, newNpa, newCity, newCountry, feedback;
-
     private TextView language, notification, address, sendUsFeedback;
-
     private RadioButton lng_fr, lng_eng, notif_yes, notif_no;
-
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
-
     private FirebaseAnalytics mFirebaseAnalytics;
-    FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference databaseReference = database.getReference();
+    private String userID = user.getUid().toString();
+    private Bundle bundle;
+
 
     public SettingsActivity() {
     }
@@ -58,13 +67,9 @@ public class SettingsActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
         //get firebase auth & DB instance
         auth = FirebaseAuth.getInstance();
 
-
-        //get current user
-        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         authListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -151,6 +156,36 @@ public class SettingsActivity extends AppCompatActivity {
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
         }
+
+        userID = user.getUid().toString();
+
+
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot userAdress: dataSnapshot.getChildren()) {
+                    if (userAdress.getKey().equals(userID)) {
+                        currentUserAddress = userAdress.getValue(Users.class);
+                        uAddress = currentUserAddress.getAddress().toString();
+                        npa = currentUserAddress.getNpa().toString();
+                        city = currentUserAddress.getCity().toString();
+                        country = currentUserAddress.getCountry().toString();
+
+                        newStreet.setText(uAddress);
+                        newNpa.setText(npa);
+                        newCity.setText(city);
+                        newCountry.setText(country);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+
+            }
+        });*/
 
 
         btnChangeLanguage.setOnClickListener(new View.OnClickListener() {
@@ -244,8 +279,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sendfeedback.setVisibility(View.GONE);
                 feedback.setVisibility(View.GONE);
                 sendUsFeedback.setVisibility(View.GONE);
-                database = FirebaseDatabase.getInstance();
-                databaseReference = database.getReference();
 
             }
         });
@@ -259,27 +292,24 @@ public class SettingsActivity extends AppCompatActivity {
                         && !newCity.getText().toString().trim().equals("")
                         && !newCountry.getText().toString().trim().equals("")) {
 
-
-                    database = FirebaseDatabase.getInstance();
-                    databaseReference = database.getReference();
-                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    Users userA;
-                    String address = newStreet.getText().toString();
-                    String npa = newNpa.getText().toString();
-                    String city = newCity.getText().toString();
-                    String country = newCountry.getText().toString();
-
-                    userA = new Users(address, npa, city, country);
+                    //FirebaseDatabase database = FirebaseDatabase.getInstance();
+                    //DatabaseReference databaseReference = database.getReference();
+                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    Users userAddress;
+                    uAddress = newStreet.getText().toString();
+                    npa = newNpa.getText().toString();
+                    city = newCity.getText().toString();
+                    country = newCountry.getText().toString();
+                    userAddress = new Users(uAddress, npa, city, country);
 
                     try {
-
-                        databaseReference.child("userAddress").child(user.getUid()).removeValue();
-                        databaseReference.child("userAddress").child(user.getUid()).push().setValue(userA);
-                        progressBar.setVisibility(View.GONE);
+                        databaseReference.child("userAddress").child(userID).removeValue();
+                        databaseReference.child("userAddress").child(userID).setValue(userAddress);
                         Toast.makeText(SettingsActivity.this, getString(R.string.AddressChange), Toast.LENGTH_LONG).show();
+                        progressBar.setVisibility(View.GONE);
 
-                    }
-                    catch(Exception e){
+
+                    } catch (Exception e) {
                         e.printStackTrace();
                     }
 
@@ -515,7 +545,7 @@ public class SettingsActivity extends AppCompatActivity {
         sendfeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(feedback.getText().toString().trim().length() > 20) {
+                if (feedback.getText().toString().trim().length() > 20) {
                     progressBar.setVisibility(View.VISIBLE);
                     FirebaseDatabase database = FirebaseDatabase.getInstance();
                     DatabaseReference databaseReference = database.getReference();
@@ -527,13 +557,11 @@ public class SettingsActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     Toast.makeText(SettingsActivity.this, "Please write at least 20 characters to send your feedback", Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
 
 
         btnRemoveUser.setOnClickListener(new View.OnClickListener() {

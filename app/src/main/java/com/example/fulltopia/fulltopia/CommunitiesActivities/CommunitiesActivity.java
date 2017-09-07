@@ -21,9 +21,12 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.fulltopia.fulltopia.Entities.Community;
+import com.example.fulltopia.fulltopia.LoginActivity;
 import com.example.fulltopia.fulltopia.MainActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
 import com.example.fulltopia.fulltopia.R;
+import com.example.fulltopia.fulltopia.SettingsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.List;
 
@@ -38,6 +41,8 @@ public class CommunitiesActivity extends AppCompatActivity {
      * {@link android.support.v4.app.FragmentStatePagerAdapter}.
      */
     private SectionsPagerAdapter mSectionsPagerAdapter;
+    private FirebaseAuth auth;
+
 
     /**
      * The {@link ViewPager} that will host the section contents.
@@ -51,6 +56,9 @@ public class CommunitiesActivity extends AppCompatActivity {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -88,19 +96,32 @@ public class CommunitiesActivity extends AppCompatActivity {
         return true;
     }
 
+
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        // Handle item selection
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.action_signOut:
+                signOut();
+                Intent j = new Intent(this, LoginActivity.class);
+                startActivity(j);
+                return true;
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    public void signOut() {
+        auth.signOut();
     }
 
     //deleted PlaceholderFragment code form here
