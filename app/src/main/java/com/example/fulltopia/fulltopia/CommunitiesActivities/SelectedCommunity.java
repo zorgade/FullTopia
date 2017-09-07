@@ -1,5 +1,7 @@
 package com.example.fulltopia.fulltopia.CommunitiesActivities;
 
+import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,6 +20,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
+
 public class SelectedCommunity extends AppCompatActivity {
 
     Bundle bundle;
@@ -26,13 +30,34 @@ public class SelectedCommunity extends AppCompatActivity {
     String communityName;
     String communityDescription;
     String communityAdmin;
+    String userID;
     TextView communityName_TV;
     TextView communityDescription_TV;
     TextView communityAdmin_TV;
+    List<String> memberList;
+    private FirebaseAuth.AuthStateListener authListener;
+    private FirebaseAuth auth;
+    FirebaseUser user;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_community);
+
+        final Button buttonSubscribe = (Button) findViewById(R.id.BTN_SubscribeToCommunity);
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        //get current user
+        //final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        user = auth.getCurrentUser();
+        userID = user.getUid().toString();
+
+
 
 
         communityName_TV = (TextView)findViewById(R.id.TV_CommunityName);
@@ -57,6 +82,13 @@ public class SelectedCommunity extends AppCompatActivity {
                         communityName_TV.setText(communityName);
                         communityDescription_TV.setText(communityDescription);
                         communityAdmin_TV.setText(communityAdmin);
+                        memberList = currentCommunity.getMemberList();
+
+                        for(String member: memberList){
+                            if(member.equals(userID)){
+                                buttonSubscribe.setVisibility(View.GONE);
+                            }
+                        }
                     }
                 }
             }
@@ -72,7 +104,7 @@ public class SelectedCommunity extends AppCompatActivity {
 
 
         //Button to subscribe to a community
-        final Button buttonSubscribe = (Button) findViewById(R.id.BTN_SubscribeToCommunity);
+
         buttonSubscribe.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,7 +123,7 @@ public class SelectedCommunity extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-                buttonSubscribe.setText("Bravo, vous vous êtes bien inscrit!");
+                buttonSubscribe.setVisibility(View.GONE);
 
             }
         });
