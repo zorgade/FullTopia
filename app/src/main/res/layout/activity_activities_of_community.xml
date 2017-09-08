@@ -22,8 +22,9 @@
         android:layout_marginBottom="8dp"
         android:layout_marginRight="8dp"
         android:clickable="true"
-        app:fabSize="mini"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:srcCompat="@drawable/ic_add_circle_pink_600_48dp" />
+        app:srcCompat="@android:drawable/ic_menu_add" />
 </android.support.constraint.ConstraintLayout>

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.fulltopia.fulltopia.CommunitiesActivities.ActivitiesOfCommunity;
 import com.example.fulltopia.fulltopia.Entities.Activity;
 import com.example.fulltopia.fulltopia.LoginActivity;
 import com.example.fulltopia.fulltopia.New_activity;
@@ -92,6 +93,8 @@ public class NewCommunityactivity extends AppCompatActivity {
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);
+                    Intent i = new Intent(NewCommunityactivity.this, ActivitiesOfCommunity.class);
+                    startActivity(i);
                 }
                 catch(Exception e){
                     e.printStackTrace();
