@@ -86,6 +86,7 @@ public class tab2AllCommunities extends Fragment{
             public void onCancelled(DatabaseError databaseError) {
                 String message = databaseError.getMessage();
                 String ok = "ok";
+                
             }
         }
         );
