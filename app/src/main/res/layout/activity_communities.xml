@@ -44,7 +44,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top|left"
         android:clickable="true"
-        app:fabSize="mini"
+        app:backgroundTint="@color/colorPrimary"
+        app:fabSize="normal"
         app:layout_anchor="@+id/container"
         app:layout_anchorGravity="bottom|right"
         app:srcCompat="@android:drawable/ic_menu_add" />

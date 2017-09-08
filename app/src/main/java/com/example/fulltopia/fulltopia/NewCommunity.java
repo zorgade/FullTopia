@@ -16,6 +16,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity;
+import com.example.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity;
 import com.example.fulltopia.fulltopia.Entities.Community;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,20 +36,10 @@ public class NewCommunity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
-    //Firebase image select on device
-    private Button mSelectImage;
-    private StorageReference mStorage;
-    private static final int GALLERY_INTENT=2;
-    private ProgressDialog mProgressDialog;
-
     //Elements du screen
     EditText editText_CommunityName;
     EditText editText_CommunityDescription;
-    EditText editText_CommunityAdress;
-    EditText editText_CommunityNPA;
-    EditText editText_CommunityCity;
-    EditText editText_CommunityCountry;
-    TextView textView_CommunityImage;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,19 +73,6 @@ public class NewCommunity extends AppCompatActivity {
         editText_CommunityDescription = (EditText) findViewById(R.id.ET_CommunityDescription);
 
 
-
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mSelectImage = (Button) findViewById(R.id.BTN_Community_Gallery);
-        mProgressDialog = new ProgressDialog(this);
-        mSelectImage.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v){
-                Intent i = new Intent(Intent.ACTION_PICK);
-                i.setType("image/*");
-                startActivityForResult(i, GALLERY_INTENT);
-            }
-        });
-
         Button button = (Button) findViewById(R.id.BTN_Community_Create);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -110,31 +89,25 @@ public class NewCommunity extends AppCompatActivity {
 
                 try {
                     databaseReference.child("community").push().setValue(community);
+                    Intent i = new Intent(NewCommunity.this, CommunitiesActivity.class);
+                    startActivity(i);
                 }
                 catch(Exception e){
                     e.printStackTrace();
                 }
             }
         });
+
+        Button buttonReturn = (Button) findViewById(R.id.BTN_Community_Return);
+
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NewCommunity.this,CommunitiesActivity.class);
+                startActivity(i);
+            }
+        });
+
     }
 
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
-
-            mProgressDialog.setMessage(getString(R.string.UPLOADING));
-            mProgressDialog.show();
-            Uri uri = data.getData();
-            StorageReference filePath = mStorage.child("CommunitiesPhotos").child(uri.getLastPathSegment());
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    Toast.makeText(NewCommunity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
-                    mProgressDialog.dismiss();
-                }
-            });
-        }
-    }
 }
