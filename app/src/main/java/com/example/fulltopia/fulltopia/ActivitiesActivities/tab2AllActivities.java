@@ -60,8 +60,8 @@ public class tab2AllActivities extends Fragment {
 
 
                 for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()) {
-                    if (dataSnapshot.child("communityID").getValue() == null) {
-                        String comid = (String) activitySnapshot.child("communityID").getValue();
+                    String comid = (String) activitySnapshot.child("communityID").getValue();
+                    if (comid.equals("")) {
                         String id = activitySnapshot.getKey();
                         String title = (String) activitySnapshot.child("title").getValue();
                         String adminID = (String) activitySnapshot.child("adminID").getValue();
