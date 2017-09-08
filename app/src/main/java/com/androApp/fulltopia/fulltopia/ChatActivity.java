@@ -86,6 +86,7 @@ public class ChatActivity extends AppCompatActivity {
         final Button button = (Button) findViewById(R.id.addButton);
         DatabaseReference databaseReference = database.getReference();
 
+        //get user for set nickname
         final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         uMail = user.getEmail().toString();
         final String userID = user.getUid().toString();
@@ -97,7 +98,8 @@ public class ChatActivity extends AppCompatActivity {
                     if (users.getKey().equals(userID)) {
                         currentUsers = users.getValue(Users.class);
                             /*
-                            * Set value if exist
+                            * Set value username as nickname if exist
+                            * else use mail as nickname
                             */
                         if (currentUsers.getUsername().isEmpty() || currentUsers.getUsername()=="") {
                             nickname = uMail;

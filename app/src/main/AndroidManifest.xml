@@ -109,7 +109,6 @@
         <activity
             android:name="com.androApp.fulltopia.fulltopia.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name="com.androApp.fulltopia.fulltopia.Chat" />
         <activity android:name="com.androApp.fulltopia.fulltopia.ProfilsActivity"></activity>
         <activity android:name="com.androApp.fulltopia.fulltopia.CommunitiesActivities.ActivitiesOfCommunity">
             <meta-data
