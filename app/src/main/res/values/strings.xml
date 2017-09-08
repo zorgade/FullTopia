@@ -116,4 +116,5 @@
     <string name="AddressChange">New address saved!</string>
     <string name="title_activity_maps">Map</string>
     <string name="community_unsubscribe">Unsubscribe</string>
+    <string name="activity_unsubscribe">Unsuscribe to activity</string>
 </resources>

@@ -2,7 +2,9 @@ package com.example.fulltopia.fulltopia.Entities;
 
 
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Vincent on 13.07.2017.
@@ -26,6 +28,7 @@ public class Activity {
     private String Country;
     private String adminID;
     private String communityID;
+    List<String> memberList = new ArrayList<>();
 
     public Activity() {
     }
@@ -76,7 +79,33 @@ public class Activity {
         this.communityID = communityID;
     }
 
+    public Activity(String id, String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID, String communityID, List<String> memberList) {
+        this.activityID = id;
+        this.Title = title;
+        this.Min_part_required = min_part_required;
+        this.Max_part_required = max_part_required;
+        this.Description = description;
+        this.Date_creation_activity = date_creation_activity;
+        this.Date_deadline = date_dealine;
+        this.Date_event = date_event;
+        this.image = image;
+        this.Address = address;
+        this.City = city;
+        this.NPA = NPA;
+        this.Country = country;
+        this.adminID = adminID;
+        this.communityID = communityID;
+        this.memberList = memberList;
+    }
 
+
+    public List<String> getMemberList() {
+        return memberList;
+    }
+
+    public void setMemberList(List<String> memberList) {
+        this.memberList = memberList;
+    }
 
     public String getTitle() {
         return Title;
@@ -196,6 +225,16 @@ public class Activity {
 
     public void setActivityID(String activityID) {
         this.activityID = activityID;
+    }
+
+    //Method to subscribe to a community
+    public void subscribeToActivitiy (String userID){
+        this.memberList.add(userID);
+    }
+
+    //Method to unsubscribe to a community
+    public void unsuscribeToActivity(String userID){
+        this.memberList.remove(userID);
     }
 }
 

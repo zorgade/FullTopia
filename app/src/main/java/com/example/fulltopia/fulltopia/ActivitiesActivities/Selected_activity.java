@@ -3,6 +3,8 @@ package com.example.fulltopia.fulltopia.ActivitiesActivities;
         import android.app.Activity;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
         import android.widget.TextView;
 
         import com.example.fulltopia.fulltopia.R;
@@ -26,6 +28,9 @@ public class Selected_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_selected_activity);
 
+
+        final Button buttonSubscribe = (Button) findViewById(R.id.BTN_Subscribe);
+        final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToActivity);
 
         final TextView activityName_TV = (TextView)findViewById(R.id.TV_TitleActivity);
         final TextView adminName_TV = (TextView)findViewById(R.id.TV_Admin);
@@ -68,5 +73,55 @@ public class Selected_activity extends AppCompatActivity {
             }
         });
 
+        //Button to subscribe to a community
+
+        buttonSubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID = user.getUid().toString();
+                currentActivity.subscribeToActivitiy(userID);
+
+                try {
+
+                    databaseReference.child(activityID).removeValue();
+                    databaseReference.child(activityID).setValue(currentActivity);
+
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                buttonSubscribe.setVisibility(View.GONE);
+
+            }
+        });
+
+
+        //Button to unsubscribe to a community
+
+        buttonUnsubscribe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                String userID = user.getUid().toString();
+                currentActivity.unsuscribeToActivity(userID);
+
+                try {
+
+                    databaseReference.child(activityID).removeValue();
+                    databaseReference.child(activityID).setValue(currentActivity);
+
+                }
+                catch(Exception e){
+                    e.printStackTrace();
+                }
+
+                buttonSubscribe.setVisibility(View.GONE);
+
+            }
+        });
     }
 }
