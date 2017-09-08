@@ -1,28 +1,29 @@
 package com.androApp.fulltopia.fulltopia.ActivitiesActivities;
 
-        import android.support.v7.app.AppCompatActivity;
-        import android.os.Bundle;
-        import android.view.View;
-        import android.widget.Button;
-        import android.widget.TextView;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-        import com.androApp.fulltopia.fulltopia.R;
-        import com.google.firebase.auth.FirebaseAuth;
-        import com.google.firebase.auth.FirebaseUser;
-        import com.google.firebase.database.DataSnapshot;
-        import com.google.firebase.database.DatabaseError;
-        import com.google.firebase.database.DatabaseReference;
-        import com.google.firebase.database.FirebaseDatabase;
-        import com.google.firebase.database.ValueEventListener;
+import com.androApp.fulltopia.fulltopia.Entities.Activity;
+import com.androApp.fulltopia.fulltopia.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-        import java.util.List;
+import java.util.List;
 
 public class Selected_activity extends AppCompatActivity {
 
+    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     DatabaseReference databaseReference;
     Bundle bundle;
-    com.androApp.fulltopia.fulltopia.Entities.Activity currentActivity;
-    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    Activity currentActivity;
     String activityAdmin;
     List<String> memberList;
     TextView activityAdmin_TV;
@@ -39,24 +40,23 @@ public class Selected_activity extends AppCompatActivity {
         final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToActivity);
 
 
-
         userID = user.getUid().toString();
 
-        final TextView activityName_TV = (TextView)findViewById(R.id.TV_TitleActivity);
+        final TextView activityName_TV = (TextView) findViewById(R.id.TV_TitleActivity);
 
         //final TextView adminName_TV = (TextView)findViewById(R.id.TV_Admin);
 
-        final TextView eventDate_TV = (TextView)findViewById(R.id.TV_Event_Date_descr);
-        final TextView deadlineDate_TV = (TextView)findViewById(R.id.TV_Deadline_descr);
-        final TextView address_TV = (TextView)findViewById(R.id.TV_Address);
-        final TextView city_TV = (TextView)findViewById(R.id.TV_City);
-        final TextView NPA_TV = (TextView)findViewById(R.id.TV_NPA);
-        final TextView country_TV = (TextView)findViewById(R.id.TV_Country);
-        final TextView contributor = (TextView)findViewById(R.id.TV_NBRContributor);
-        final TextView description = (TextView)findViewById(R.id.TV_Description);
-        activityAdmin_TV = (TextView)findViewById(R.id.TV_AdminName);
+        final TextView eventDate_TV = (TextView) findViewById(R.id.TV_Event_Date_descr);
+        final TextView deadlineDate_TV = (TextView) findViewById(R.id.TV_Deadline_descr);
+        final TextView address_TV = (TextView) findViewById(R.id.TV_Address);
+        final TextView city_TV = (TextView) findViewById(R.id.TV_City);
+        final TextView NPA_TV = (TextView) findViewById(R.id.TV_NPA);
+        final TextView country_TV = (TextView) findViewById(R.id.TV_Country);
+        final TextView contributor = (TextView) findViewById(R.id.TV_NBRContributor);
+        final TextView description = (TextView) findViewById(R.id.TV_Description);
+        activityAdmin_TV = (TextView) findViewById(R.id.TV_AdminName);
 
-
+        //get from the bundle the idActivity
         bundle = getIntent().getExtras();
         final String activityID = bundle.getString("idActivity");
 
@@ -65,8 +65,9 @@ public class Selected_activity extends AppCompatActivity {
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot activity: dataSnapshot.getChildren()){
-                    if(activity.getKey().equals(activityID)){
+                for (DataSnapshot activity : dataSnapshot.getChildren()) {
+                    //to only select the right activity, we compare the one from the bundle and the one of each activites
+                    if (activity.getKey().equals(activityID)) {
                         currentActivity = activity.getValue(com.androApp.fulltopia.fulltopia.Entities.Activity.class);
                         activityAdmin = currentActivity.getAdminID();
                         activityName_TV.setText(currentActivity.getTitle().toString());
@@ -83,26 +84,23 @@ public class Selected_activity extends AppCompatActivity {
                         memberList = currentActivity.getMemberList();
 
                         //IF HE IS ADMIN
-                        if(userID.equals(activityAdmin)){
+                        if (userID.equals(activityAdmin)) {
                             buttonSubscribe.setVisibility(View.GONE);
                             buttonUnsubscribe.setVisibility(View.GONE);
-                        }
-                        else{
+                        } else {
                             //IF LIST != 0
-                            if(memberList.size()!=0){
+                            if (memberList.size() != 0) {
 
-                                for(String member: memberList){
-                                    if(member.equals(userID)){
+                                for (String member : memberList) {
+                                    if (member.equals(userID)) {
                                         buttonSubscribe.setVisibility(View.GONE);
                                         buttonUnsubscribe.setVisibility(View.VISIBLE);
-                                    }
-                                    else{
+                                    } else {
                                         buttonSubscribe.setVisibility(View.VISIBLE);
                                         buttonUnsubscribe.setVisibility(View.GONE);
                                     }
                                 }
-                            }
-                            else{
+                            } else {
                                 buttonSubscribe.setVisibility(View.VISIBLE);
                                 buttonUnsubscribe.setVisibility(View.GONE);
                             }
@@ -133,8 +131,7 @@ public class Selected_activity extends AppCompatActivity {
                     databaseReference.child(activityID).removeValue();
                     databaseReference.child(activityID).setValue(currentActivity);
 
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -154,13 +151,12 @@ public class Selected_activity extends AppCompatActivity {
                 String userID = user.getUid().toString();
                 currentActivity.unsuscribeToActivity(userID);
 
-                    try {
+                try {
 
                     databaseReference.child(activityID).removeValue();
                     databaseReference.child(activityID).setValue(currentActivity);
 
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
 
@@ -170,9 +166,10 @@ public class Selected_activity extends AppCompatActivity {
         });
     }
 
+    //Set the currentUser as the Admin of the activity
     private void setUserAdmin(String activityAdmin) {
         DatabaseReference mCurrentUserAdmin = FirebaseDatabase.getInstance().getReference("usersInfos").child(activityAdmin);
-        mCurrentUserAdmin.addValueEventListener(new ValueEventListener(){
+        mCurrentUserAdmin.addValueEventListener(new ValueEventListener() {
 
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

@@ -29,12 +29,11 @@ public class NewCommunityactivity extends AppCompatActivity {
     Bundle bundle;
 
 
-    //Firebase image select on device
 
     private ProgressDialog mProgressDialog;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    //Elements du screen
+    //Elements of the screen
     EditText editText_activity_title;
     EditText editText_activity_min;
     EditText editText_activity_max;
@@ -62,6 +61,7 @@ public class NewCommunityactivity extends AppCompatActivity {
         editText_activity_NPA = (EditText) findViewById(R.id.ET_communityactivity_NPA);
         editText_activity_country = (EditText) findViewById(R.id.ET_communityactivity_country);
 
+        //On click to the button create activity, an object "activity" is going to be construct and sent on Firebase
         Button button = (Button) findViewById(R.id.BTN_communityactivity_CreateActivity);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -84,6 +84,7 @@ public class NewCommunityactivity extends AppCompatActivity {
                 String country = editText_activity_country.getText().toString();
                 String adminID = user.getUid();
 
+                //Get the communitId to display on wich community this activity belongs to
                 bundle = getIntent().getExtras();
                 String communityID = bundle.getString("communityID");
 
@@ -101,6 +102,8 @@ public class NewCommunityactivity extends AppCompatActivity {
             }
         });
 
+        //onClick on the return button, go back the previous page
+        //the communityID has to be sent back too, because we have to now on wich community we are going back to
         Button buttonReturn = (Button) findViewById(R.id.BTN_communityactivity_Return);
 
         buttonReturn.setOnClickListener(new View.OnClickListener() {

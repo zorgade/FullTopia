@@ -73,9 +73,12 @@ public class NewCommunity extends AppCompatActivity {
                 String description = editText_CommunityDescription.getText().toString();
                 Date date = new Date();
                 String datecreation = date.toString();
+
+                //Create an object community with the Strings
                 community = new Community(name, datecreation, description, userID);
 
                 try {
+                    //Send the community object on Firebase
                     databaseReference.child("community").push().setValue(community);
                     Intent i = new Intent(NewCommunity.this, CommunitiesActivity.class);
                     startActivity(i);

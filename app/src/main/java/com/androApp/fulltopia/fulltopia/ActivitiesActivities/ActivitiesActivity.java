@@ -112,10 +112,6 @@ public class ActivitiesActivity extends AppCompatActivity {
         auth.signOut();
     }
 
-
-
-    //deleted PlaceholderFragment code from here
-
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
      * one of the sections/tabs/pages.

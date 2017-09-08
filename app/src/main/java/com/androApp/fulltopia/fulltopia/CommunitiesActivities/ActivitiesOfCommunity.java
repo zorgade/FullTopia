@@ -59,7 +59,7 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
 
                 bundle = getIntent().getExtras();
                 String communityID = bundle.getString("communityID").toString();
-
+                //display only the activity ot the current community
                 for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
                     String communityId = (String) activitySnapshot.child("communityID").getValue().toString();
                     if(communityId.equals(communityID)){

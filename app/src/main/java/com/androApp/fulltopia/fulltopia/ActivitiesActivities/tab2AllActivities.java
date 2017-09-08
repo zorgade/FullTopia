@@ -56,7 +56,7 @@ public class tab2AllActivities extends Fragment {
 
                 allActivities.clear();
 
-
+                //Display all the activites that don't belong to a Community
                 for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()) {
                     String comid = (String) activitySnapshot.child("communityID").getValue();
                     if (comid.equals("")) {
@@ -87,6 +87,7 @@ public class tab2AllActivities extends Fragment {
         }
         );
 
+        //If we select an activity of the list, a new page with the one selected will open
         listViewAllActivities.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

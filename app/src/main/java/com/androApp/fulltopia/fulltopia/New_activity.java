@@ -84,9 +84,11 @@ public class New_activity extends AppCompatActivity {
                 String adminID = user.getUid();
 
 
+                //Create an object activity with the Strings
                 activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, address, city, NPA, country, adminID,"");
 
                 try {
+                    //send the activity object on Firebase
                     databaseReference.child("activity").push().setValue(activity);
                     Intent i = new Intent(New_activity.this, ActivitiesActivity.class);
                     startActivity(i);

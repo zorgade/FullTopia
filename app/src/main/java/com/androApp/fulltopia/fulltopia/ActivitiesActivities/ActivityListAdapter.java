@@ -14,10 +14,6 @@ import com.androApp.fulltopia.fulltopia.R;
 
 import java.util.List;
 
-/**
- * Author: Jonathan Joaquim.
- */
-
 public class ActivityListAdapter extends ArrayAdapter<Activity> {
 
     private Context context;
@@ -30,6 +26,7 @@ public class ActivityListAdapter extends ArrayAdapter<Activity> {
     }
 
 
+    //Create an adapter to implement our listview into a fragment
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
