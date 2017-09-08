@@ -17,6 +17,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.Entities.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -38,16 +39,10 @@ public class SettingsActivity extends AppCompatActivity {
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
-    String uAddress;
-    String npa;
-    String city;
-    String country;
-    private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnSendFeedBack,
-            changeEmail, changePassword, sendEmail, remove, signOut,
-            changeLng, changeNotif, changeAddres, sendfeedback;
-    private EditText oldEmail, newEmail, password, newPassword,
-            newStreet, newNpa, newCity, newCountry, feedback;
-    private TextView language, notification, address, sendUsFeedback;
+    private Button btnChangeLanguage, btnChangeNotification, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnSendFeedBack,
+            changeEmail, changePassword, sendEmail, remove, signOut, changeNotif, sendfeedback;
+    private EditText oldEmail, newEmail, password, newPassword, feedback;
+    private TextView language, notification, sendUsFeedback;
     private RadioButton lng_fr, lng_eng, notif_yes, notif_no;
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
@@ -58,6 +53,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private RadioGroup radio = null;
     Context context;
+
+    Users currentUser;
 
 
 
@@ -95,7 +92,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         btnChangeLanguage = (Button) findViewById(R.id.change_language_button);
         btnChangeNotification = (Button) findViewById(R.id.change_notification_button);
-        btnChangeAddress = (Button) findViewById(R.id.change_address_button);
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
         btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
@@ -103,7 +99,6 @@ public class SettingsActivity extends AppCompatActivity {
         btnSendFeedBack = (Button) findViewById(R.id.send_feedback_button);
 
         changeNotif = (Button) findViewById(R.id.changeNotification);
-        changeAddres = (Button) findViewById(R.id.changeAddress);
         changeEmail = (Button) findViewById(R.id.changeEmail);
         changePassword = (Button) findViewById(R.id.changePass);
         sendEmail = (Button) findViewById(R.id.send);
@@ -116,10 +111,6 @@ public class SettingsActivity extends AppCompatActivity {
         newEmail = (EditText) findViewById(R.id.new_email);
         password = (EditText) findViewById(R.id.password);
         newPassword = (EditText) findViewById(R.id.newPassword);
-        newStreet = (EditText) findViewById(R.id.ET_Street);
-        newNpa = (EditText) findViewById(R.id.ET_communityactivity_NPA);
-        newCity = (EditText) findViewById(R.id.ET_communityactivity_city);
-        newCountry = (EditText) findViewById(R.id.ET_communityactivity_country);
         feedback = (EditText) findViewById(R.id.multiline_text_feedback);
 
         lng_fr = (RadioButton) findViewById(R.id.RB_French);
@@ -128,7 +119,6 @@ public class SettingsActivity extends AppCompatActivity {
         notif_no = (RadioButton) findViewById(R.id.RB_No);
 
         language = (TextView) findViewById(R.id.TV_Language);
-        address = (TextView) findViewById(R.id.TV_Address);
         notification = (TextView) findViewById(R.id.TV_GetNotif);
         sendUsFeedback = (TextView) findViewById(R.id.send_us_feedback);
 
@@ -141,12 +131,6 @@ public class SettingsActivity extends AppCompatActivity {
         notif_yes.setVisibility(View.GONE);
         notif_no.setVisibility(View.GONE);
         changeNotif.setVisibility(View.GONE);
-        address.setVisibility(View.GONE);
-        newStreet.setVisibility(View.GONE);
-        newNpa.setVisibility(View.GONE);
-        newCity.setVisibility(View.GONE);
-        newCountry.setVisibility(View.GONE);
-        changeAddres.setVisibility(View.GONE);
         oldEmail.setVisibility(View.GONE);
         newEmail.setVisibility(View.GONE);
         password.setVisibility(View.GONE);
@@ -177,12 +161,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
                 changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.GONE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -225,12 +203,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.VISIBLE);
                 notif_no.setVisibility(View.VISIBLE);
                 changeNotif.setVisibility(View.VISIBLE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.GONE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -244,119 +216,6 @@ public class SettingsActivity extends AppCompatActivity {
                 sendUsFeedback.setVisibility(View.GONE);
             }
         });
-
-        btnChangeAddress.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                language.setVisibility(View.GONE);
-                lng_fr.setVisibility(View.GONE);
-                lng_eng.setVisibility(View.GONE);
-                notification.setVisibility(View.GONE);
-                notif_yes.setVisibility(View.GONE);
-                notif_no.setVisibility(View.GONE);
-                changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.VISIBLE);
-                newStreet.setVisibility(View.VISIBLE);
-                newNpa.setVisibility(View.VISIBLE);
-                newCity.setVisibility(View.VISIBLE);
-                newCountry.setVisibility(View.VISIBLE);
-                changeAddres.setVisibility(View.VISIBLE);
-                oldEmail.setVisibility(View.GONE);
-                newEmail.setVisibility(View.GONE);
-                password.setVisibility(View.GONE);
-                newPassword.setVisibility(View.GONE);
-                changeEmail.setVisibility(View.GONE);
-                changePassword.setVisibility(View.GONE);
-                sendEmail.setVisibility(View.GONE);
-                remove.setVisibility(View.GONE);
-                sendfeedback.setVisibility(View.GONE);
-                feedback.setVisibility(View.GONE);
-                sendUsFeedback.setVisibility(View.GONE);
-
-                userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                databaseReference = database.getReference("userAddress");
-                databaseReference.addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        for (DataSnapshot userAdress : dataSnapshot.getChildren()) {
-                            if (userAdress.getKey().equals(userID)) {
-                                uAddress = (String) userAdress.child("address").getValue();
-                                city = (String) userAdress.child("city").getValue();
-                                country = (String) userAdress.child("country").getValue();
-                                npa = (String) userAdress.child("npa").getValue();
-
-                                newStreet.setText(uAddress);
-                                newNpa.setText(npa);
-                                newCity.setText(city);
-                                newCountry.setText(country);
-
-                            }
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        System.out.println("The read failed: " + databaseError.getMessage());
-
-                    }
-                });
-
-            }
-        });
-
-
-        changeAddres.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                if (user != null && !newStreet.getText().toString().trim().equals("")
-                        && !newNpa.getText().toString().trim().equals("")
-                        && !newCity.getText().toString().trim().equals("")
-                        && !newCountry.getText().toString().trim().equals("")) {
-
-                    //FirebaseDatabase database = FirebaseDatabase.getInstance();
-                    //DatabaseReference databaseReference = database.getReference();
-                    //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                    Users userAddress;
-                    uAddress = newStreet.getText().toString();
-                    npa = newNpa.getText().toString();
-                    city = newCity.getText().toString();
-                    country = newCountry.getText().toString();
-                    userAddress = new Users(uAddress, npa, city, country);
-
-                    try {
-                        databaseReference.child(userID).removeValue();
-                        databaseReference.child(userID).setValue(userAddress);
-                        Toast.makeText(SettingsActivity.this, getString(R.string.AddressChange), Toast.LENGTH_LONG).show();
-                        progressBar.setVisibility(View.GONE);
-
-
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-
-                } else {
-                    if (newStreet.getText().toString().trim().equals("")) {
-                        newStreet.setError("Enter Street");
-                        progressBar.setVisibility(View.GONE);
-                    }
-                    if (newNpa.getText().toString().trim().equals("")) {
-                        newEmail.setError("Enter NPA");
-                        progressBar.setVisibility(View.GONE);
-                    }
-                    if (newCity.getText().toString().trim().equals("")) {
-                        newEmail.setError("Enter City");
-                        progressBar.setVisibility(View.GONE);
-                    }
-                    if (newCountry.getText().toString().trim().equals("")) {
-                        newEmail.setError("Enter Country");
-                        progressBar.setVisibility(View.GONE);
-                    }
-                }
-            }
-        });
-
 
         btnChangeEmail.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -369,12 +228,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
                 changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.VISIBLE);
                 newEmail.setVisibility(View.VISIBLE);
                 password.setVisibility(View.GONE);
@@ -425,12 +278,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
                 changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.GONE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -486,12 +333,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
                 changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.VISIBLE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);
@@ -541,12 +382,6 @@ public class SettingsActivity extends AppCompatActivity {
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
                 changeNotif.setVisibility(View.GONE);
-                address.setVisibility(View.GONE);
-                newStreet.setVisibility(View.GONE);
-                newNpa.setVisibility(View.GONE);
-                newCity.setVisibility(View.GONE);
-                newCountry.setVisibility(View.GONE);
-                changeAddres.setVisibility(View.GONE);
                 oldEmail.setVisibility(View.GONE);
                 newEmail.setVisibility(View.GONE);
                 password.setVisibility(View.GONE);

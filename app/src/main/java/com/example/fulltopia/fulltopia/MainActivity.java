@@ -70,9 +70,14 @@ public class MainActivity extends AppCompatActivity {
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
+        Intent i;
         switch (item.getItemId()) {
             case R.id.action_settings:
-                Intent i = new Intent(this, SettingsActivity.class);
+                i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.goProfil:
+                i = new Intent(this, ProfilsActivity.class);
                 startActivity(i);
                 return true;
             case R.id.action_signOut:

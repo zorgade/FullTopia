@@ -24,6 +24,7 @@ import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.LoginActivity;
 import com.example.fulltopia.fulltopia.MainActivity;
 import com.example.fulltopia.fulltopia.NewCommunity;
+import com.example.fulltopia.fulltopia.ProfilsActivity;
 import com.example.fulltopia.fulltopia.R;
 import com.example.fulltopia.fulltopia.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -107,6 +108,10 @@ public class CommunitiesActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
+                return true;
+            case R.id.goProfil:
+                i = new Intent(this, ProfilsActivity.class);
                 startActivity(i);
                 return true;
             case R.id.action_signOut:

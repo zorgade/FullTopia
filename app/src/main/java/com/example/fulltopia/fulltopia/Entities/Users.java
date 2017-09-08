@@ -17,19 +17,8 @@ public class Users {
     String npa;
     String country;
 
-    public Users(String userId, String address, String city, String npa, String country) {
-        this.userId = userId;
-        this.address = address;
-        this.city = city;
-        this.npa = npa;
-        this.country = country;
-    }
+    public Users() {
 
-    public Users(String address, String city, String npa, String country) {
-        this.address = address;
-        this.city = city;
-        this.npa = npa;
-        this.country = country;
     }
 
     public Users(String userId, String email) {
@@ -37,17 +26,18 @@ public class Users {
         this.email = email;
     }
 
-    public Users(String userId, String email, String lastname, String firstname, String username, String address, String city, String npa, String country) {
-        this.userId = userId;
-        this.email = email;
-        this.lastname = lastname;
-        this.firstname = firstname;
-        this.username = username;
-        this.address = address;
-        this.city = city;
-        this.npa = npa;
-        this.country = country;
+    public Users(String uID, String mail, String uFname, String uLname, String uUname, String uStreet, String uNpa, String uCity, String uCountry) {
+        this.userId = uID;
+        this.email = mail;
+        this.firstname = uFname;
+        this.lastname = uLname;
+        this.username = uUname;
+        this.address = uStreet;
+        this.npa = uNpa;
+        this.city = uCity;
+        this.country = uCountry;
     }
+
 
     public String getUserId() {
         return userId;

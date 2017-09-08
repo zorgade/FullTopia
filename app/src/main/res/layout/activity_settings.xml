@@ -120,53 +120,6 @@
                     tools:text="@string/No" />
             </RadioGroup>
 
-            <TextView
-                android:id="@+id/TV_Address"
-                android:layout_width="351dp"
-                android:layout_height="33dp"
-                android:text="@string/Address"
-                android:textSize="24sp"
-                tools:layout_editor_absoluteX="17dp"
-                tools:layout_editor_absoluteY="220dp"
-                tools:text="@string/Address" />
-
-            <EditText
-                android:id="@+id/ET_Street"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/Street"
-                tools:layout_editor_absoluteX="17dp"
-                tools:layout_editor_absoluteY="272dp" />
-
-            <EditText
-                android:id="@+id/ET_communityactivity_NPA"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/NPA"
-                android:inputType="number"
-                tools:layout_editor_absoluteX="16dp"
-                tools:layout_editor_absoluteY="330dp" />
-
-            <EditText
-                android:id="@+id/ET_communityactivity_city"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/City"
-                tools:layout_editor_absoluteX="144dp"
-                tools:layout_editor_absoluteY="330dp" />
-
-            <EditText
-                android:id="@+id/ET_communityactivity_country"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/Country"
-                tools:layout_editor_absoluteX="17dp"
-                tools:layout_editor_absoluteY="388dp" />
-
             <EditText
                 android:id="@+id/old_email"
                 android:layout_width="match_parent"
@@ -228,17 +181,6 @@
 
             <Button
                 android:id="@+id/changeNotification"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="@string/btn_change"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
-
-            <Button
-                android:id="@+id/changeAddress"
                 style="?android:textAppearanceSmall"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -327,14 +269,6 @@
                 android:text="@string/btn_chg_notification"
                 android:textStyle="bold" />
 
-            <Button
-                android:id="@+id/change_address_button"
-                style="?android:textAppearanceSmall"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/btn_chg_address"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/change_email_button"

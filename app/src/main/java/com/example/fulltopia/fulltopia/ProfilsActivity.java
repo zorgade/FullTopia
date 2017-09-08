@@ -11,8 +11,11 @@ import android.widget.EditText;
 import com.example.fulltopia.fulltopia.Entities.Users;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class ProfilsActivity extends AppCompatActivity {
 
@@ -26,9 +29,11 @@ public class ProfilsActivity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
 
-    Users users;
+    private Users currentUsers;
+    private String userID = user.getUid().toString();
 
-    String uFname, uLname, uUname, uStreet, uNpa, uCity, uCountry;
+
+    String uUID, uFname, uLname, uEmail, uUname, uStreet, uNpa, uCity, uCountry;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,8 @@ public class ProfilsActivity extends AppCompatActivity {
 
         //get firebase auth & DB instance
         auth = FirebaseAuth.getInstance();
+        database = FirebaseDatabase.getInstance();
+        databaseReference = database.getReference();
 
 
         authListener = new FirebaseAuth.AuthStateListener() {
@@ -61,11 +68,49 @@ public class ProfilsActivity extends AppCompatActivity {
             }
         };
 
+        //I retrieve the current community
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //search for user infos
+                for(DataSnapshot users: dataSnapshot.child("usersInfos").getChildren()){
+                    if(users.getKey().equals(userID)){
+                        currentUsers = users.getValue(Users.class);
+                        //uUID = user.getUid().toString();
+                        uUID = user.getUid().toString();
+                        uLname = currentUsers.getLastname().toString();
+                        uFname = currentUsers.getFirstname().toString();
+                        uUname = currentUsers.getUsername().toString();
+                        uEmail = user.getEmail().toString();
+                        uStreet = currentUsers.getAddress().toString();
+                        uNpa = currentUsers.getNpa().toString();
+                        uCity = currentUsers.getCity().toString();
+                        uCountry = currentUsers.getCountry().toString();
+
+
+                        inputLName.setText(uLname);
+                        inputFName.setText(uFname);
+                        inputUsername.setText(uUname);
+                        inputStreet.setText(uStreet);
+                        inputNPA.setText(uNpa);
+                        inputCity.setText(uCity);
+                        inputCountry.setText(uCountry);
+
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                System.out.println("The read failed: " + databaseError.getMessage());
+            }
+        });
+
+
         btnSaveprofil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FirebaseDatabase database = FirebaseDatabase.getInstance();
-                final DatabaseReference databaseReference = database.getReference();
 
                 String uID = user.getUid().toString();
                 String mail = user.getEmail().toString();
@@ -98,3 +143,4 @@ public class ProfilsActivity extends AppCompatActivity {
 
     }
 }
+
