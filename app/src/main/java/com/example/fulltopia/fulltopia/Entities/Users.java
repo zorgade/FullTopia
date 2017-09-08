@@ -37,6 +37,16 @@ public class Users {
         this.email = email;
     }
 
+    public Users(String lastname, String firstname, String username, String address, String city, String npa, String country) {
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.username = username;
+        this.address = address;
+        this.city = city;
+        this.npa = npa;
+        this.country = country;
+    }
+
     public String getUserId() {
         return userId;
     }

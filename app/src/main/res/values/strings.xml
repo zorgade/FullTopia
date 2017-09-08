@@ -83,8 +83,8 @@
     <string name="community_image_attachement">image attachment</string>
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
+
     <string name="community_title_selected">Community: </string>
-    <string name="activity_communities">Activities</string>
 
     <!-- activity activity layout -->
 
@@ -116,5 +116,10 @@
     <string name="AddressChange">New address saved!</string>
     <string name="title_activity_maps">Map</string>
     <string name="community_unsubscribe">Unsubscribe</string>
-    <string name="activity_unsubscribe">Unsuscribe to activity</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="username">Username</string>
+    <string name="profil">Profil</string>
+    <string name="activity_unsubscribe">Unsubscribe</string>
+    <string name="activity_communities">New activity</string>
 </resources>

@@ -121,8 +121,9 @@
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
         <activity android:name=".Chat" />
+        <activity android:name=".ProfilsActivity"></activity>
         <activity android:name=".CommunitiesActivities.ActivitiesOfCommunity" />
-        <activity android:name=".ActivitiesActivities.NewCommunityactivity"></activity>
+        <activity android:name=".ActivitiesActivities.NewCommunityactivity"/>
     </application>
 
 </manifest>
