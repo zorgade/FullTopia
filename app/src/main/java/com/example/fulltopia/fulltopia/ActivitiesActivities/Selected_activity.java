@@ -150,7 +150,7 @@ public class Selected_activity extends AppCompatActivity {
                 String userID = user.getUid().toString();
                 currentActivity.unsuscribeToActivity(userID);
 
-                try {
+                    try {
 
                     databaseReference.child(activityID).removeValue();
                     databaseReference.child(activityID).setValue(currentActivity);
