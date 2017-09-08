@@ -18,11 +18,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
+import java.util.Locale;
 
 public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
 
     private GoogleMap mMap;
-    int position = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,46 +33,51 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-//        FirebaseDatabase database = FirebaseDatabase.getInstance();
-//        DatabaseReference databaseReference = database.getReference("activity");
-//
-//        databaseReference.addValueEventListener(new ValueEventListener() {
-//            Geocoder geocoder = new Geocoder(MapsActivity.this);
-//            List<Address> geoResults = null;
-//            LatLng latLng = null;
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
-//                    String title = activitySnapshot.child("title").getValue().toString();
-//                    String street = activitySnapshot.child("address").getValue().toString();
-//                    String city = activitySnapshot.child("city").getValue().toString();
-//                    String country = activitySnapshot.child("country").getValue().toString();
-//                    String activityAddress = street + " " + city + " " + country;
-//
-//                    try {
-//                        geoResults = geocoder.getFromLocationName(activityAddress, 2);
-//                        while (geoResults.size()==0) {
-//                            geoResults = geocoder.getFromLocationName(activityAddress, 2);
-//                        }
-//                        if (geoResults.size()>0) {
-//                            Address address = geoResults.get(0);
-//                            latLng = new LatLng(address.getLatitude(), address.getLongitude());
-//                        }
-//                    } catch (Exception e) {
-//                        System.out.print(e.getMessage());
-//                    }
-//
-//                    mMap.addMarker(new MarkerOptions().position(latLng).title(title));
-//                    position++;
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                String message = databaseError.getMessage();
-//                String ok = "ok";
-//            }
-//        });
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseReference = database.getReference("activity");
+
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            List<Address> addressList = null;
+            LatLng latLng = null;
+            Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //Loop to get information from every children of the activity tree
+                for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
+                    String title = activitySnapshot.child("title").getValue().toString();
+                    String street = activitySnapshot.child("address").getValue().toString();
+                    String city = activitySnapshot.child("city").getValue().toString();
+                    String country = activitySnapshot.child("country").getValue().toString();
+                    // Concat the string information in order to have a complete, more precise address
+                    String activityAddress = street + " " + city + " " + country;
+
+                    try {
+                        // Return an array of Addresses corresponding to the activityAddress string.
+                        addressList = geocoder.getFromLocationName(activityAddress, 1);
+                        // Loop while there's no result found (this function can fail quite often so the loop is required)
+                        while (addressList.size()==0) {
+                            addressList = geocoder.getFromLocationName(activityAddress, 1);
+                        }
+                        // Get the first Address in the AddressList
+                        if (addressList.size()>0) {
+                            Address address = addressList.get(0);
+                            // Create a LatLng object in order to be able to place a marker on the map
+                            latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                        }
+                    } catch (Exception e) {
+                        System.out.print(e.getMessage());
+                    }
+                    //Add a marker using the coordinates and the title that we retrieved earlier.
+                    mMap.addMarker(new MarkerOptions().position(latLng).title(title));
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                String message = databaseError.getMessage();
+                String ok = "ok";
+            }
+        });
     }
 
     /**
@@ -90,6 +95,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Add a marker in Sydney and move the camera
         LatLng Hevs = new LatLng(46.293003, 7.536426);
+        LatLng Hevs2 = new LatLng(46.3,7.5);
+        mMap.addMarker(new MarkerOptions().position(Hevs2).title("Deuxième activité à la HES"));
         mMap.addMarker(new MarkerOptions().position(Hevs).title("Première activité à la HES"));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(Hevs));
     }

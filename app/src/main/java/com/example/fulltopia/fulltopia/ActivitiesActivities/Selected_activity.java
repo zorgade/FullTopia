@@ -16,12 +16,19 @@ package com.example.fulltopia.fulltopia.ActivitiesActivities;
         import com.google.firebase.database.FirebaseDatabase;
         import com.google.firebase.database.ValueEventListener;
 
+        import java.util.List;
+
 public class Selected_activity extends AppCompatActivity {
 
     DatabaseReference databaseReference;
     Bundle bundle;
     com.example.fulltopia.fulltopia.Entities.Activity currentActivity;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+    String activityAdmin;
+    List<String> memberList;
+    TextView activityAdmin_TV;
+    String admin;
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +40,9 @@ public class Selected_activity extends AppCompatActivity {
         final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToActivity);
 
         final TextView activityName_TV = (TextView)findViewById(R.id.TV_TitleActivity);
-        final TextView adminName_TV = (TextView)findViewById(R.id.TV_Admin);
+
+        //final TextView adminName_TV = (TextView)findViewById(R.id.TV_Admin);
+
         final TextView eventDate_TV = (TextView)findViewById(R.id.TV_Event_Date_descr);
         final TextView deadlineDate_TV = (TextView)findViewById(R.id.TV_Deadline_descr);
         final TextView address_TV = (TextView)findViewById(R.id.TV_Address);
@@ -42,6 +51,7 @@ public class Selected_activity extends AppCompatActivity {
         final TextView country_TV = (TextView)findViewById(R.id.TV_Country);
         final TextView contributor = (TextView)findViewById(R.id.TV_NBRContributor);
         final TextView description = (TextView)findViewById(R.id.TV_Description);
+
 
         bundle = getIntent().getExtras();
         final String activityID = bundle.getString("idActivity");
@@ -54,7 +64,7 @@ public class Selected_activity extends AppCompatActivity {
                 for(DataSnapshot activity: dataSnapshot.getChildren()){
                     if(activity.getKey().equals(activityID)){
                         currentActivity = activity.getValue(com.example.fulltopia.fulltopia.Entities.Activity.class);
-                        adminName_TV.setText(currentActivity.getAdminID());
+                        activityAdmin = currentActivity.getAdminID();
                         activityName_TV.setText(currentActivity.getTitle().toString());
                         eventDate_TV.setText(currentActivity.getDate_event());
                         deadlineDate_TV.setText(currentActivity.getDate_deadline());
@@ -63,6 +73,37 @@ public class Selected_activity extends AppCompatActivity {
                         NPA_TV.setText(currentActivity.getNPA());
                         country_TV.setText(currentActivity.getCountry());
                         description.setText(currentActivity.getDescription());
+
+                        setUserAdmin(activityAdmin);
+
+                        memberList = currentActivity.getMemberList();
+
+                        //IF HE IS ADMIN
+                        if(userID.equals(activityAdmin)){
+                            buttonSubscribe.setVisibility(View.GONE);
+                            buttonUnsubscribe.setVisibility(View.GONE);
+                        }
+                        else{
+                            //IF LIST != 0
+                            if(memberList.size()!=0){
+
+                                for(String member: memberList){
+                                    if(member.equals(userID)){
+                                        buttonSubscribe.setVisibility(View.GONE);
+                                        buttonUnsubscribe.setVisibility(View.VISIBLE);
+                                    }
+                                    else{
+                                        buttonSubscribe.setVisibility(View.VISIBLE);
+                                        buttonUnsubscribe.setVisibility(View.GONE);
+                                    }
+                                }
+                            }
+                            else{
+                                buttonSubscribe.setVisibility(View.VISIBLE);
+                                buttonUnsubscribe.setVisibility(View.GONE);
+                            }
+                        }
+
                     }
                 }
             }
@@ -121,6 +162,22 @@ public class Selected_activity extends AppCompatActivity {
 
                 buttonSubscribe.setVisibility(View.GONE);
 
+            }
+        });
+    }
+
+    private void setUserAdmin(String communityAdmin) {
+        DatabaseReference mCurrentUserAdmin = FirebaseDatabase.getInstance().getReference("usersInfos").child(activityAdmin);
+        mCurrentUserAdmin.addValueEventListener(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                admin = dataSnapshot.child("email").getValue().toString();
+                activityAdmin_TV.setText(admin);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
