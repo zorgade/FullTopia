@@ -11,10 +11,18 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.Entities.Community;
+import com.example.fulltopia.fulltopia.Entities.Users;
+import com.firebase.client.Firebase;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -89,6 +97,23 @@ public class SignupActivity extends AppCompatActivity {
                                     Toast.makeText(SignupActivity.this, "Authentication failed." + task.getException(),
                                             Toast.LENGTH_SHORT).show();
                                 } else {
+                                    FirebaseDatabase database = FirebaseDatabase.getInstance();
+                                    final DatabaseReference databaseReference = database.getReference();
+
+                                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                                    String uID = user.getUid().toString();
+                                    String mail = user.getEmail().toString();
+
+
+                                    Users users;
+                                    users = new Users(uID, mail);
+
+                                    try {
+                                        databaseReference.child("usersInfos").child(uID).setValue(users);
+                                    }
+                                    catch(Exception e){
+                                        e.printStackTrace();
+                                    }
                                     startActivity(new Intent(SignupActivity.this, MainActivity.class));
                                     finish();
                                 }

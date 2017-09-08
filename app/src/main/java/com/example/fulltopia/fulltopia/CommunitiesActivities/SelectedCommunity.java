@@ -88,15 +88,18 @@ public class SelectedCommunity extends AppCompatActivity {
                         communityAdmin_TV.setText(communityAdmin);
                         memberList = currentCommunity.getMemberList();
 
-                        for(String member: memberList){
-                            if(member.equals(userID)){
-                                buttonSubscribe.setVisibility(View.GONE);
-                                buttonUnsubscribe.setVisibility(View.VISIBLE);
+                        if(memberList!=null){
 
-                            }
-                            else{
-                                buttonSubscribe.setVisibility(View.VISIBLE);
-                                buttonUnsubscribe.setVisibility(View.GONE);
+                            for(String member: memberList){
+                                if(member.equals(userID)){
+                                    buttonSubscribe.setVisibility(View.GONE);
+                                    buttonUnsubscribe.setVisibility(View.VISIBLE);
+
+                                }
+                                else{
+                                    buttonSubscribe.setVisibility(View.VISIBLE);
+                                    buttonUnsubscribe.setVisibility(View.GONE);
+                                }
                             }
                         }
                     }
