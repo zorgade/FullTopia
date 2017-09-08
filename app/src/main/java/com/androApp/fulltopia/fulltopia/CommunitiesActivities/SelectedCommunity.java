@@ -95,6 +95,8 @@ public class SelectedCommunity extends AppCompatActivity {
                         if (userID.equals(communityAdmin)) {
                             buttonSubscribe.setVisibility(View.GONE);
                             buttonUnsubscribe.setVisibility(View.GONE);
+                            buttonActivities.setVisibility(View.VISIBLE);
+
                         } else {
                             //IF LIST != 0
                             if (memberList.size() != 0) {
@@ -103,11 +105,13 @@ public class SelectedCommunity extends AppCompatActivity {
                                     if (member.equals(userID)) {
                                         buttonSubscribe.setVisibility(View.GONE);
                                         buttonUnsubscribe.setVisibility(View.VISIBLE);
+                                        buttonActivities.setVisibility(View.VISIBLE);
                                     }
                                     //currentUser isn't in List -> BUTTON SUSCRIBE
                                     else {
                                         buttonSubscribe.setVisibility(View.VISIBLE);
                                         buttonUnsubscribe.setVisibility(View.GONE);
+                                        buttonActivities.setVisibility(View.GONE);
                                     }
                                 }
                             }
@@ -115,6 +119,7 @@ public class SelectedCommunity extends AppCompatActivity {
                             else {
                                 buttonSubscribe.setVisibility(View.VISIBLE);
                                 buttonUnsubscribe.setVisibility(View.GONE);
+                                buttonActivities.setVisibility(View.GONE);
                             }
                         }
                     }

@@ -15,6 +15,7 @@ import com.androApp.fulltopia.fulltopia.ActivitiesActivities.Selected_activity;
 import com.androApp.fulltopia.fulltopia.Entities.Activity;
 import com.androApp.fulltopia.fulltopia.R;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,12 +33,22 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
     Bundle bundle;
     List<Activity> allActivities;
     FloatingActionButton FLABTN_AddCommunityActivity;
+    String userID;
     private FirebaseAuth auth;
+    FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activities_of_community);
+
+        //get firebase auth instance
+        auth = FirebaseAuth.getInstance();
+
+        //get current user
+        user = auth.getCurrentUser();
+        //Store the ID of the current User
+        userID = user.getUid().toString();
 
         listViewAllActivities = (ListView) findViewById(R.id.listViewCommunityActivities);
 
@@ -79,6 +90,14 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
 
                         ActivityListAdapter adapter = new ActivityListAdapter(getApplicationContext(), allActivities);
                         listViewAllActivities.setAdapter(adapter);
+
+                        //IF HE IS ADMIN -> He can add a new Activity
+                        if (userID.equals(communityID)) {
+                            FLABTN_AddCommunityActivity.setVisibility(View.VISIBLE);
+                        }else{
+                            FLABTN_AddCommunityActivity.setVisibility(View.GONE);
+                        }
+
                     }
 
                 }
