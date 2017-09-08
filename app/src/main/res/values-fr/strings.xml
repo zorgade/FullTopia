@@ -1,0 +1,119 @@
+<resources>
+
+    <!-- GLOBAL STRINGS -->
+    <string name="app_name">Fulltopia</string>
+    <string name="BTN_return">Retour</string>
+    <string name="Welcome">Bienvenue sur Fulltopia</string>
+    <string name="Activities">Activités</string>
+    <string name="Communities">Communautés</string>
+    <string name="Description">Description :</string>
+
+    <!-- activity_settings layout -->
+    <string name="settings">Paramètres</string>
+    <string name="language">Langage</string>
+    <string name="french">Français</string>
+    <string name="english">English</string>
+    <string name="GetNotif">Recevoir les notifications?</string>
+    <string name="Yes">Oui</string>
+    <string name="No">Non</string>
+    <string name="Address">Adresse</string>
+    <string name="Street">Rue</string>
+    <string name="NPA">NPA</string>
+    <string name="City">Ville</string>
+    <string name="Country">Pays</string>
+    <string name="Save">Sauvegarder</string>
+    <string name="login">Se connecter</string>
+    <string name="emailpassword_title_text">Email/mot de passe</string>
+    <string name="desc_firebase_lockup">Firebase</string>
+    <string name="signed_out">Se déconnecter</string>
+    <string name="sign_in">Se connecter</string>
+    <string name="create_account">Créer un compte</string>
+    <string name="sign_out">Se déconnecter</string>
+    <string name="verify_email">Contrôler email</string>
+    <string name="title_activity_google_sign_in">GoogleSignInActivity</string>
+    <string name="google_title_text">Google</string>
+    <string name="disconnect">Se déconnecter</string>
+    <string name="action_sign_in_short">S\'enregistrer</string>
+    <string name="email">Email</string>
+    <string name="minimum_password">Mot de passe trop court, entrer 6 caractères min.</string>
+    <string name="auth_failed">Autentification échouée, verifier votre email et mot de passe, ou enregistrez-vous!</string>
+    <string name="change_email">Changer Email</string>
+    <string name="change_password">Changer mot de passe</string>
+    <string name="send_password_reset_email">Renvoyer un mot de passe par mail</string>
+    <string name="remove_user">Supprimer son compte</string>
+    <string name="new_pass">Nouveau mot de passe</string>
+    <string name="title_activity_profile">Firebase</string>
+    <string name="title_activity_login">Se connecter</string>
+    <string name="hint_email">Email</string>
+    <string name="hint_password">Password</string>
+    <string name="hint_name">Fullname</string>
+    <string name="btn_login">LOGIN</string>
+    <string name="btn_link_to_register">Pas membre? Enregistrez-vous sur Fulltopia maintenant!</string>
+    <string name="btn_link_to_login">Déjà enregistré? Connectez-vous!</string>
+    <string name="title_activity_reset_password">ResetPasswordActivity</string>
+    <string name="btn_forgot_password">Mot de passe oublié?</string>
+    <string name="btn_reset_password">Reset mot de passe</string>
+    <string name="btn_back"><![CDATA[<< Back]]></string>
+    <string name="hint_new_email">Nouveau Email</string>
+    <string name="btn_change">Changer</string>
+    <string name="btn_send">Envoyer</string>
+    <string name="btn_remove">Supprimer</string>
+    <string name="btn_sign_out">Se déconnecter</string>
+    <string name="lbl_forgot_password">Mot de passe oublié?</string>
+    <string name="forgot_password_msg">Nous avons besoin du mail utilisé lors de votre inscriptions pour vous envoyer un nouveau mot de passe. Puis suivez les instructions.</string>
+    <string name="title_activity_communities">CommunitiesActivity</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="title_activity_activities">ActivitiesActivity</string>
+    <string name="btn_chg_language">Changer la langue</string>
+    <string name="btn_chg_notification">Notifications</string>
+    <string name="btn_chg_address">Changer l\'adresse</string>
+    <string name="btn_send_feedback">Envoyez-nous vos avis!</string>
+    <string name="send_feedback">Envoyez l\'avis</string>
+    <string name="send_feedback_btn">Envoyez</string>
+
+
+    <!-- activity community layout -->
+    <string name="community_name">Nom*</string>
+    <string name="community_description">Description*</string>
+    <string name="community_address">Adresse</string>
+    <string name="community_NPA">NPA</string>
+    <string name="community_City">Ville</string>
+    <string name="community_Country">Pays</string>
+    <string name="community_image_attachement">Image</string>
+    <string name="community_gallery">Choisissez une image de la gallerie</string>
+    <string name="community_create_BTN">Créez une communauté</string>
+
+    <string name="community_title_selected">Communauté: </string>
+
+    <!-- activity activity layout -->
+
+    <string name="activity_title">Titre</string>
+    <string name="activity_description">Description</string>
+    <string name="activity_min_user_required">Min part.</string>
+    <string name="activity_max_user_allowed">Maxi part.</string>
+    <string name="activity_creation_date">Date de création</string>
+    <string name="activity_deadline_participation">Date limite pour la participation</string>
+    <string name="activity_event_date">Date de l\'évenement</string>
+    <string name="activity_create_BTN">Créez l\'activité</string>
+
+    <string name="nbOfContributor">Nombre de contributeurs:</string>
+    <string name="AdminName">Admin :</string>
+    <string name="Subscribe">Joindre cette activité</string>
+
+
+    <string name="AppEngineTest">AppEngineTest</string>
+    <string name="action_signOut">Sign Out</string>
+    <string name="UP_IMG">Upload OK</string>
+    <string name="UPLOADING">Uploading.... patientez.</string>
+    <string name="camera">Prendre une photo</string>
+    <string name="FalseMail">Mauvais mail actuel!</string>
+    <string name="newMail">Email modifié, reconnectez-vous avec le nouveau mail!</string>
+    <string name="failUpEmail">Erreur de mise à jour email!</string>
+    <string name="community_title">Titre communauté</string>
+
+    <string name="community_subscribe">S\'inscrire à la communauté</string>
+    <string name="AddressChange">Nouvelle adresse enregistrée!</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="community_unsubscribe">Se désinscrire de la communauté</string>
+</resources>

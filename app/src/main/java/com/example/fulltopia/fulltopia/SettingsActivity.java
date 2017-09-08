@@ -1,6 +1,8 @@
 package com.example.fulltopia.fulltopia;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +30,19 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.Locale;
+
+import static com.example.fulltopia.fulltopia.Entities.Language.languageCurrent;
+
 public class SettingsActivity extends AppCompatActivity {
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    final DatabaseReference databaseReference = database.getReference();
-    String userId;
+    DatabaseReference databaseReference = database.getReference();
     String uAddress;
     String npa;
     String city;
     String country;
-    Users currentUserAddress;
     private Button btnChangeLanguage, btnChangeNotification, btnChangeAddress, btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnSendFeedBack,
             changeEmail, changePassword, sendEmail, remove, signOut,
             changeLng, changeNotif, changeAddres, sendfeedback;
@@ -52,6 +57,10 @@ public class SettingsActivity extends AppCompatActivity {
     private String userID = user.getUid().toString();
     private Bundle bundle;
 
+    private RadioGroup radio = null;
+    Context context;
+
+
 
     public SettingsActivity() {
     }
@@ -65,7 +74,8 @@ public class SettingsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        context = this;
+        setRadioButton();
 
         //get firebase auth & DB instance
         auth = FirebaseAuth.getInstance();
@@ -93,7 +103,6 @@ public class SettingsActivity extends AppCompatActivity {
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
         btnSendFeedBack = (Button) findViewById(R.id.send_feedback_button);
 
-        changeLng = (Button) findViewById(R.id.changeLanguage);
         changeNotif = (Button) findViewById(R.id.changeNotification);
         changeAddres = (Button) findViewById(R.id.changeAddress);
         changeEmail = (Button) findViewById(R.id.changeEmail);
@@ -128,7 +137,7 @@ public class SettingsActivity extends AppCompatActivity {
         language.setVisibility(View.GONE);
         lng_fr.setVisibility(View.GONE);
         lng_eng.setVisibility(View.GONE);
-        changeLng.setVisibility(View.GONE);
+
         notification.setVisibility(View.GONE);
         notif_yes.setVisibility(View.GONE);
         notif_no.setVisibility(View.GONE);
@@ -157,36 +166,6 @@ public class SettingsActivity extends AppCompatActivity {
             progressBar.setVisibility(View.GONE);
         }
 
-        userID = user.getUid().toString();
-
-
-        /*databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot userAdress: dataSnapshot.getChildren()) {
-                    if (userAdress.getKey().equals(userID)) {
-                        currentUserAddress = userAdress.getValue(Users.class);
-                        uAddress = currentUserAddress.getAddress().toString();
-                        npa = currentUserAddress.getNpa().toString();
-                        city = currentUserAddress.getCity().toString();
-                        country = currentUserAddress.getCountry().toString();
-
-                        newStreet.setText(uAddress);
-                        newNpa.setText(npa);
-                        newCity.setText(city);
-                        newCountry.setText(country);
-
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
-
-            }
-        });*/
-
 
         btnChangeLanguage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -195,7 +174,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.VISIBLE);
                 lng_fr.setVisibility(View.VISIBLE);
                 lng_eng.setVisibility(View.VISIBLE);
-                changeLng.setVisibility(View.VISIBLE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -217,6 +195,24 @@ public class SettingsActivity extends AppCompatActivity {
                 sendfeedback.setVisibility(View.GONE);
                 feedback.setVisibility(View.GONE);
                 sendUsFeedback.setVisibility(View.GONE);
+
+                // set listener
+                radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                        View radioButton = radio.findViewById(checkedId);
+                        int index = radio.indexOfChild(radioButton);
+
+                        //  set preferences language;
+                        if (index == 0)
+                            setFr();
+                        else
+                            setEn();
+
+                    }
+                });
             }
         });
 
@@ -226,7 +222,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.VISIBLE);
                 notif_yes.setVisibility(View.VISIBLE);
                 notif_no.setVisibility(View.VISIBLE);
@@ -254,10 +249,10 @@ public class SettingsActivity extends AppCompatActivity {
         btnChangeAddress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -280,8 +275,37 @@ public class SettingsActivity extends AppCompatActivity {
                 feedback.setVisibility(View.GONE);
                 sendUsFeedback.setVisibility(View.GONE);
 
+                userID = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                databaseReference = database.getReference("userAddress");
+                databaseReference.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot userAdress : dataSnapshot.getChildren()) {
+                            if (userAdress.getKey().equals(userID)) {
+                                uAddress = (String) userAdress.child("address").getValue();
+                                city = (String) userAdress.child("city").getValue();
+                                country = (String) userAdress.child("country").getValue();
+                                npa = (String) userAdress.child("npa").getValue();
+
+                                newStreet.setText(uAddress);
+                                newNpa.setText(npa);
+                                newCity.setText(city);
+                                newCountry.setText(country);
+
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        System.out.println("The read failed: " + databaseError.getMessage());
+
+                    }
+                });
+
             }
         });
+
 
         changeAddres.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -303,8 +327,8 @@ public class SettingsActivity extends AppCompatActivity {
                     userAddress = new Users(uAddress, npa, city, country);
 
                     try {
-                        databaseReference.child("userAddress").child(userID).removeValue();
-                        databaseReference.child("userAddress").child(userID).setValue(userAddress);
+                        databaseReference.child(userID).removeValue();
+                        databaseReference.child(userID).setValue(userAddress);
                         Toast.makeText(SettingsActivity.this, getString(R.string.AddressChange), Toast.LENGTH_LONG).show();
                         progressBar.setVisibility(View.GONE);
 
@@ -342,7 +366,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -399,7 +422,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -461,7 +483,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -517,7 +538,6 @@ public class SettingsActivity extends AppCompatActivity {
                 language.setVisibility(View.GONE);
                 lng_fr.setVisibility(View.GONE);
                 lng_eng.setVisibility(View.GONE);
-                changeLng.setVisibility(View.GONE);
                 notification.setVisibility(View.GONE);
                 notif_yes.setVisibility(View.GONE);
                 notif_no.setVisibility(View.GONE);
@@ -597,6 +617,53 @@ public class SettingsActivity extends AppCompatActivity {
 
     }
 
+    private void setRadioButton() {
+        radio = (RadioGroup) findViewById(R.id.radioGroupLanguage);
+        if (languageCurrent.equals("fr")) {
+            RadioButton radioBtn_French = (RadioButton) radio.findViewById(R.id.RB_French);
+            radioBtn_French.setChecked(true);
+//            radioBtn_English.setChecked(false);
+        } else {
+            RadioButton radioBtn_English = (RadioButton) radio.findViewById(R.id.RB_English);
+            radioBtn_English.setChecked(true);
+        }
+    }
+
+    //if user choose french
+    public void setFr() {
+        changeLang("fr");
+        Toast.makeText(SettingsActivity.this, "Vous avez choisi le français.", Toast.LENGTH_SHORT).show();
+        refresh_activity();
+    }
+
+    //if user choose english
+    public void setEn() {
+        changeLang("en");
+        Toast.makeText(SettingsActivity.this, "English is selected", Toast.LENGTH_SHORT).show();
+        refresh_activity();
+    }
+
+    //change the language of the app and save it
+    public void changeLang(String lang) {
+        languageCurrent = lang;
+        if (lang.equalsIgnoreCase(""))
+            return;
+        Locale myLocale = new Locale(lang);
+        saveLocale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
+    }
+    //save choosed language into the sharredpreferance of the phone
+    public void saveLocale(String lang) {
+        String langPref = "Language";
+        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString(langPref, lang);
+        editor.commit();
+    }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 // Handle item selection
@@ -633,6 +700,11 @@ public class SettingsActivity extends AppCompatActivity {
         if (authListener != null) {
             auth.removeAuthStateListener(authListener);
         }
+    }
+    private void refresh_activity() {
+        Intent refresh = new Intent(context, SettingsActivity.class);
+        startActivity(refresh);//Start the same Activity
+        finish(); //finish Activity.
     }
 
 }

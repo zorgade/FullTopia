@@ -1,6 +1,8 @@
 package com.example.fulltopia.fulltopia;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import static com.example.fulltopia.fulltopia.Entities.Language.languageCurrent;
+
+import java.util.Locale;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -27,6 +32,8 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        setLanguageApplication();
 
         //Get Firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -109,6 +116,32 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
+    }
+
+
+    public void setLanguageApplication() {
+
+        //go into the sharedpreferance on the phone for get the language
+        SharedPreferences langPref;
+        langPref = getSharedPreferences("CommonPrefs", Context.MODE_PRIVATE);
+        String storedValue = langPref.getString("Language", "");
+
+        changeLang(storedValue);
+
+    }
+    //change the language into the SharedPreferance
+    public void changeLang(String lang) {
+        languageCurrent = lang;
+
+        if (lang.equalsIgnoreCase("")) {
+            languageCurrent = Locale.getDefault().getLanguage();
+            return;
+        }
+        Locale myLocale = new Locale(lang);
+        Locale.setDefault(myLocale);
+        android.content.res.Configuration config = new android.content.res.Configuration();
+        config.locale = myLocale;
+        getBaseContext().getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
     }
 }
 

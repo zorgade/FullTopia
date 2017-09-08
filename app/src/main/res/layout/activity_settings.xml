@@ -56,24 +56,32 @@
                 tools:layout_editor_absoluteY="29dp"
                 tools:text="@string/language" />
 
-            <RadioButton
-                android:id="@+id/RB_French"
-                android:layout_width="126dp"
-                android:layout_height="36dp"
-                android:checked="true"
-                android:text="@string/french"
-                tools:layout_editor_absoluteX="39dp"
-                tools:layout_editor_absoluteY="74dp"
-                tools:text="@string/french" />
+            <RadioGroup
+                android:id="@+id/radioGroupLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/RB_English"
-                android:layout_width="126dp"
-                android:layout_height="36dp"
-                android:text="@string/english"
-                tools:layout_editor_absoluteX="208dp"
-                tools:layout_editor_absoluteY="74dp"
-                tools:text="@string/english" />
+                <RadioButton
+                    android:id="@+id/RB_French"
+                    android:layout_width="126dp"
+                    android:layout_height="36dp"
+                    android:checked="true"
+                    android:text="@string/french"
+                    android:buttonTint="@color/black"
+                    tools:layout_editor_absoluteX="39dp"
+                    tools:layout_editor_absoluteY="74dp"
+                    tools:text="@string/french" />
+
+                <RadioButton
+                    android:id="@+id/RB_English"
+                    android:layout_width="126dp"
+                    android:layout_height="36dp"
+                    android:text="@string/english"
+                    android:buttonTint="@color/black"
+                    tools:layout_editor_absoluteX="208dp"
+                    tools:layout_editor_absoluteY="74dp"
+                    tools:text="@string/english" />
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/TV_GetNotif"
@@ -85,24 +93,32 @@
                 tools:layout_editor_absoluteY="122dp"
                 tools:text="@string/GetNotif" />
 
-            <RadioButton
-                android:id="@+id/RB_Yes"
-                android:layout_width="126dp"
-                android:layout_height="36dp"
-                android:checked="true"
-                android:text="@string/Yes"
-                tools:layout_editor_absoluteX="39dp"
-                tools:layout_editor_absoluteY="171dp"
-                tools:text="@string/Yes" />
+            <RadioGroup
+                android:id="@+id/radioGroupNotif"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <RadioButton
-                android:id="@+id/RB_No"
-                android:layout_width="126dp"
-                android:layout_height="36dp"
-                android:text="@string/No"
-                tools:layout_editor_absoluteX="208dp"
-                tools:layout_editor_absoluteY="171dp"
-                tools:text="@string/No" />
+                <RadioButton
+                    android:id="@+id/RB_Yes"
+                    android:layout_width="126dp"
+                    android:layout_height="36dp"
+                    android:checked="true"
+                    android:text="@string/Yes"
+                    android:buttonTint="@color/black"
+                    tools:layout_editor_absoluteX="39dp"
+                    tools:layout_editor_absoluteY="171dp"
+                    tools:text="@string/Yes" />
+
+                <RadioButton
+                    android:id="@+id/RB_No"
+                    android:layout_width="126dp"
+                    android:layout_height="36dp"
+                    android:text="@string/No"
+                    android:buttonTint="@color/black"
+                    tools:layout_editor_absoluteX="208dp"
+                    tools:layout_editor_absoluteY="171dp"
+                    tools:text="@string/No" />
+            </RadioGroup>
 
             <TextView
                 android:id="@+id/TV_Address"
@@ -129,6 +145,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/NPA"
+                android:inputType="number"
                 tools:layout_editor_absoluteX="16dp"
                 tools:layout_editor_absoluteY="330dp" />
 
@@ -208,17 +225,6 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:inputType="textMultiLine" />
-
-            <Button
-                android:id="@+id/changeLanguage"
-                style="?android:textAppearanceSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:background="@color/colorPrimaryDark"
-                android:text="@string/btn_change"
-                android:textColor="@android:color/white"
-                android:textStyle="bold" />
 
             <Button
                 android:id="@+id/changeNotification"

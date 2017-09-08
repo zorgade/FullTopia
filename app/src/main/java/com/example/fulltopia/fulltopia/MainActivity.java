@@ -1,6 +1,8 @@
 package com.example.fulltopia.fulltopia;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -17,6 +19,8 @@ import com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity;
 import com.example.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -62,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
+
 
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle item selection
