@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -60,35 +61,40 @@ public class ProfilsActivity extends AppCompatActivity {
             }
         };
 
+        btnSaveprofil.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                final DatabaseReference databaseReference = database.getReference();
 
-    }
+                String uID = user.getUid().toString();
+                String mail = user.getEmail().toString();
 
-    public void saveProfile(){
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = database.getReference();
-
-        String uID = user.getUid().toString();
-        String mail = user.getEmail().toString();
-
-        uFname = inputFName.getText().toString();
-        uLname = inputLName.getText().toString();
-        uUname = inputUsername.getText().toString();
-        uStreet = inputStreet.getText().toString();
-        uNpa = inputNPA.getText().toString();
-        uCity = inputCity.getText().toString();
-        uCountry = inputCountry.getText().toString();
+                uFname = inputFName.getText().toString();
+                uLname = inputLName.getText().toString();
+                uUname = inputUsername.getText().toString();
+                uStreet = inputStreet.getText().toString();
+                uNpa = inputNPA.getText().toString();
+                uCity = inputCity.getText().toString();
+                uCountry = inputCountry.getText().toString();
 
 
-        Users users;
-        users = new Users(uFname, uLname, uUname, uStreet, uNpa, uCity, uCountry);
+                Users users;
+                users = new Users(uID, mail, uFname, uLname, uUname, uStreet, uNpa, uCity, uCountry);
 
-        try {
-            databaseReference.child("usersInfos").child(uID).setValue(users);
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
-        startActivity(new Intent(ProfilsActivity.this, MainActivity.class));
-        finish();
+                try {
+                    databaseReference.child("usersInfos").child(uID).removeValue();
+                    databaseReference.child("usersInfos").child(uID).setValue(users);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                startActivity(new Intent(ProfilsActivity.this, MainActivity.class));
+                finish();
+            }
+
+
+        });
+
+
     }
 }

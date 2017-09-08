@@ -37,7 +37,9 @@ public class Users {
         this.email = email;
     }
 
-    public Users(String lastname, String firstname, String username, String address, String city, String npa, String country) {
+    public Users(String userId, String email, String lastname, String firstname, String username, String address, String city, String npa, String country) {
+        this.userId = userId;
+        this.email = email;
         this.lastname = lastname;
         this.firstname = firstname;
         this.username = username;
