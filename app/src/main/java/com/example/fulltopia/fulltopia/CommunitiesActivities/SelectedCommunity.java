@@ -93,18 +93,29 @@ public class SelectedCommunity extends AppCompatActivity {
 
                         memberList = currentCommunity.getMemberList();
 
-                        if(memberList!=null){
+                        //IF HE IS ADMIN
+                        if(userID.equals(communityAdmin)){
+                            buttonSubscribe.setVisibility(View.GONE);
+                            buttonUnsubscribe.setVisibility(View.GONE);
+                        }
+                        else{
+                            //IF LIST != 0
+                            if(memberList.size()!=0){
 
-                            for(String member: memberList){
-                                if(member.equals(userID)){
-                                    buttonSubscribe.setVisibility(View.GONE);
-                                    buttonUnsubscribe.setVisibility(View.VISIBLE);
-
+                                for(String member: memberList){
+                                    if(member.equals(userID)){
+                                        buttonSubscribe.setVisibility(View.GONE);
+                                        buttonUnsubscribe.setVisibility(View.VISIBLE);
+                                    }
+                                    else{
+                                        buttonSubscribe.setVisibility(View.VISIBLE);
+                                        buttonUnsubscribe.setVisibility(View.GONE);
+                                    }
                                 }
-                                else{
-                                    buttonSubscribe.setVisibility(View.VISIBLE);
-                                    buttonUnsubscribe.setVisibility(View.GONE);
-                                }
+                            }
+                            else{
+                                buttonSubscribe.setVisibility(View.VISIBLE);
+                                buttonUnsubscribe.setVisibility(View.GONE);
                             }
                         }
                     }
@@ -140,8 +151,8 @@ public class SelectedCommunity extends AppCompatActivity {
 
                 try {
 
-                    databaseReference.child(communityID).removeValue();
-                    databaseReference.child(communityID).setValue(currentCommunity);
+                    databaseReference.child("community").child(communityID).removeValue();
+                    databaseReference.child("community").child(communityID).setValue(currentCommunity);
 
                 }
                 catch(Exception e){
@@ -167,8 +178,8 @@ public class SelectedCommunity extends AppCompatActivity {
 
                 try {
 
-                    databaseReference.child(communityID).removeValue();
-                    databaseReference.child(communityID).setValue(currentCommunity);
+                    databaseReference.child("community").child(communityID).removeValue();
+                    databaseReference.child("community").child(communityID).setValue(currentCommunity);
 
                 }
                 catch(Exception e){
