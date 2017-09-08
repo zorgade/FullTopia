@@ -6,7 +6,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity">
+    tools:context="com.androApp.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity">
 
     <ListView
         android:id="@+id/listViewMyActivity"

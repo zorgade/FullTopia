@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.fulltopia.fulltopia">
+    package="com.androApp.fulltopia.fulltopia">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
@@ -44,7 +44,7 @@
             android:resource="@color/colorPrimary" />
         <!-- [END fcm_default_icon] -->
         <activity
-            android:name=".LoginActivity"
+            android:name="com.androApp.fulltopia.fulltopia.LoginActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,47 +52,47 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.MainActivity" />
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.androApp.fulltopia.fulltopia.SettingsActivity"
             android:label="@string/settings"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.androApp.fulltopia.fulltopia.MainActivity" />
         </activity>
         <activity
-            android:name=".SignupActivity"
+            android:name="com.androApp.fulltopia.fulltopia.SignupActivity"
             android:label="@string/title_activity_login"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".ResetPasswordActivity"
+            android:name="com.androApp.fulltopia.fulltopia.ResetPasswordActivity"
             android:label="@string/title_activity_reset_password"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".CommunitiesActivities.CommunitiesActivity"
+            android:name="com.androApp.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity"
             android:label="@string/title_activity_communities"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.androApp.fulltopia.fulltopia.MainActivity" />
         </activity>
         <activity
-            android:name=".ActivitiesActivities.ActivitiesActivity"
+            android:name="com.androApp.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity"
             android:label="@string/title_activity_activities"
             android:theme="@style/AppTheme.NoActionBar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value="com.androApp.fulltopia.fulltopia.MainActivity" />
         </activity>
-        <activity android:name=".CommunitiesActivities.SelectedCommunity" />
-        <activity android:name=".ActivitiesActivities.Selected_activity" />
-        <activity android:name=".NewCommunity" />
-        <activity android:name=".New_activity" />
-        <activity android:name=".AppEngineActivity">
+        <activity android:name="com.androApp.fulltopia.fulltopia.CommunitiesActivities.SelectedCommunity" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.ActivitiesActivities.Selected_activity" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.NewCommunity" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.New_activity" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.AppEngineActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CommunitiesActivities.CommunitiesActivity" />
+                android:value="com.androApp.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity" />
         </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -107,25 +107,25 @@
             android:value="@string/google_maps_key" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name="com.androApp.fulltopia.fulltopia.MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Chat" />
-        <activity android:name=".ProfilsActivity"></activity>
-        <activity android:name=".CommunitiesActivities.ActivitiesOfCommunity">
+        <activity android:name="com.androApp.fulltopia.fulltopia.Chat" />
+        <activity android:name="com.androApp.fulltopia.fulltopia.ProfilsActivity"></activity>
+        <activity android:name="com.androApp.fulltopia.fulltopia.CommunitiesActivities.ActivitiesOfCommunity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".CommunitiesActivities.SelectedCommunity"/>
+                android:value="com.androApp.fulltopia.fulltopia.CommunitiesActivities.SelectedCommunity"/>
         </activity>
-        <activity android:name=".ActivitiesActivities.NewCommunityactivity"/>
+        <activity android:name="com.androApp.fulltopia.fulltopia.ActivitiesActivities.NewCommunityactivity"/>
         <service
-            android:name=".MyFirebaseMessagingService">
+            android:name="com.androApp.fulltopia.fulltopia.MyFirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>
         </service>
 
         <service
-            android:name=".MyFirebaseInstanceIDService">
+            android:name="com.androApp.fulltopia.fulltopia.MyFirebaseInstanceIDService">
             <intent-filter>
                 <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>

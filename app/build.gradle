@@ -4,10 +4,11 @@ android {
     compileSdkVersion 25
     buildToolsVersion "26.0.0"
     defaultConfig {
-        applicationId "com.example.fulltopia.fulltopia"
+        applicationId "com.androApp.fulltopia.fulltopia"
         minSdkVersion 19
         targetSdkVersion 25
-        versionCode 1
+        versionCode 3
+        multiDexEnabled true
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -49,6 +50,8 @@ dependencies {
     compile 'com.google.android.gms:play-services-places:11.0.4'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.firebaseui:firebase-ui-database:0.4.0'
+    compile 'com.android.support:multidex:1.0.0'
+
     testCompile 'junit:junit:4.12'
 }
 apply plugin: 'com.google.gms.google-services'

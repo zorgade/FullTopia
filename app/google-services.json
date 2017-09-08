@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:548844400861:android:a8414eb2f48c1974",
         "android_client_info": {
-          "package_name": "com.example.fulltopia.fulltopia"
+          "package_name": "com.androApp.fulltopia.fulltopia"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "548844400861-j8hrnaf25td7ecvuf7ijqck4e9bus7rk.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fulltopia.fulltopia",
+            "package_name": "com.androApp.fulltopia.fulltopia",
             "certificate_hash": "85d068b8b7c4f9efa17207f5f761e4147008acab"
           }
         },
@@ -26,7 +26,7 @@
           "client_id": "548844400861-onompgdlth7o3gk2lahd0dol8oo9k09i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fulltopia.fulltopia",
+            "package_name": "com.androApp.fulltopia.fulltopia",
             "certificate_hash": "81f72f583fcd73258c1cdbfbc9badb5275eb4512"
           }
         },
@@ -34,7 +34,7 @@
           "client_id": "548844400861-o4l07kdhvcdugnrlai06mh00c7qa6dun.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.fulltopia.fulltopia",
+            "package_name": "com.androApp.fulltopia.fulltopia",
             "certificate_hash": "87c667fd0efce739095b2e98ff59a45296b76e58"
           }
         },

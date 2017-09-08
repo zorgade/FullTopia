@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity">
+    tools:context="com.androApp.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/appbar"
