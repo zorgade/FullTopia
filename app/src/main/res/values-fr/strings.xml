@@ -122,4 +122,11 @@
     <string name="lastname">Nom</string>
     <string name="profil">Profil</string>
     <string name="username">Username</string>
+    <string name="NewCommunityActivity">Nv. activité de la commun.</string>
+    <string name="activitiesOfCommunities">Activité de la communauté</string>
+    <string name="newActivity">Nv. activité</string>
+    <string name="newCommunitiy">Nv. communauté</string>
+    <string name="selected_activity">Activité séléctionnée</string>
+    <string name="selected_communauty">Commuauté séléctionné</string>
+    <string name="sendChat">Envoyer message</string>
 </resources>

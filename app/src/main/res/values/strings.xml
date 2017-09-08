@@ -129,4 +129,5 @@
     <string name="selected_activity">Selected activity</string>
     <string name="selected_communauty">Selected communauty</string>
     <string name="chat">\"Chat\"</string>
+    <string name="sendChat">Send message</string>
 </resources>
