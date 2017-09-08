@@ -64,29 +64,24 @@ public class tab2AllCommunities extends Fragment{
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 allCommunities.clear();
-
-                for(DataSnapshot communitySnapshot: dataSnapshot.getChildren()) {
-                    if (communitySnapshot.child("communityID") == null) {
-                        String id = communitySnapshot.getKey();
-                        String name = (String) communitySnapshot.child("name").getValue();
-                        String description = (String) communitySnapshot.child("description").getValue();
-                        String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
-                        String userID = (String) communitySnapshot.child("adminID").getValue();
-                        Community community = new Community(id, name, date, description, userID);
-                        allCommunities.add(community);
-                    }
-                    CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
-                    listViewAllCommunities.setAdapter(adapter);
+                for(DataSnapshot communitySnapshot: dataSnapshot.getChildren()){
+                    String id = communitySnapshot.getKey();
+                    String name = (String) communitySnapshot.child("name").getValue();
+                    String description = (String) communitySnapshot.child("description").getValue();
+                    String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
+                    String userID = (String) communitySnapshot.child("adminID").getValue();
+                    Community community = new Community(id,name, date, description, userID);
+                    allCommunities.add(community);
                 }
+                CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
+                listViewAllCommunities.setAdapter(adapter);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
                 String message = databaseError.getMessage();
                 String ok = "ok";
-                
             }
         }
         );

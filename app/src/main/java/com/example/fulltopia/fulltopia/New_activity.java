@@ -97,7 +97,7 @@ public class New_activity extends AppCompatActivity {
                 String adminID = user.getUid();
 
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country, adminID,null);
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country, adminID,"");
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);

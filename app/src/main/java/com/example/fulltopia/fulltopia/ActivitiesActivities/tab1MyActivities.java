@@ -80,39 +80,39 @@ public class tab1MyActivities extends Fragment {
 
                                                         myActivities.clear();
 
-                                                        for(DataSnapshot activitySnapshot: dataSnapshot.getChildren()){
+                                                        for (DataSnapshot activitySnapshot : dataSnapshot.getChildren()) {
+                                                            if (dataSnapshot.child("communityID").getValue() == null) {
+                                                                String id = activitySnapshot.getKey();
+                                                                String title = (String) activitySnapshot.child("title").getValue();
+                                                                String adminID = (String) activitySnapshot.child("adminID").getValue();
+                                                                String date_event = (String) activitySnapshot.child("date_event").getValue();
+                                                                String date_deadline = (String) activitySnapshot.child("date_deadline").getValue();
+                                                                String address = (String) activitySnapshot.child("address").getValue();
+                                                                String city = (String) activitySnapshot.child("city").getValue();
+                                                                String NPA = (String) activitySnapshot.child("NPA").getValue();
+                                                                String Country = (String) activitySnapshot.child("country").getValue();
+                                                                String description = (String) activitySnapshot.child("description").getValue();
+                                                                memberList = (List<String>) activitySnapshot.child("memberList").getValue();
 
-                                                            String id = activitySnapshot.getKey();
-                                                            String title = (String) activitySnapshot.child("title").getValue();
-                                                            String adminID = (String) activitySnapshot.child("adminID").getValue();
-                                                            String date_event = (String) activitySnapshot.child("date_event").getValue();
-                                                            String date_deadline = (String) activitySnapshot.child("date_deadline").getValue();
-                                                            String address = (String) activitySnapshot.child("address").getValue();
-                                                            String city = (String) activitySnapshot.child("city").getValue();
-                                                            String NPA = (String) activitySnapshot.child("NPA").getValue();
-                                                            String Country = (String) activitySnapshot.child("country").getValue();
-                                                            String description = (String) activitySnapshot.child("description").getValue();
-                                                            memberList = (List<String>) activitySnapshot.child("memberList").getValue();
-
-                                                            com.example.fulltopia.fulltopia.Entities.Activity activity = new com.example.fulltopia.fulltopia.Entities.Activity(id,title,date_event,date_deadline,address,city,NPA,Country,description,adminID);
+                                                                com.example.fulltopia.fulltopia.Entities.Activity activity = new com.example.fulltopia.fulltopia.Entities.Activity(id, title, date_event, date_deadline, address, city, NPA, Country, description, adminID);
 
 
-                                                            if(activitySnapshot.child("adminID").getValue().equals(userID)) {
-                                                                myActivities.add(activity);
-                                                            }
-                                                            else{
-                                                                if(memberList!=null){
-                                                                    for(String memberID: memberList){
-                                                                        if(memberID.equals(userID)){
-                                                                            myActivities.add(activity);
+                                                                if (activitySnapshot.child("adminID").getValue().equals(userID)) {
+                                                                    myActivities.add(activity);
+                                                                } else {
+                                                                    if (memberList != null) {
+                                                                        for (String memberID : memberList) {
+                                                                            if (memberID.equals(userID)) {
+                                                                                myActivities.add(activity);
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
                                                             }
-                                                        }
-                                                        if(myActivities!=null){
-                                                            ActivityListAdapter adapter = new ActivityListAdapter(getActivity(), myActivities);
-                                                            listViewMyActivities.setAdapter(adapter);
+                                                            if (myActivities != null) {
+                                                                ActivityListAdapter adapter = new ActivityListAdapter(getActivity(), myActivities);
+                                                                listViewMyActivities.setAdapter(adapter);
+                                                            }
                                                         }
                                                     }
 
