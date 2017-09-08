@@ -39,6 +39,10 @@ public class Selected_activity extends AppCompatActivity {
         final Button buttonSubscribe = (Button) findViewById(R.id.BTN_Subscribe);
         final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToActivity);
 
+
+
+        userID = user.getUid().toString();
+
         final TextView activityName_TV = (TextView)findViewById(R.id.TV_TitleActivity);
 
         //final TextView adminName_TV = (TextView)findViewById(R.id.TV_Admin);
@@ -51,6 +55,7 @@ public class Selected_activity extends AppCompatActivity {
         final TextView country_TV = (TextView)findViewById(R.id.TV_Country);
         final TextView contributor = (TextView)findViewById(R.id.TV_NBRContributor);
         final TextView description = (TextView)findViewById(R.id.TV_Description);
+        activityAdmin_TV = (TextView)findViewById(R.id.TV_AdminName);
 
 
         bundle = getIntent().getExtras();
