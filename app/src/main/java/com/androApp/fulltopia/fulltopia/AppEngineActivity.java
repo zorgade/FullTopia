@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,10 +38,10 @@ public class AppEngineActivity extends AppCompatActivity {
             listView.setAdapter(adapter);
 
             // Connect to the Firebase database
-            FirebaseDatabase database = FirebaseDatabase.getInstance();
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
 
             // Get a reference to the fulltopia child items it the database
-            final DatabaseReference myRef = database.getReference("fulltopia");
+            final DatabaseReference myRef = database.getReference("fulltopiaChat");
 
             // Assign a listener to detect changes to the child items
             // of the database reference.
@@ -80,15 +82,19 @@ public class AppEngineActivity extends AppCompatActivity {
 
                     // Create a new child with a auto-generated ID.
                     DatabaseReference childRef = myRef.push();
+                    DatabaseReference databaseReference = database.getReference();
+
+                    final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                    String uMail= user.getEmail().toString();
 
                     // Set the child's data to the value passed in from the text box.
-                    childRef.setValue(text.getText().toString());
+                    childRef.setValue(uMail+": "+text.getText().toString());
 
                 }
             });
 
             // Delete items when clicked
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /*listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
                 public void onItemClick(AdapterView<?> parent, View view,
                                         int position, long id) {
@@ -111,5 +117,5 @@ public class AppEngineActivity extends AppCompatActivity {
                     })
                     ;}
             })
-            ;}
+            ;*/}
     }

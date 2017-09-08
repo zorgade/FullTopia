@@ -128,4 +128,5 @@
     <string name="NewCommunityActivity">New community\'s activity</string>
     <string name="selected_activity">Selected activity</string>
     <string name="selected_communauty">Selected communauty</string>
+    <string name="chat">\"Chat\"</string>
 </resources>
