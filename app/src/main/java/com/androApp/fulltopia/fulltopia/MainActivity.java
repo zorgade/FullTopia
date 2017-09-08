@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //set toolbar
         Toolbar toolbar =   (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -83,12 +84,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //sign out method
+    //sign out method (Firebase method
     public void signOut() {
         auth.signOut();
     }
 
 
+    //A list of button for navigate go to Activity / Community / etc
     public void goActivities(View view) {
         Intent i = new Intent(this, ActivitiesActivity.class);
         startActivity(i);

@@ -17,12 +17,18 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+/*Created Taylan 08.09.17
+ *First use when register, go this activities for set value
+ * No edittext is required, the user choose
+ * This activities is reuse, when user click on toolbar-> Profile
+ * If exist, The user's value are setted into each edittext.
+ *
+ */
 public class ProfilsActivity extends AppCompatActivity {
 
     private EditText inputFName, inputLName, inputUsername, inputStreet, inputNPA,
             inputCity, inputCountry;
     private Button btnSaveprofil;
-
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference databaseReference = database.getReference();
@@ -72,12 +78,13 @@ public class ProfilsActivity extends AppCompatActivity {
             databaseReference.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    //search for user infos
+                    //search for user infos into database
                     for (DataSnapshot users : dataSnapshot.child("usersInfos").getChildren()) {
                         if (users.getKey().equals(userID)) {
                             currentUsers = users.getValue(Users.class);
-                            //String t = currentUsers.getLastname().toString();
-                            //uUID = user.getUid().toString();
+                            /*
+                            * Set value if exist
+                            */
                             uUID = user.getUid().toString();
                             if(currentUsers.getLastname()!=null) {
                                 uLname = currentUsers.getLastname().toString();
@@ -123,6 +130,9 @@ public class ProfilsActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                /*
+                 * setData into Users object
+                 * */
                 String uID = user.getUid().toString();
                 String mail = user.getEmail().toString();
 
@@ -139,6 +149,7 @@ public class ProfilsActivity extends AppCompatActivity {
                 users = new Users(uID, mail, uFname, uLname, uUname, uStreet, uNpa, uCity, uCountry);
 
                 try {
+                    //remove the old child value and create on new again
                     databaseReference.child("usersInfos").child(uID).removeValue();
                     databaseReference.child("usersInfos").child(uID).setValue(users);
                 } catch (Exception e) {

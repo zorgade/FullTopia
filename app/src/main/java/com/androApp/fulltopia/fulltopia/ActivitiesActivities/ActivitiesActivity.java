@@ -47,6 +47,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_activities);
 
 
+        //setToolbar
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
