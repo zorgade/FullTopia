@@ -110,6 +110,7 @@ public class SignupActivity extends AppCompatActivity {
                                     catch(Exception e){
                                         e.printStackTrace();
                                     }
+                                    //
                                     startActivity(new Intent(SignupActivity.this, ProfilsActivity.class));
                                     finish();
                                 }

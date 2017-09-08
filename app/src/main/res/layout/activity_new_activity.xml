@@ -87,12 +87,13 @@
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginStart="13dp"
-                android:layout_marginTop="9dp"
+                android:layout_marginTop="-177dp"
                 android:ems="10"
                 android:hint="@string/community_City"
                 app:layout_constraintLeft_toRightOf="@+id/ET_activity_adress"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ET_activity_deadline_participation" />
+                app:layout_constraintTop_toBottomOf="@+id/ET_activity_deadline_participation"
+                app:layout_constraintHorizontal_bias="0.0" />
 
             <EditText
                 android:id="@+id/ET_activity_NPA"
@@ -184,12 +185,23 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginStart="8dp"
                 android:text="@string/BTN_return"
-                tools:layout_editor_absoluteY="41dp"
+                tools:layout_editor_absoluteY="9dp"
                 android:layout_marginRight="16dp"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginLeft="8dp"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintLeft_toRightOf="@+id/textView2" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="250dp"
+                android:layout_height="51dp"
+                android:text="@string/newActivity"
+                android:layout_marginLeft="16dp"
+                android:textSize="35dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintHorizontal_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="9dp" />
         </android.support.constraint.ConstraintLayout>
     </ScrollView>
 </RelativeLayout>

@@ -122,4 +122,10 @@
     <string name="profil">Profil</string>
     <string name="activity_unsubscribe">Unsubscribe</string>
     <string name="activity_communities">Activities</string>
+    <string name="activitiesOfCommunities">Activities of Community</string>
+    <string name="newActivity">New activity</string>
+    <string name="newCommunitiy">New community</string>
+    <string name="NewCommunityActivity">New community\'s activity</string>
+    <string name="selected_activity">Selected activity</string>
+    <string name="selected_communauty">Selected communauty</string>
 </resources>
