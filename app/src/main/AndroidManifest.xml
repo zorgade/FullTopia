@@ -96,8 +96,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".CommunitiesActivities.SelectedCommunity"/>
-        <activity android:name=".ActivitiesActivities.Selected_activity"/>
+        <activity android:name=".CommunitiesActivities.SelectedCommunity" />
+        <activity android:name=".ActivitiesActivities.Selected_activity" />
         <activity android:name=".NewCommunity" />
         <activity android:name=".New_activity" />
         <activity android:name=".AppEngineActivity">
@@ -120,7 +120,9 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".Chat"></activity>
+        <activity android:name=".Chat" />
+        <activity android:name=".CommunitiesActivities.ActivitiesOfCommunity" />
+        <activity android:name=".ActivitiesActivities.NewCommunityactivity"></activity>
     </application>
 
 </manifest>

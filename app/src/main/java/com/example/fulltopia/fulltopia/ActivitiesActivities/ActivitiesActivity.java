@@ -84,8 +84,6 @@ public class ActivitiesActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
 
@@ -141,9 +139,6 @@ public class ActivitiesActivity extends AppCompatActivity {
                 case 1:
                     tab2AllActivities tab2 = new tab2AllActivities();
                     return tab2;
-                case 2:
-                    tab3ArchivedActivities tab3 = new tab3ArchivedActivities();
-                    return tab3;
                 default:
                     return null;
             }
@@ -152,7 +147,7 @@ public class ActivitiesActivity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 2;
         }
 
         @Override
@@ -162,8 +157,6 @@ public class ActivitiesActivity extends AppCompatActivity {
                     return "My Activities";
                 case 1:
                     return "All Activities";
-                case 2:
-                    return "Archives";
             }
             return null;
         }

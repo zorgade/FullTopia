@@ -9,7 +9,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.fulltopia.fulltopia.ActivitiesActivities.ActivitiesActivity;
 import com.example.fulltopia.fulltopia.Entities.Community;
+import com.example.fulltopia.fulltopia.New_activity;
 import com.example.fulltopia.fulltopia.R;
 import com.example.fulltopia.fulltopia.SettingsActivity;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,6 +50,7 @@ public class SelectedCommunity extends AppCompatActivity {
 
         final Button buttonSubscribe = (Button) findViewById(R.id.BTN_SubscribeToCommunity);
         final Button buttonUnsubscribe = (Button) findViewById(R.id.BTN_UnsubscribeToCommunity);
+        final Button buttonActivities = (Button) findViewById(R.id.BTN_CommunitiesActivity);
 
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
@@ -79,7 +82,7 @@ public class SelectedCommunity extends AppCompatActivity {
                         currentCommunity = community.getValue(Community.class);
                         communityName = currentCommunity.getName().toString();
                         communityDescription = currentCommunity.getDescription().toString();
-                        communityAdmin = user.getEmail().toString();
+                        communityAdmin = currentCommunity.getAdminID();
                         communityName_TV.setText(communityName);
                         communityDescription_TV.setText(communityDescription);
                         communityAdmin_TV.setText(communityAdmin);
@@ -107,7 +110,14 @@ public class SelectedCommunity extends AppCompatActivity {
         });
 
 
-
+        buttonActivities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(SelectedCommunity.this, ActivitiesOfCommunity.class);
+                i.putExtra("communityID",communityID);
+                startActivity(i);
+            }
+        });
 
 
         //Button to subscribe to a community

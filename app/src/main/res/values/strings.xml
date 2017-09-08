@@ -83,8 +83,8 @@
     <string name="community_image_attachement">image attachment</string>
     <string name="community_gallery">Choose from gallery</string>
     <string name="community_create_BTN">Create community</string>
-
     <string name="community_title_selected">Community: </string>
+    <string name="activity_communities">Activities</string>
 
     <!-- activity activity layout -->
 

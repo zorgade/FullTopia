@@ -17,7 +17,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.fulltopia.fulltopia.Entities.Community;
 import com.example.fulltopia.fulltopia.Entities.Users;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -118,9 +117,9 @@ public class SettingsActivity extends AppCompatActivity {
         password = (EditText) findViewById(R.id.password);
         newPassword = (EditText) findViewById(R.id.newPassword);
         newStreet = (EditText) findViewById(R.id.ET_Street);
-        newNpa = (EditText) findViewById(R.id.ET_NPA);
-        newCity = (EditText) findViewById(R.id.ET_City);
-        newCountry = (EditText) findViewById(R.id.ET_Country);
+        newNpa = (EditText) findViewById(R.id.ET_communityactivity_NPA);
+        newCity = (EditText) findViewById(R.id.ET_communityactivity_city);
+        newCountry = (EditText) findViewById(R.id.ET_communityactivity_country);
         feedback = (EditText) findViewById(R.id.multiline_text_feedback);
 
         lng_fr = (RadioButton) findViewById(R.id.RB_French);

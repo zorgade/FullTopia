@@ -16,7 +16,7 @@ public class Activity {
     private String Min_part_required;
     private String Max_part_required;
     private String Description;
-    private Date Date_creation_activity;
+    private String Date_creation_activity;
     private String Date_deadline;
     private String Date_event;
     private String image;
@@ -30,7 +30,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, Date date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
@@ -59,7 +59,7 @@ public class Activity {
         this.adminID = adminID;
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, Date date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID, String communityID) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID, String communityID) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
@@ -75,6 +75,8 @@ public class Activity {
         this.adminID = adminID;
         this.communityID = communityID;
     }
+
+
 
     public String getTitle() {
         return Title;
@@ -108,12 +110,20 @@ public class Activity {
         Description = description;
     }
 
-    public Date getDate_creation_activity() {
+    public String getCommunityID() {
+        return communityID;
+    }
+
+    public String getDate_creation_activity() {
         return Date_creation_activity;
     }
 
-    public void setDate_creation_activity(Date date_creation_activity) {
+    public void setDate_creation_activity(String date_creation_activity) {
         Date_creation_activity = date_creation_activity;
+    }
+
+    public void setCommunityID(String communityID) {
+        this.communityID = communityID;
     }
 
     public String getDate_event() {

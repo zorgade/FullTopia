@@ -67,17 +67,29 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/community_subscribe"
-        tools:layout_editor_absoluteX="99dp"
         android:layout_marginTop="305dp"
-        app:layout_constraintTop_toBottomOf="@+id/TV_CommunityDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/TV_CommunityDescription"
+        android:layout_marginLeft="89dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
 
     <Button
         android:id="@+id/BTN_UnsubscribeToCommunity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/community_unsubscribe"
-        tools:layout_editor_absoluteX="99dp"
         android:layout_marginTop="305dp"
+        app:layout_constraintTop_toBottomOf="@+id/TV_CommunityDescription"
+        android:layout_marginLeft="134dp"
+        app:layout_constraintLeft_toLeftOf="parent" />
+
+    <Button
+        android:id="@+id/BTN_CommunitiesActivity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="15dp"
+        android:text="@string/activity_communities"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TV_CommunityDescription" />
 
 </android.support.constraint.ConstraintLayout>

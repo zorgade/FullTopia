@@ -49,7 +49,7 @@ public class Selected_activity extends AppCompatActivity {
                 for(DataSnapshot activity: dataSnapshot.getChildren()){
                     if(activity.getKey().equals(activityID)){
                         currentActivity = activity.getValue(com.example.fulltopia.fulltopia.Entities.Activity.class);
-                        adminName_TV.setText(user.getEmail().toString());
+                        adminName_TV.setText(currentActivity.getAdminID());
                         activityName_TV.setText(currentActivity.getTitle().toString());
                         eventDate_TV.setText(currentActivity.getDate_event());
                         deadlineDate_TV.setText(currentActivity.getDate_deadline());

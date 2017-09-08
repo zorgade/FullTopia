@@ -1,8 +1,7 @@
-package com.example.fulltopia.fulltopia;
+package com.example.fulltopia.fulltopia.ActivitiesActivities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,32 +9,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.fulltopia.fulltopia.Entities.Activity;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.fulltopia.fulltopia.LoginActivity;
+import com.example.fulltopia.fulltopia.New_activity;
+import com.example.fulltopia.fulltopia.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.util.Date;
 
-public class New_activity extends AppCompatActivity {
+public class NewCommunityactivity extends AppCompatActivity {
 
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    Bundle bundle;
 
 
     //Firebase image select on device
-    private Button mSelectImage;
-    private StorageReference mStorage;
-    private static final int GALLERY_INTENT=2;
+
     private ProgressDialog mProgressDialog;
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -46,7 +41,6 @@ public class New_activity extends AppCompatActivity {
     EditText editText_activity_description;
     EditText editText_activity_date_deadline;
     EditText editText_activity_date_event;
-    TextView TextView_activity_image;
     EditText editText_activity_address;
     EditText editText_activity_city;
     EditText editText_activity_NPA;
@@ -55,25 +49,20 @@ public class New_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_activity);
-
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setTitle(getString(R.string.app_name));
-//        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_new_communityactivity);
 
         editText_activity_title = (EditText) findViewById(R.id.ET_communityactivity_title);
-        editText_activity_description = (EditText) findViewById(R.id.ET_activity_description);
-        editText_activity_min = (EditText) findViewById(R.id.ET_activity_min_req_part);
-        editText_activity_max = (EditText) findViewById(R.id.ET_Activity_max_amount_part);
-        editText_activity_date_deadline = (EditText) findViewById(R.id.ET_activity_deadline_participation);
-        editText_activity_date_event = (EditText) findViewById(R.id.ET_activity_event_date);
-        TextView_activity_image = (TextView) findViewById(R.id.ET_activity_image);
-        editText_activity_address = (EditText) findViewById(R.id.ET_activity_adress);
-        editText_activity_city = (EditText) findViewById(R.id.ET_activity_city);
-        editText_activity_NPA = (EditText) findViewById(R.id.ET_activity_NPA);
-        editText_activity_country = (EditText) findViewById(R.id.ET_Activity_country);
+        editText_activity_min = (EditText) findViewById(R.id.ET_communityactivity_MinPart);
+        editText_activity_max = (EditText) findViewById(R.id.ET_communityactivity_MaxPart);
+        editText_activity_description = (EditText) findViewById(R.id.ET_communityactivity_description);
+        editText_activity_date_deadline = (EditText) findViewById(R.id.ET_communityactivity_deadline);
+        editText_activity_date_event = (EditText) findViewById(R.id.ET_communityactivity_eventdate);
+        editText_activity_address = (EditText) findViewById(R.id.ET_communityactivity_address);
+        editText_activity_city = (EditText) findViewById(R.id.ET_communityactivity_city);
+        editText_activity_NPA = (EditText) findViewById(R.id.ET_communityactivity_NPA);
+        editText_activity_country = (EditText) findViewById(R.id.ET_communityactivity_country);
 
-        Button button = (Button) findViewById(R.id.BTN_activity_create);
+        Button button = (Button) findViewById(R.id.BTN_communityactivity_CreateActivity);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
@@ -89,15 +78,17 @@ public class New_activity extends AppCompatActivity {
                 String date_creation = date.toString();
                 String date_deadline = editText_activity_date_deadline.getText().toString();
                 String date_event = editText_activity_date_event.getText().toString();
-                String image = TextView_activity_image.getText().toString();
                 String address = editText_activity_address.getText().toString();
                 String city = editText_activity_city.getText().toString();
                 String NPA = editText_activity_NPA.getText().toString();
                 String country = editText_activity_country.getText().toString();
                 String adminID = user.getUid();
 
+                bundle = getIntent().getExtras();
+                String communityID = bundle.getString("communityID");
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country, adminID,null);
+
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, "", address, city, NPA, country, adminID, communityID);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);
@@ -121,45 +112,13 @@ public class New_activity extends AppCompatActivity {
                 if (user == null) {
                     // user auth state is changed - user is null
                     // launch login activity
-                    startActivity(new Intent(New_activity.this, LoginActivity.class));
+                    startActivity(new Intent(NewCommunityactivity.this, LoginActivity.class));
                     finish();
                 }
             }
         };
 
-        //upload imag for new activity: https://www.youtube.com/watch?v=mSi7bNk4ySM
-        mStorage = FirebaseStorage.getInstance().getReference();
-        mSelectImage = (Button) findViewById(R.id.BTN_activity_Gallery);
-        mProgressDialog = new ProgressDialog(this);
-        mSelectImage.setOnClickListener(new View.OnClickListener()
-        {
-            public void onClick(View v){
-                Intent i = new Intent(Intent.ACTION_PICK);
-                i.setType("image/*");
-                startActivityForResult(i, GALLERY_INTENT);
-            }
-        });
+
+
     }
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data){
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
-
-            mProgressDialog.setMessage(getString(R.string.UPLOADING));
-            mProgressDialog.show();
-            Uri uri = data.getData();
-            StorageReference filePath = mStorage.child("ActivitiesPhotos").child(uri.getLastPathSegment());
-            filePath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-
-                    Toast.makeText(New_activity.this, getString(R.string.UP_IMG), Toast.LENGTH_LONG).show();
-                    mProgressDialog.dismiss();
-                }
-            });
-        }
-    }
-
-
 }
