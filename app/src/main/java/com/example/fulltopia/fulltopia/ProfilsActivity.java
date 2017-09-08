@@ -69,43 +69,54 @@ public class ProfilsActivity extends AppCompatActivity {
         };
 
         //I retrieve the current community
+            databaseReference.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    //search for user infos
+                    for (DataSnapshot users : dataSnapshot.child("usersInfos").getChildren()) {
+                        if (users.getKey().equals(userID)) {
+                            currentUsers = users.getValue(Users.class);
+                            //String t = currentUsers.getLastname().toString();
+                            //uUID = user.getUid().toString();
+                            uUID = user.getUid().toString();
+                            if(currentUsers.getLastname()!=null) {
+                                uLname = currentUsers.getLastname().toString();
+                                inputLName.setText(uLname);
+                            }
+                            if(currentUsers.getFirstname()!=null){
+                                uFname = currentUsers.getFirstname().toString();
+                                inputFName.setText(uFname);
+                            }
+                            if(currentUsers.getUsername()!=null) {
+                                uUname = currentUsers.getUsername().toString();
+                                inputUsername.setText(uUname);
+                            }
+                            if(currentUsers.getNpa()!=null) {
+                                uNpa = currentUsers.getNpa().toString();
+                                inputNPA.setText(uNpa);
+                            }
+                            if(currentUsers.getAddress()!=null) {
+                                uStreet = currentUsers.getAddress().toString();
+                                inputStreet.setText(uStreet);
+                            }
+                            if(currentUsers.getCity()!=null) {
+                                uCity = currentUsers.getCity().toString();
+                                inputCity.setText(uCity);
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //search for user infos
-                for(DataSnapshot users: dataSnapshot.child("usersInfos").getChildren()){
-                    if(users.getKey().equals(userID)){
-                        currentUsers = users.getValue(Users.class);
-                        //uUID = user.getUid().toString();
-                        uUID = user.getUid().toString();
-                        uLname = currentUsers.getLastname().toString();
-                        uFname = currentUsers.getFirstname().toString();
-                        uUname = currentUsers.getUsername().toString();
-                        uEmail = user.getEmail().toString();
-                        uStreet = currentUsers.getAddress().toString();
-                        uNpa = currentUsers.getNpa().toString();
-                        uCity = currentUsers.getCity().toString();
-                        uCountry = currentUsers.getCountry().toString();
-
-
-                        inputLName.setText(uLname);
-                        inputFName.setText(uFname);
-                        inputUsername.setText(uUname);
-                        inputStreet.setText(uStreet);
-                        inputNPA.setText(uNpa);
-                        inputCity.setText(uCity);
-                        inputCountry.setText(uCountry);
-
+                            }
+                            if(currentUsers.getCountry()!=null) {
+                                uCountry = currentUsers.getCountry().toString();
+                                inputCountry.setText(uCountry);
+                            }
+                        }
                     }
                 }
-            }
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                System.out.println("The read failed: " + databaseError.getMessage());
-            }
-        });
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+                    System.out.println("The read failed: " + databaseError.getMessage());
+                }
+            });
 
 
         btnSaveprofil.setOnClickListener(new View.OnClickListener() {
