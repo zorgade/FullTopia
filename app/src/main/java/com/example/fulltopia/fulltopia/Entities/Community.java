@@ -47,6 +47,15 @@ public class Community {
         this.adminID = adminID;
     }
 
+    public Community(String communityId, String name, String dateCreationCommunity, String description, String adminID, List<String> memberList){
+        this.communityId=communityId;
+        this.name=name;
+        this.dateCreationCommunity=dateCreationCommunity;
+        this.description=description;
+        this.adminID = adminID;
+        this.memberList = memberList;
+    }
+
     public List<String> getMemberList() {
         return this.memberList;
     }

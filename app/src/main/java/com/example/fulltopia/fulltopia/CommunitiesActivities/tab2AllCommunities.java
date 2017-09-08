@@ -33,10 +33,9 @@ import java.util.List;
 
 public class tab2AllCommunities extends Fragment{
 
+    //Declaration of variables we need, like the ListView, the database and the list of communities
     ListView listViewAllCommunities;
-
     DatabaseReference databaseReference;
-
     List<Community> allCommunities;
 
     @Override
@@ -44,16 +43,20 @@ public class tab2AllCommunities extends Fragment{
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.tab2allcommunities, container, false);
 
+        //I link the listView with the LV in the layout
         listViewAllCommunities = (ListView) rootView.findViewById(R.id.listViewAllCommunity);
 
+        //Creation of the arrayList
         allCommunities = new ArrayList<>();
 
+        //Reference of the database : branch community
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         databaseReference = database.getReference("community");
 
         return rootView;
     }
 
+    //Method onStart that will call the database and fill the listview
     @Override
     public void onStart() {
         super.onStart();
