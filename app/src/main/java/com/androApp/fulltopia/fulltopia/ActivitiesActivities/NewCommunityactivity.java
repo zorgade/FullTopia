@@ -88,7 +88,7 @@ public class NewCommunityactivity extends AppCompatActivity {
                 String communityID = bundle.getString("communityID");
 
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, "", address, city, NPA, country, adminID, communityID);
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, address, city, NPA, country, adminID, communityID);
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);

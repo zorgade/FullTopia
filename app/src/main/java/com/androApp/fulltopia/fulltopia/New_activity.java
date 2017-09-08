@@ -58,8 +58,7 @@ public class New_activity extends AppCompatActivity {
         editText_activity_NPA = (EditText) findViewById(R.id.ET_activity_NPA);
         editText_activity_country = (EditText) findViewById(R.id.ET_Activity_country);
 
-        bundle = getIntent().getExtras();
-        String communityID = bundle.getString("communityID");
+
 
         Button buttonCreateActivity = (Button) findViewById(R.id.BTN_activity_create);
 
@@ -78,7 +77,6 @@ public class New_activity extends AppCompatActivity {
                 String date_creation = date.toString();
                 String date_deadline = editText_activity_date_deadline.getText().toString();
                 String date_event = editText_activity_date_event.getText().toString();
-                String image = TextView_activity_image.getText().toString();
                 String address = editText_activity_address.getText().toString();
                 String city = editText_activity_city.getText().toString();
                 String NPA = editText_activity_NPA.getText().toString();
@@ -86,7 +84,7 @@ public class New_activity extends AppCompatActivity {
                 String adminID = user.getUid();
 
 
-                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, image, address, city, NPA, country, adminID,"");
+                activity = new Activity(title, min_part_required, max_part_required, description, date_creation, date_deadline, date_event, address, city, NPA, country, adminID,"");
 
                 try {
                     databaseReference.child("activity").push().setValue(activity);

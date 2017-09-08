@@ -20,7 +20,6 @@ public class Activity {
     private String Date_creation_activity;
     private String Date_deadline;
     private String Date_event;
-    private String image;
     private String Address;
     private String City;
     private String NPA;
@@ -32,7 +31,7 @@ public class Activity {
     public Activity() {
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String address, String city, String NPA, String country, String adminID) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
@@ -40,7 +39,6 @@ public class Activity {
         this.Date_creation_activity = date_creation_activity;
         this.Date_deadline = date_dealine;
         this.Date_event = date_event;
-        this.image = image;
         this.Address = address;
         this.City = city;
         this.NPA = NPA;
@@ -61,7 +59,7 @@ public class Activity {
         this.adminID = adminID;
     }
 
-    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID, String communityID) {
+    public Activity(String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String address, String city, String NPA, String country, String adminID, String communityID) {
         this.Title = title;
         this.Min_part_required = min_part_required;
         this.Max_part_required = max_part_required;
@@ -69,7 +67,6 @@ public class Activity {
         this.Date_creation_activity = date_creation_activity;
         this.Date_deadline = date_dealine;
         this.Date_event = date_event;
-        this.image = image;
         this.Address = address;
         this.City = city;
         this.NPA = NPA;
@@ -78,7 +75,7 @@ public class Activity {
         this.communityID = communityID;
     }
 
-    public Activity(String id, String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String image, String address, String city, String NPA, String country, String adminID, String communityID, List<String> memberList) {
+    public Activity(String id, String title, String min_part_required, String max_part_required, String description, String date_creation_activity, String date_dealine, String date_event, String address, String city, String NPA, String country, String adminID, String communityID, List<String> memberList) {
         this.activityID = id;
         this.Title = title;
         this.Min_part_required = min_part_required;
@@ -87,7 +84,6 @@ public class Activity {
         this.Date_creation_activity = date_creation_activity;
         this.Date_deadline = date_dealine;
         this.Date_event = date_event;
-        this.image = image;
         this.Address = address;
         this.City = city;
         this.NPA = NPA;
@@ -160,14 +156,6 @@ public class Activity {
 
     public void setDate_event(String date_event) {
         Date_event = date_event;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
     }
 
     public String getAddress() {
