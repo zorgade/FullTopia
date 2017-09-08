@@ -166,7 +166,7 @@ public class Selected_activity extends AppCompatActivity {
         });
     }
 
-    private void setUserAdmin(String communityAdmin) {
+    private void setUserAdmin(String activityAdmin) {
         DatabaseReference mCurrentUserAdmin = FirebaseDatabase.getInstance().getReference("usersInfos").child(activityAdmin);
         mCurrentUserAdmin.addValueEventListener(new ValueEventListener(){
 
