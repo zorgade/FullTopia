@@ -37,9 +37,9 @@ public class SelectedCommunity extends AppCompatActivity {
     TextView communityDescription_TV;
     TextView communityAdmin_TV;
     List<String> memberList;
-    private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
     FirebaseUser user;
+    String admin;
 
 
 
@@ -73,19 +73,27 @@ public class SelectedCommunity extends AppCompatActivity {
 
         //I retrieve the current community
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        final DatabaseReference databaseReference = database.getReference("community");
+        final DatabaseReference databaseReference = database.getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                for(DataSnapshot community: dataSnapshot.getChildren()){
+                for(DataSnapshot community: dataSnapshot.child("community").getChildren()){
                     if(community.getKey().equals(communityID)){
                         currentCommunity = community.getValue(Community.class);
                         communityName = currentCommunity.getName().toString();
                         communityDescription = currentCommunity.getDescription().toString();
                         communityAdmin = currentCommunity.getAdminID();
+
+                        //search for admin infos
+                        for(DataSnapshot users: dataSnapshot.child("usersInfo").getChildren()){
+                            if(users.getKey().equals(communityAdmin)){
+                                admin = users.child("email").getValue().toString();
+                            }
+                        }
+
                         communityName_TV.setText(communityName);
                         communityDescription_TV.setText(communityDescription);
-                        communityAdmin_TV.setText(communityAdmin);
+                        communityAdmin_TV.setText(admin);
                         memberList = currentCommunity.getMemberList();
 
                         if(memberList!=null){
