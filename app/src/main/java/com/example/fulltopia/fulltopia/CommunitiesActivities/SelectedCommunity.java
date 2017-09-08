@@ -69,7 +69,7 @@ public class SelectedCommunity extends AppCompatActivity {
         communityAdmin_TV = (TextView)findViewById(R.id.TV_CommunityAdminName);
 
         bundle = getIntent().getExtras();
-        communityID = bundle.getString("idCommunity");
+        communityID = bundle.getString("communityID");
 
         //I retrieve the current community
         FirebaseDatabase database = FirebaseDatabase.getInstance();

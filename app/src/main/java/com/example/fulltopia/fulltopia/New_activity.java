@@ -24,6 +24,7 @@ public class New_activity extends AppCompatActivity {
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
+    Bundle bundle;
 
 
     final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -56,6 +57,9 @@ public class New_activity extends AppCompatActivity {
         editText_activity_city = (EditText) findViewById(R.id.ET_activity_city);
         editText_activity_NPA = (EditText) findViewById(R.id.ET_activity_NPA);
         editText_activity_country = (EditText) findViewById(R.id.ET_Activity_country);
+
+        bundle = getIntent().getExtras();
+        String communityID = bundle.getString("communityID");
 
         Button buttonCreateActivity = (Button) findViewById(R.id.BTN_activity_create);
 

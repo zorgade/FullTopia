@@ -102,6 +102,19 @@ public class NewCommunityactivity extends AppCompatActivity {
             }
         });
 
+        Button buttonReturn = (Button) findViewById(R.id.BTN_communityactivity_Return);
+
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(NewCommunityactivity.this,ActivitiesOfCommunity.class);
+                bundle = getIntent().getExtras();
+                String communityID = bundle.getString("communityID");
+                i.putExtra("communityID",communityID);
+                startActivity(i);
+            }
+        });
+
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 

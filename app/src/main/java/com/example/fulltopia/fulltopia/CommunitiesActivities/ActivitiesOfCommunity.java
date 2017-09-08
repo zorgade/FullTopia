@@ -4,16 +4,24 @@ import android.content.Intent;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.fulltopia.fulltopia.ActivitiesActivities.ActivityListAdapter;
 import com.example.fulltopia.fulltopia.ActivitiesActivities.NewCommunityactivity;
 import com.example.fulltopia.fulltopia.ActivitiesActivities.Selected_activity;
 import com.example.fulltopia.fulltopia.Entities.Activity;
+import com.example.fulltopia.fulltopia.LoginActivity;
+import com.example.fulltopia.fulltopia.ProfilsActivity;
 import com.example.fulltopia.fulltopia.R;
+import com.example.fulltopia.fulltopia.SettingsActivity;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +40,7 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
     Bundle bundle;
     List<Activity> allActivities;
     FloatingActionButton FLABTN_AddCommunityActivity;
+    private FirebaseAuth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +100,19 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
             }
         });
 
+        Button buttonReturn = (Button) findViewById(R.id.BTN_ReturnActivtiesOfCommunity);
+
+        buttonReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(ActivitiesOfCommunity.this,SelectedCommunity.class);
+                bundle = getIntent().getExtras();
+                String communityID = bundle.getString("communityID");
+                i.putExtra("communityID",communityID);
+                startActivity(i);
+            }
+        });
+
         FLABTN_AddCommunityActivity = (FloatingActionButton)findViewById(R.id.FLBABTN_AddCommunityActivity);
 
 
@@ -123,4 +145,5 @@ public class ActivitiesOfCommunity extends AppCompatActivity {
 
 
     }
+
 }

@@ -95,7 +95,7 @@ public class tab2AllCommunities extends Fragment{
                 String description = community.getDescription();
                 String date = community.getDateCreationCommunity();
                 Intent intent = new Intent(listViewAllCommunities.getContext(),SelectedCommunity.class);
-                intent.putExtra("idCommunity",communityId);
+                intent.putExtra("communityID",communityId);
                 startActivity(intent);
 
             }

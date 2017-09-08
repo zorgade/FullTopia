@@ -111,7 +111,11 @@
             android:label="@string/title_activity_maps" />
         <activity android:name=".Chat" />
         <activity android:name=".ProfilsActivity"></activity>
-        <activity android:name=".CommunitiesActivities.ActivitiesOfCommunity" />
+        <activity android:name=".CommunitiesActivities.ActivitiesOfCommunity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".CommunitiesActivities.SelectedCommunity"/>
+        </activity>
         <activity android:name=".ActivitiesActivities.NewCommunityactivity"/>
         <service
             android:name=".MyFirebaseMessagingService">

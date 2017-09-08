@@ -25,10 +25,11 @@
             android:id="@+id/todoText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"/>
+
         <Button
             android:id="@+id/addButton"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Add New Item"/>
+            android:text="Add New Item" />
     </LinearLayout>
 </LinearLayout>
