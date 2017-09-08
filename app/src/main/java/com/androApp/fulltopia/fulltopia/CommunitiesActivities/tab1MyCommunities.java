@@ -47,9 +47,7 @@ public class tab1MyCommunities extends Fragment {
         //get firebase auth instance
         auth = FirebaseAuth.getInstance();
 
-        //get current user
-        //final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-
+        //get current user ID
         user = auth.getCurrentUser();
         userID = user.getUid().toString();
 
@@ -67,7 +65,7 @@ public class tab1MyCommunities extends Fragment {
         return rootView;
     }
 
-    //Method onStart that will call the database and fill the listview
+    //Method onStart that will call the database and fill the listview with my communities (ADMIN OR IN MEMBERLIST)
     @Override
     public void onStart() {
         super.onStart();
@@ -76,10 +74,13 @@ public class tab1MyCommunities extends Fragment {
                                                     @Override
                                                     public void onDataChange(DataSnapshot dataSnapshot) {
 
+                                                        //I clear the List
                                                         myCommunities.clear();
 
-                                                        for(DataSnapshot communitySnapshot: dataSnapshot.getChildren()){
+                                                        //I go in all communities
+                                                        for (DataSnapshot communitySnapshot : dataSnapshot.getChildren()) {
 
+                                                            //Store elements of Community
                                                             String id = communitySnapshot.getKey();
                                                             String name = (String) communitySnapshot.child("name").getValue();
                                                             String description = (String) communitySnapshot.child("description").getValue();
@@ -87,23 +88,27 @@ public class tab1MyCommunities extends Fragment {
                                                             String adminID = (String) communitySnapshot.child("adminID").getValue();
                                                             memberList = (List<String>) communitySnapshot.child("memberList").getValue();
 
+                                                            //Create a new object Community
                                                             Community community = new Community(id, name, date, description, adminID, memberList);
 
-
-                                                            if(communitySnapshot.child("adminID").getValue().equals(userID)) {
+                                                            //Test to see if currentUser is admin of Community
+                                                            if (communitySnapshot.child("adminID").getValue().equals(userID)) {
+                                                                //Add it to list if he is
                                                                 myCommunities.add(community);
-                                                            }
-                                                            else{
-                                                                if(memberList!=null){
-                                                                    for(String memberID: memberList){
-                                                                        if(memberID.equals(userID)){
+                                                            } else {
+                                                                if (memberList != null) {
+                                                                    //Test to see if currentUser is in memberList
+                                                                    for (String memberID : memberList) {
+                                                                        if (memberID.equals(userID)) {
+                                                                            //Add it if he is
                                                                             myCommunities.add(community);
                                                                         }
                                                                     }
                                                                 }
-                                                                }
+                                                            }
                                                         }
-                                                        if(myCommunities!=null){
+                                                        //Test if no communities
+                                                        if (myCommunities != null) {
                                                             CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), myCommunities);
                                                             listViewMyCommunities.setAdapter(adapter);
                                                         }
@@ -117,16 +122,14 @@ public class tab1MyCommunities extends Fragment {
                                                 }
         );
 
-        listViewMyCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        //ClickListener for each line of ListView that will open SelectedCommunity with correct ID
+        listViewMyCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Community community = (Community) parent.getItemAtPosition(position);
                 String communityId = community.getCommunityId();
-                String name = community.getName();
-                String description = community.getDescription();
-                String date = community.getDateCreationCommunity();
-                Intent intent = new Intent(listViewMyCommunities.getContext(),SelectedCommunity.class);
-                intent.putExtra("communityID",communityId);
+                Intent intent = new Intent(listViewMyCommunities.getContext(), SelectedCommunity.class);
+                intent.putExtra("communityID", communityId);
                 startActivity(intent);
 
             }

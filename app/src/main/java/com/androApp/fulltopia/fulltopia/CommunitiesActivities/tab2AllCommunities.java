@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class tab2AllCommunities extends Fragment{
+public class tab2AllCommunities extends Fragment {
 
     //Declaration of variables we need, like the ListView, the database and the list of communities
     ListView listViewAllCommunities;
@@ -50,37 +50,51 @@ public class tab2AllCommunities extends Fragment{
         return rootView;
     }
 
-    //Method onStart that will call the database and fill the listview
+    //Method onStart that will call the database and fill the listview with all communities
     @Override
     public void onStart() {
         super.onStart();
 
         databaseReference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                allCommunities.clear();
-                for(DataSnapshot communitySnapshot: dataSnapshot.getChildren()){
-                    String id = communitySnapshot.getKey();
-                    String name = (String) communitySnapshot.child("name").getValue();
-                    String description = (String) communitySnapshot.child("description").getValue();
-                    String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
-                    String userID = (String) communitySnapshot.child("adminID").getValue();
-                    Community community = new Community(id,name, date, description, userID);
-                    allCommunities.add(community);
-                }
-                CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
-                listViewAllCommunities.setAdapter(adapter);
-            }
+                                                    @Override
+                                                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-                String message = databaseError.getMessage();
-                String ok = "ok";
-            }
-        }
+                                                        //I clear the list
+                                                        allCommunities.clear();
+
+                                                        //I go in all communities
+                                                        for (DataSnapshot communitySnapshot : dataSnapshot.getChildren()) {
+                                                            //Store elements of community
+                                                            String id = communitySnapshot.getKey();
+                                                            String name = (String) communitySnapshot.child("name").getValue();
+                                                            String description = (String) communitySnapshot.child("description").getValue();
+                                                            String date = (String) communitySnapshot.child("dateCreationCommunity").getValue();
+                                                            String userID = (String) communitySnapshot.child("adminID").getValue();
+
+                                                            //Creation of an object Community
+                                                            Community community = new Community(id, name, date, description, userID);
+
+                                                            //Fill it in list
+                                                            allCommunities.add(community);
+                                                        }
+
+                                                        //Test to see if List isn't null
+                                                        if (allCommunities != null) {
+                                                            CommunityListAdapter adapter = new CommunityListAdapter(getActivity(), allCommunities);
+                                                            listViewAllCommunities.setAdapter(adapter);
+                                                        }
+                                                    }
+
+                                                    @Override
+                                                    public void onCancelled(DatabaseError databaseError) {
+                                                        String message = databaseError.getMessage();
+                                                        String ok = "ok";
+                                                    }
+                                                }
         );
 
-        listViewAllCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+        //ClickListener for each line of ListView that will open SelectedCommunity with correct ID
+        listViewAllCommunities.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Community community = (Community) parent.getItemAtPosition(position);
@@ -88,15 +102,13 @@ public class tab2AllCommunities extends Fragment{
                 String name = community.getName();
                 String description = community.getDescription();
                 String date = community.getDateCreationCommunity();
-                Intent intent = new Intent(listViewAllCommunities.getContext(),SelectedCommunity.class);
-                intent.putExtra("communityID",communityId);
+                Intent intent = new Intent(listViewAllCommunities.getContext(), SelectedCommunity.class);
+                intent.putExtra("communityID", communityId);
                 startActivity(intent);
 
             }
         });
 
     }
-
-
 }
 

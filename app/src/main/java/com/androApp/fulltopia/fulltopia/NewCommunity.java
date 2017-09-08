@@ -20,6 +20,7 @@ import java.util.Date;
 
 public class NewCommunity extends AppCompatActivity {
 
+    //Variables
     private ProgressBar progressBar;
     private FirebaseAuth.AuthStateListener authListener;
     private FirebaseAuth auth;
@@ -57,28 +58,36 @@ public class NewCommunity extends AppCompatActivity {
             }
         };
 
+        //Link EditTexts with layout
         editText_CommunityName = (EditText) findViewById(R.id.ET_CommunityName);
         editText_CommunityDescription = (EditText) findViewById(R.id.ET_CommunityDescription);
 
 
+        //ClickListener of button CREATE
         Button button = (Button) findViewById(R.id.BTN_Community_Create);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 FirebaseDatabase database = FirebaseDatabase.getInstance();
+                //Get currentUseID
                 DatabaseReference databaseReference = database.getReference();
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 String userID = user.getUid().toString();
+                //Creation of object Community
                 Community community;
+
+                //Get back EditTexts Texts
                 String name = editText_CommunityName.getText().toString();
                 String description = editText_CommunityDescription.getText().toString();
+                //Get current Date
                 Date date = new Date();
+                //Convert it to String because Firebase dont love DateObject
                 String datecreation = date.toString();
 
                 //Create an object community with the Strings
                 community = new Community(name, datecreation, description, userID);
 
                 try {
-                    //Send the community object on Firebase
+                    //Send the community object on Firebase on Community Branch
                     databaseReference.child("community").push().setValue(community);
                     Intent i = new Intent(NewCommunity.this, CommunitiesActivity.class);
                     startActivity(i);

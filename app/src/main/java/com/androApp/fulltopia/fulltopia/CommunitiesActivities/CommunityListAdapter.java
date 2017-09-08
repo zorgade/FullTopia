@@ -20,9 +20,11 @@ import java.util.List;
 
 public class CommunityListAdapter extends ArrayAdapter<Community> {
 
+    //Declaration of variable
     private Context context;
     private List<Community> communityList;
 
+    //Constructor of the ArrayAdapter with an ArrayList
     public CommunityListAdapter(Context context, List<Community> communityList){
         super(context, R.layout.tab2allcommunities, communityList);
         this.context=context;
@@ -30,6 +32,7 @@ public class CommunityListAdapter extends ArrayAdapter<Community> {
 
     }
 
+    //Method to set text
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -39,10 +42,13 @@ public class CommunityListAdapter extends ArrayAdapter<Community> {
 
         TextView textViewName = (TextView) listViewItem.findViewById(R.id.section_label);
 
+        //We get an object Community in the list
         Community community = communityList.get(position);
 
+        //We set the TextView with the name of the community
         textViewName.setText(community.getName());
 
+        //Return the View
         return listViewItem;
     }
 }
