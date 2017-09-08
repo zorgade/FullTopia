@@ -74,6 +74,7 @@ public class SelectedCommunity extends AppCompatActivity {
         //I retrieve the current community
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference databaseReference = database.getReference();
+        final DatabaseReference databaseReference2 = database.getReference();
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -84,16 +85,12 @@ public class SelectedCommunity extends AppCompatActivity {
                         communityDescription = currentCommunity.getDescription().toString();
                         communityAdmin = currentCommunity.getAdminID();
 
-                        //search for admin infos
-                        for(DataSnapshot users: dataSnapshot.child("usersInfo").getChildren()){
-                            if(users.getKey().equals(communityAdmin)){
-                                admin = users.child("email").getValue().toString();
-                            }
-                        }
-
                         communityName_TV.setText(communityName);
                         communityDescription_TV.setText(communityDescription);
-                        communityAdmin_TV.setText(admin);
+
+                        setUserAdmin(communityAdmin);
+
+
                         memberList = currentCommunity.getMemberList();
 
                         if(memberList!=null){
@@ -180,6 +177,22 @@ public class SelectedCommunity extends AppCompatActivity {
 
                 buttonSubscribe.setVisibility(View.GONE);
 
+            }
+        });
+    }
+
+    private void setUserAdmin(String communityAdmin) {
+        DatabaseReference mCurrentUserAdmin = FirebaseDatabase.getInstance().getReference("usersInfos").child(communityAdmin);
+        mCurrentUserAdmin.addValueEventListener(new ValueEventListener(){
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                admin = dataSnapshot.child("email").getValue().toString();
+                communityAdmin_TV.setText(admin);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
             }
         });
     }
