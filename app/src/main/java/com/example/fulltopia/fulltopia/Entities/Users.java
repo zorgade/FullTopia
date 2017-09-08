@@ -32,6 +32,11 @@ public class Users {
         this.country = country;
     }
 
+    public Users(String userId, String email) {
+        this.userId = userId;
+        this.email = email;
+    }
+
     public String getUserId() {
         return userId;
     }
