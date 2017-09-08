@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void goTestAppEngine(View view) {
-        Intent i = new Intent(this, AppEngineActivity.class);
+        Intent i = new Intent(this, ChatActivity.class);
         startActivity(i);
     }
 

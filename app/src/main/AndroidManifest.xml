@@ -89,7 +89,7 @@
         <activity android:name="com.androApp.fulltopia.fulltopia.ActivitiesActivities.Selected_activity" />
         <activity android:name="com.androApp.fulltopia.fulltopia.NewCommunity" />
         <activity android:name="com.androApp.fulltopia.fulltopia.New_activity" />
-        <activity android:name="com.androApp.fulltopia.fulltopia.AppEngineActivity">
+        <activity android:name="com.androApp.fulltopia.fulltopia.ChatActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.androApp.fulltopia.fulltopia.CommunitiesActivities.CommunitiesActivity" />

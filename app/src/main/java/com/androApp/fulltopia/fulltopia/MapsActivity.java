@@ -33,10 +33,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = database.getReference("activity");
+        //FirebaseDatabase database = FirebaseDatabase.getInstance();
+        //DatabaseReference databaseReference = database.getReference("activity");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+        /*databaseReference.addValueEventListener(new ValueEventListener() {
             List<Address> addressList = null;
             LatLng latLng = null;
             Geocoder geocoder = new Geocoder(MapsActivity.this, Locale.getDefault());
@@ -77,7 +77,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                 String message = databaseError.getMessage();
                 String ok = "ok";
             }
-        });
+        });*/
     }
 
     /**
