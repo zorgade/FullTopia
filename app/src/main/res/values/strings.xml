@@ -121,7 +121,7 @@
     <string name="username">Username</string>
     <string name="profil">Profil</string>
     <string name="activity_unsubscribe">Unsubscribe</string>
-    <string name="activity_communities">New Activity</string>
+    <string name="activity_communities">Activities</string>
     <string name="activitiesOfCommunities">Activities of Community</string>
     <string name="newActivity">New activity</string>
     <string name="newCommunitiy">New community</string>

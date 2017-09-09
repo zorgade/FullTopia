@@ -94,6 +94,7 @@ public class NewCommunityactivity extends AppCompatActivity {
                 try {
                     databaseReference.child("activity").push().setValue(activity);
                     Intent i = new Intent(NewCommunityactivity.this, ActivitiesOfCommunity.class);
+                    i.putExtra("communityID",communityID);
                     startActivity(i);
                 }
                 catch(Exception e){

@@ -116,7 +116,7 @@
     <string name="AddressChange">Nouvelle adresse enregistrée!</string>
     <string name="title_activity_maps">Map</string>
     <string name="community_unsubscribe">Se désinscrire de la communauté</string>
-    <string name="activity_communities">Nouvel activité</string>
+    <string name="activity_communities">Activités</string>
     <string name="activity_unsubscribe">Se désinscrire</string>
     <string name="firstname">Prénom</string>
     <string name="lastname">Nom</string>
